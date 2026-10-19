@@ -6,29 +6,40 @@ import org.datavec.api.io.labels.ParentPathLabelGenerator;
 import org.datavec.api.split.FileSplit;
 import org.datavec.image.loader.BaseImageLoader;
 import org.datavec.image.recordreader.ImageRecordReader;
+import org.datavec.image.transform.*;
+import org.deeplearning4j.core.storage.StatsStorage;
 import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator;
 import org.deeplearning4j.nn.api.OptimizationAlgorithm;
+import org.deeplearning4j.nn.conf.GradientNormalization;
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
 import org.deeplearning4j.nn.conf.inputs.InputType;
-import org.deeplearning4j.nn.conf.layers.ConvolutionLayer;
-import org.deeplearning4j.nn.conf.layers.DenseLayer;
-import org.deeplearning4j.nn.conf.layers.OutputLayer;
-import org.deeplearning4j.nn.conf.layers.SubsamplingLayer;
+import org.deeplearning4j.nn.conf.layers.*;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
+import org.deeplearning4j.nn.weights.WeightInit;
+import org.deeplearning4j.optimize.api.InvocationType;
+import org.deeplearning4j.optimize.listeners.EvaluativeListener;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
+import org.deeplearning4j.ui.api.UIServer;
+import org.deeplearning4j.ui.model.stats.StatsListener;
+import org.deeplearning4j.ui.model.storage.InMemoryStatsStorage;
 import org.jetbrains.annotations.NotNull;
+import org.nd4j.common.primitives.Pair;
 import org.nd4j.evaluation.classification.Evaluation;
 import org.nd4j.linalg.activations.Activation;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
 import org.nd4j.linalg.dataset.api.preprocessor.ImagePreProcessingScaler;
 import org.nd4j.linalg.learning.config.Adam;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
+import org.nd4j.linalg.schedule.ExponentialSchedule;
+import org.nd4j.linalg.schedule.ScheduleType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class OcclupanidClassifier {
@@ -38,82 +49,89 @@ public class OcclupanidClassifier {
     private static int width = 300;
     private static int channels = 3; // Keep this as 3 it means RGB
     private static int numOfClasses = 2; // For now just using A. Floridensis and P. Utiliformis
-    private static int batchSize = 16; // Not sure if this is right? Previously was 96
-    private static long seed = 12345L; // LOL What is this
-    private static int epochs = 20; // Sure? Not sure what this is really...
+    private static int batchSize = 16;
+    private static long seed = 12345L;
+    private static int epochs = 50;
 
-    private static final String modelParentPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/models";
-    private static final String modelFileName = "deeplearning4jOcclupanidModel.zip";
-    private static final String modelPath = modelParentPath + "/" + modelFileName;
-
-    private static final String trainingDataPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/trainingData/data";
-
-    private static final String[] LABELS = new String[] {
-            "AdmordorsumFloridensis", "PalpatophoraUtiliformis"
-    };
+    private static final String modelSavePath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/models/deeplearning4jOcclupanidModel1.0.0.zip";
+    private static final String trainingDataPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/trainingData/data/train";
+    private static final String testingDataPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/trainingData/data/test";
 
     public static void main(String[] args) throws Exception {
-        // --- Dataset Paths ---
-        // Expected directory structure:
-        // /path/to/dataset/type_A/image1.jpg
-        // /path/to/dataset/type_B/image2.jpg
         File trainingDataDirectory = new File(trainingDataPath);
-        if (!trainingDataDirectory.exists()) {
-            log.info("Please update the rootDir path to your local image folder.");
-        }
+        File testingDataDirectory = new File(testingDataPath);
 
-        DataSetIterator dataSetIterator = getDataSetIterator(trainingDataDirectory);
+        // 1. Define individual transforms
+        ImageTransform flip = new FlipImageTransform(1); // 1 = horizontal flip
+        ImageTransform rotate = new RotateImageTransform(new Random(seed), 15); // Random rotation up to 15 degrees
+        ImageTransform crop = new CropImageTransform(10); // Crop 10 pixels off borders
+        // 2. Combine them into a Pipeline
+        // The boolean 'true' flags shuffle the order of transformations for randomness
+        List<Pair<ImageTransform, Double>> pipeline = Arrays.asList(
+                new Pair<>(flip, 0.5),   // 50% chance to flip
+                new Pair<>(rotate, 0.8), // 80% chance to rotate
+                new Pair<>(crop, 0.3)    // 30% chance to crop
+        );
+        PipelineImageTransform transformPipeline = new PipelineImageTransform(pipeline, true);
+        DataSetIterator trainingDataSetIterator = getDataSetIterator(trainingDataDirectory, transformPipeline);
+        log.info("Detected training labels: " + trainingDataSetIterator.getLabels());
+        DataSetIterator testingDataSetIterator = getDataSetIterator(testingDataDirectory, null);
+        log.info("Detected testing labels: " + trainingDataSetIterator.getLabels());
+        ImagePreProcessingScaler scaler = new ImagePreProcessingScaler(0, 1);
+        trainingDataSetIterator.setPreProcessor(scaler);
+        testingDataSetIterator.setPreProcessor(scaler);
 
-        // --- Model Architecture (Custom CNN from Scratch) ---
+        UIServer uiServer = UIServer.getInstance();
+        StatsStorage statsStorage = new InMemoryStatsStorage();
+        uiServer.attach(statsStorage);
+
         MultiLayerNetwork model = new MultiLayerNetwork(getMLConfiguration(numOfClasses));
         model.init();
-        model.setListeners(new ScoreIterationListener(10)); // Track loss metrics every 10 iterations
+        model.setListeners(
+                new ScoreIterationListener(10),
+                new StatsListener(statsStorage),
+                new EvaluativeListener(testingDataSetIterator, 1, InvocationType.EPOCH_END)
+        );
 
-        // --- Training Loop ---
         log.info("Starting network training...");
         for (int i = 0; i < epochs; i++) {
             log.info("Epoch " + (i + 1) + " / " + epochs);
-            model.fit(dataSetIterator);
-            dataSetIterator.reset();
+            model.fit(trainingDataSetIterator);
+            trainingDataSetIterator.reset();
         }
 
-        // --- Evaluation ---
-        log.info("Evaluating model accuracy...");
-        Evaluation eval = model.evaluate(dataSetIterator);
+        log.info("Evaluating model accuracy using testing data directory...");
+        Evaluation eval = model.evaluate(testingDataSetIterator);
         log.info(eval.stats());
 
-        // --- Saving the Model ---
-        File modelSaveFile = new File(modelPath);
+        File modelSaveFile = new File(modelSavePath);
         model.save(modelSaveFile, true);
         log.info("Model successfully exported to: " + modelSaveFile.getAbsolutePath());
-
-        System.exit(0);
     }
 
-    private static DataSetIterator getDataSetIterator(File rootDir) throws IOException {
+    private static DataSetIterator getDataSetIterator(File rootDir, PipelineImageTransform pipelineImageTransform) throws IOException {
         FileSplit fileSplit = new FileSplit(rootDir, BaseImageLoader.ALLOWED_FORMATS, new Random(seed));
         ParentPathLabelGenerator labelMaker = new ParentPathLabelGenerator();
-
-        // Initialize ImageRecordReader which automatically resizes/crops inputs to specified height/width
         ImageRecordReader recordReader = new ImageRecordReader(height, width, channels, labelMaker);
-        recordReader.initialize(fileSplit);
-
-        // Build Iterator (Label index is at position 1 because image pixels are index 0)
-        DataSetIterator dataSetIterator = new RecordReaderDataSetIterator(recordReader, batchSize, 1, numOfClasses);
-
-        // Scale RGB values from [0, 255] down to [0, 1] for gradient stability
-        ImagePreProcessingScaler scaler = new ImagePreProcessingScaler(0, 1);
-        dataSetIterator.setPreProcessor(scaler);
-        return dataSetIterator;
+        if (pipelineImageTransform == null) {
+            recordReader.initialize(fileSplit);
+        } else {
+            recordReader.initialize(fileSplit, pipelineImageTransform);
+        }
+        return new RecordReaderDataSetIterator(recordReader, batchSize, 1, numOfClasses);
     }
 
     public static MultiLayerConfiguration getMLConfiguration(int numOfClasses) {
         return new NeuralNetConfiguration.Builder()
                 .seed(seed)
                 .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
-                .updater(new Adam(1e-3)) // Fast convergence optimization
-                .l2(5e-4) // Regularization to prevent overfitting on small datasets
+                // Replaced static learning rate with an exponential decay schedule
+                //.updater(new Adam(new ExponentialSchedule(ScheduleType.EPOCH, 1e-3, 0.85)))
+                .updater(new Adam(1e-4))
+                .l2(1e-4) // Retained L2 regularization, removed L1
+                .weightInit(WeightInit.RELU)
                 .list()
+                // Block 1
                 .layer(0, new ConvolutionLayer.Builder(3, 3)
                         .nIn(channels)
                         .nOut(32)
@@ -124,6 +142,7 @@ public class OcclupanidClassifier {
                         .kernelSize(2, 2)
                         .stride(2, 2)
                         .build())
+                // Block 2
                 .layer(2, new ConvolutionLayer.Builder(3, 3)
                         .nOut(64)
                         .stride(1, 1)
@@ -133,6 +152,7 @@ public class OcclupanidClassifier {
                         .kernelSize(2, 2)
                         .stride(2, 2)
                         .build())
+                // Block 3
                 .layer(4, new ConvolutionLayer.Builder(3, 3)
                         .nOut(128)
                         .stride(1, 1)
@@ -142,11 +162,37 @@ public class OcclupanidClassifier {
                         .kernelSize(2, 2)
                         .stride(2, 2)
                         .build())
-                .layer(6, new DenseLayer.Builder()
+                // Block 4 (New: Deeper feature extraction)
+                .layer(6, new ConvolutionLayer.Builder(3, 3)
+                        .nOut(256)
+                        .stride(1, 1)
+                        .activation(Activation.RELU)
+                        .build())
+                .layer(7, new SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.MAX)
+                        .kernelSize(2, 2)
+                        .stride(2, 2)
+                        .build())
+                // Block 5 (New: Deeper feature extraction)
+                .layer(8, new ConvolutionLayer.Builder(3, 3)
+                        .nOut(256)
+                        .stride(1, 1)
+                        .activation(Activation.RELU)
+                        .build())
+                .layer(9, new SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.MAX)
+                        .kernelSize(2, 2)
+                        .stride(2, 2)
+                        .build())
+                // Global Average Pooling (New: Replaces flattening to prevent parameter explosion)
+                .layer(10, new GlobalPoolingLayer.Builder(PoolingType.AVG).build())
+                // Dense Layer
+                .layer(11, new DenseLayer.Builder()
                         .nOut(128)
                         .activation(Activation.RELU)
                         .build())
-                .layer(7, new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
+                // Dropout Layer (New: Prevents overfitting to specific training examples)
+                .layer(12, new DropoutLayer(0.5))
+                // Output Layer
+                .layer(13, new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
                         .nOut(numOfClasses)
                         .activation(Activation.SOFTMAX) // Binary categorical probability distribution
                         .build())
