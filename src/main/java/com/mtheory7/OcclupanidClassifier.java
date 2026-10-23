@@ -51,9 +51,9 @@ public class OcclupanidClassifier {
     private static int numOfClasses = 2; // For now just using A. Floridensis and P. Utiliformis
     private static int batchSize = 16;
     private static long seed = 12345L;
-    private static int epochs = 50;
+    private static int epochs = 150;
 
-    private static final String modelSavePath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/models/deeplearning4jOcclupanidModel1.0.0.zip";
+    private static final String modelSavePath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/models/deeplearning4jOcclupanidModel1.0.2-SNAPSHOT.zip";
     private static final String trainingDataPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/trainingData/data/train";
     private static final String testingDataPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/trainingData/data/test";
 
@@ -62,12 +62,14 @@ public class OcclupanidClassifier {
         File testingDataDirectory = new File(testingDataPath);
 
         // 1. Define individual transforms
+        ImageTransform padToSquare = new PadToSquare();
         ImageTransform flip = new FlipImageTransform(1); // 1 = horizontal flip
         ImageTransform rotate = new RotateImageTransform(new Random(seed), 15); // Random rotation up to 15 degrees
         ImageTransform crop = new CropImageTransform(10); // Crop 10 pixels off borders
         // 2. Combine them into a Pipeline
         // The boolean 'true' flags shuffle the order of transformations for randomness
         List<Pair<ImageTransform, Double>> pipeline = Arrays.asList(
+                new Pair<>(padToSquare, 1.0),
                 new Pair<>(flip, 0.5),   // 50% chance to flip
                 new Pair<>(rotate, 0.8), // 80% chance to rotate
                 new Pair<>(crop, 0.3)    // 30% chance to crop

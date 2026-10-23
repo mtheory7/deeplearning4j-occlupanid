@@ -1,31 +1,31 @@
-C:\Users\thesp\.jdks\corretto-23.0.2\bin\java.exe "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2025.3.1\lib\idea_rt.jar=51384" -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath C:\Users\thesp\Code\deeplearning4j-occlupanid\target\classes;C:\Users\thesp\.m2\repository\org\apache\logging\log4j\log4j-api\2.25.2\log4j-api-2.25.2.jar;C:\Users\thesp\.m2\repository\org\apache\logging\log4j\log4j-core\2.25.2\log4j-core-2.25.2.jar;C:\Users\thesp\.m2\repository\org\apache\logging\log4j\log4j-slf4j2-impl\2.25.2\log4j-slf4j2-impl-2.25.2.jar;C:\Users\thesp\.m2\repository\org\slf4j\slf4j-api\2.0.17\slf4j-api-2.0.17.jar;C:\Users\thesp\.m2\repository\org\datavec\datavec-data-image\1.0.0-M2.1\datavec-data-image-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\datavec\datavec-api\1.0.0-M2.1\datavec-api-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\commons-codec\commons-codec\1.10\commons-codec-1.10.jar;C:\Users\thesp\.m2\repository\joda-time\joda-time\2.2\joda-time-2.2.jar;C:\Users\thesp\.m2\repository\org\freemarker\freemarker\2.3.23\freemarker-2.3.23.jar;C:\Users\thesp\.m2\repository\com\clearspring\analytics\stream\2.9.8\stream-2.9.8.jar;C:\Users\thesp\.m2\repository\net\sf\opencsv\opencsv\2.3\opencsv-2.3.jar;C:\Users\thesp\.m2\repository\com\tdunning\t-digest\3.2\t-digest-3.2.jar;C:\Users\thesp\.m2\repository\it\unimi\dsi\fastutil\6.5.7\fastutil-6.5.7.jar;C:\Users\thesp\.m2\repository\com\github\jai-imageio\jai-imageio-core\1.3.0\jai-imageio-core-1.3.0.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\imageio\imageio-jpeg\3.1.1\imageio-jpeg-3.1.1.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\imageio\imageio-core\3.1.1\imageio-core-3.1.1.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\imageio\imageio-metadata\3.1.1\imageio-metadata-3.1.1.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\common\common-lang\3.1.1\common-lang-3.1.1.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\common\common-io\3.1.1\common-io-3.1.1.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\common\common-image\3.1.1\common-image-3.1.1.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\imageio\imageio-tiff\3.1.1\imageio-tiff-3.1.1.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\imageio\imageio-psd\3.1.1\imageio-psd-3.1.1.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\imageio\imageio-bmp\3.1.1\imageio-bmp-3.1.1.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacv\1.5.7\javacv-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\flycapture\2.13.3.31-1.5.7\flycapture-2.13.3.31-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\libdc1394\2.2.6-1.5.7\libdc1394-2.2.6-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\libfreenect\0.5.7-1.5.7\libfreenect-0.5.7-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\libfreenect2\0.2.0-1.5.7\libfreenect2-0.2.0-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\librealsense\1.12.4-1.5.7\librealsense-1.12.4-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\librealsense2\2.50.0-1.5.7\librealsense2-2.50.0-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\videoinput\0.200-1.5.7\videoinput-0.200-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\artoolkitplus\2.3.1-1.5.7\artoolkitplus-2.3.1-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\flandmark\1.07-1.5.7\flandmark-1.07-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\tesseract\5.0.1-1.5.7\tesseract-5.0.1-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv-platform\4.5.5-1.5.7\opencv-platform-4.5.5-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas-platform\0.3.19-1.5.7\openblas-platform-0.3.19-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-android-arm.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-android-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-android-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-android-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-ios-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-ios-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-linux-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-linux-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-linux-armhf.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-linux-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-linux-ppc64le.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-macosx-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-macosx-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-windows-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-android-arm.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-android-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-android-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-android-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-ios-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-ios-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-linux-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-linux-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-linux-armhf.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-linux-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-linux-ppc64le.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-macosx-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-macosx-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-windows-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-windows-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica-platform\1.82.0-1.5.7\leptonica-platform-1.82.0-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp-platform\1.5.7\javacpp-platform-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-android-arm.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-android-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-android-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-android-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-ios-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-ios-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-linux-armhf.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-linux-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-linux-ppc64le.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-linux-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-linux-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-macosx-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-macosx-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-windows-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-android-arm.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-android-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-android-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-android-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-linux-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-linux-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-linux-armhf.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-linux-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-linux-ppc64le.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-macosx-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-windows-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-windows-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5-platform\1.12.1-1.5.7\hdf5-platform-1.12.1-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7-linux-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7-linux-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7-linux-armhf.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7-linux-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7-linux-ppc64le.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7-macosx-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7-windows-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7-windows-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg-platform\5.0-1.5.7\ffmpeg-platform-5.0-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-android-arm.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-android-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-android-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-android-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-linux-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-linux-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-linux-armhf.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-linux-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-linux-ppc64le.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-macosx-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-macosx-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-windows-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-windows-x86_64.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\resources\1.0.0-M2.1\resources-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-core\1.0.0-M2.1\deeplearning4j-core-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\com\sun\activation\javax.activation\1.2.0\javax.activation-1.2.0.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-datavec-iterators\1.0.0-M2.1\deeplearning4j-datavec-iterators-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-modelimport\1.0.0-M2.1\deeplearning4j-modelimport-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\com\google\code\gson\gson\2.8.0\gson-2.8.0.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-nn\1.0.0-M2.1\deeplearning4j-nn-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-utility-iterators\1.0.0-M2.1\deeplearning4j-utility-iterators-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\apache\commons\commons-math3\3.5\commons-math3-3.5.jar;C:\Users\thesp\.m2\repository\commons-io\commons-io\2.7\commons-io-2.7.jar;C:\Users\thesp\.m2\repository\org\apache\commons\commons-compress\1.21\commons-compress-1.21.jar;C:\Users\thesp\.m2\repository\org\apache\commons\commons-lang3\3.11\commons-lang3-3.11.jar;C:\Users\thesp\.m2\repository\org\nd4j\jackson\1.0.0-M2.1\jackson-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-ui-components\1.0.0-M2.1\deeplearning4j-ui-components-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\com\github\oshi\oshi-json\3.4.2\oshi-json-3.4.2.jar;C:\Users\thesp\.m2\repository\org\glassfish\javax.json\1.0.4\javax.json-1.0.4.jar;C:\Users\thesp\.m2\repository\com\github\oshi\oshi-core\3.4.2\oshi-core-3.4.2.jar;C:\Users\thesp\.m2\repository\net\java\dev\jna\jna-platform\4.3.0\jna-platform-4.3.0.jar;C:\Users\thesp\.m2\repository\net\java\dev\jna\jna\4.3.0\jna-4.3.0.jar;C:\Users\thesp\.m2\repository\org\threeten\threetenbp\1.3.3\threetenbp-1.3.3.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-datasets\1.0.0-M2.1\deeplearning4j-datasets-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-ui\1.0.0-M2.1\deeplearning4j-ui-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-vertx\1.0.0-M2.1\deeplearning4j-vertx-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\io\vertx\vertx-core\3.9.0\vertx-core-3.9.0.jar;C:\Users\thesp\.m2\repository\io\netty\netty-common\4.1.48.Final\netty-common-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-buffer\4.1.48.Final\netty-buffer-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-transport\4.1.48.Final\netty-transport-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-handler\4.1.48.Final\netty-handler-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-codec\4.1.48.Final\netty-codec-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-handler-proxy\4.1.48.Final\netty-handler-proxy-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-codec-socks\4.1.48.Final\netty-codec-socks-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-codec-http\4.1.48.Final\netty-codec-http-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-codec-http2\4.1.48.Final\netty-codec-http2-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-resolver\4.1.48.Final\netty-resolver-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-resolver-dns\4.1.48.Final\netty-resolver-dns-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-codec-dns\4.1.48.Final\netty-codec-dns-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.10.2\jackson-core-2.10.2.jar;C:\Users\thesp\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.10.2\jackson-databind-2.10.2.jar;C:\Users\thesp\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.10.2\jackson-annotations-2.10.2.jar;C:\Users\thesp\.m2\repository\io\vertx\vertx-web\3.9.0\vertx-web-3.9.0.jar;C:\Users\thesp\.m2\repository\io\vertx\vertx-web-common\3.9.0\vertx-web-common-3.9.0.jar;C:\Users\thesp\.m2\repository\io\vertx\vertx-auth-common\3.9.0\vertx-auth-common-3.9.0.jar;C:\Users\thesp\.m2\repository\io\vertx\vertx-bridge-common\3.9.0\vertx-bridge-common-3.9.0.jar;C:\Users\thesp\.m2\repository\com\beust\jcommander\1.27\jcommander-1.27.jar;C:\Users\thesp\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\2.3.2\jakarta.xml.bind-api-2.3.2.jar;C:\Users\thesp\.m2\repository\jakarta\activation\jakarta.activation-api\1.2.1\jakarta.activation-api-1.2.1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\babel__polyfill\7.4.4\babel__polyfill-7.4.4.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\core-js\3.0.0-beta.9\core-js-3.0.0-beta.9.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\regenerator-runtime\0.13.11\regenerator-runtime-0.13.11.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\coreui__coreui\2.1.9\coreui__coreui-2.1.9.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\coreui__icons\0.3.0\coreui__icons-0.3.0.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\jquery\3.4.1\jquery-3.4.1.jar;C:\Users\thesp\.m2\repository\org\webjars\bower\popper.js\1.12.9\popper.js-1.12.9.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\bootstrap\4.3.1\bootstrap-4.3.1.jar;C:\Users\thesp\.m2\repository\org\webjars\jquery\2.2.0\jquery-2.2.0.jar;C:\Users\thesp\.m2\repository\org\webjars\jquery-migrate\1.2.1\jquery-migrate-1.2.1.jar;C:\Users\thesp\.m2\repository\org\webjars\jquery-ui\1.10.2\jquery-ui-1.10.2.jar;C:\Users\thesp\.m2\repository\org\webjars\modernizr\2.8.3-1\modernizr-2.8.3-1.jar;C:\Users\thesp\.m2\repository\org\webjars\jquery-cookie\1.4.1-1\jquery-cookie-1.4.1-1.jar;C:\Users\thesp\.m2\repository\org\webjars\fullcalendar\1.6.4\fullcalendar-1.6.4.jar;C:\Users\thesp\.m2\repository\org\webjars\excanvas\3\excanvas-3.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\cytoscape\3.3.3\cytoscape-3.3.3.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\heap\0.2.7\heap-0.2.7.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\lodash.debounce\4.0.8\lodash.debounce-4.0.8.jar;C:\Users\thesp\.m2\repository\org\webjars\bower\cytoscape-dagre\2.1.0\cytoscape-dagre-2.1.0.jar;C:\Users\thesp\.m2\repository\org\webjars\bower\cytoscape\3.2.5\cytoscape-3.2.5.jar;C:\Users\thesp\.m2\repository\org\webjars\bower\dagre\0.7.4\dagre-0.7.4.jar;C:\Users\thesp\.m2\repository\org\webjars\bower\graphlib\1.0.7\graphlib-1.0.7.jar;C:\Users\thesp\.m2\repository\org\webjars\bower\lodash\3.10.1-amd\lodash-3.10.1-amd.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\dagre\0.8.4\dagre-0.8.4.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\graphlib\2.1.8\graphlib-2.1.8.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\lodash\4.18.1\lodash-4.18.1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\cytoscape-cola\2.3.0\cytoscape-cola-2.3.0.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\webcola\3.4.0\webcola-3.4.0.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\d3-dispatch\2.0.0-rc.1\d3-dispatch-2.0.0-rc.1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\d3-drag\2.0.0-rc.1\d3-drag-2.0.0-rc.1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\d3-selection\3.0.0\d3-selection-3.0.0.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\d3-timer\2.0.0-rc.1\d3-timer-2.0.0-rc.1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\d3-shape\2.0.0-rc.1\d3-shape-2.0.0-rc.1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\d3-path\3.1.0\d3-path-3.1.0.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\cytoscape-cose-bilkent\4.0.0\cytoscape-cose-bilkent-4.0.0.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\cytoscape-euler\1.2.1\cytoscape-euler-1.2.1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\cytoscape-klay\3.1.2\cytoscape-klay-3.1.2.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\klayjs\0.4.1\klayjs-0.4.1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\cytoscape-spread\3.0.0\cytoscape-spread-3.0.0.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\weaverjs\1.2.0\weaverjs-1.2.0.jar;C:\Users\thesp\.m2\repository\org\webjars\retinajs\0.0.2\retinajs-0.0.2.jar;C:\Users\thesp\.m2\repository\org\webjars\flot\0.8.3\flot-0.8.3.jar;C:\Users\thesp\.m2\repository\org\webjars\explorercanvas\r3-1\explorercanvas-r3-1.jar;C:\Users\thesp\.m2\repository\org\webjars\chosen\0.9.8\chosen-0.9.8.jar;C:\Users\thesp\.m2\repository\org\webjars\uniform\2.1.2-1\uniform-2.1.2-1.jar;C:\Users\thesp\.m2\repository\org\webjars\noty\2.2.2\noty-2.2.2.jar;C:\Users\thesp\.m2\repository\org\webjars\jquery-raty\2.5.2\jquery-raty-2.5.2.jar;C:\Users\thesp\.m2\repository\org\webjars\imagesloaded\2.1.1\imagesloaded-2.1.1.jar;C:\Users\thesp\.m2\repository\org\webjars\masonry\3.1.5\masonry-3.1.5.jar;C:\Users\thesp\.m2\repository\org\webjars\jquery.sparkline\2.1.2\jquery.sparkline-2.1.2.jar;C:\Users\thesp\.m2\repository\org\webjars\jquery-knob\1.2.2\jquery-knob-1.2.2.jar;C:\Users\thesp\.m2\repository\org\webjars\datatables\1.9.4\datatables-1.9.4.jar;C:\Users\thesp\.m2\repository\org\webjars\jquery-ui-touch-punch\0.2.2\jquery-ui-touch-punch-0.2.2.jar;C:\Users\thesp\.m2\repository\org\webjars\d3js\3.3.5\d3js-3.3.5.jar;C:\Users\thesp\.m2\repository\org\webjars\bootstrap-notify\3.1.3-1\bootstrap-notify-3.1.3-1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\github-com-jboesch-Gritter\1.7.4\github-com-jboesch-Gritter-1.7.4.jar;C:\Users\thesp\.m2\repository\org\webjars\bowergithub\stenin-nikita\open-sans\0.1.3\open-sans-0.1.3.jar;C:\Users\thesp\.m2\repository\org\webjars\font-awesome\3.0.2\font-awesome-3.0.2.jar;C:\Users\thesp\.m2\repository\org\webjars\bootstrap\2.2.2-1\bootstrap-2.2.2-1.jar;C:\Users\thesp\.m2\repository\org\webjars\bootstrap-glyphicons\bdd2cbfba0\bootstrap-glyphicons-bdd2cbfba0.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\flatbuffers\1.9.0\flatbuffers-1.9.0.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-nlp\1.0.0-M2.1\deeplearning4j-nlp-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\commons-lang\commons-lang\2.6\commons-lang-2.6.jar;C:\Users\thesp\.m2\repository\org\threadly\threadly\4.10.0\threadly-4.10.0.jar;C:\Users\thesp\.m2\repository\com\github\vinhkhuc\jfasttext\0.4\jfasttext-0.4.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-ui-model\1.0.0-M2.1\deeplearning4j-ui-model-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\mapdb\mapdb\3.0.5\mapdb-3.0.5.jar;C:\Users\thesp\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib\1.0.7\kotlin-stdlib-1.0.7.jar;C:\Users\thesp\.m2\repository\org\jetbrains\kotlin\kotlin-runtime\1.0.7\kotlin-runtime-1.0.7.jar;C:\Users\thesp\.m2\repository\org\eclipse\collections\eclipse-collections-api\7.1.2\eclipse-collections-api-7.1.2.jar;C:\Users\thesp\.m2\repository\net\jcip\jcip-annotations\1.0\jcip-annotations-1.0.jar;C:\Users\thesp\.m2\repository\org\eclipse\collections\eclipse-collections\7.1.2\eclipse-collections-7.1.2.jar;C:\Users\thesp\.m2\repository\org\eclipse\collections\eclipse-collections-forkjoin\7.1.2\eclipse-collections-forkjoin-7.1.2.jar;C:\Users\thesp\.m2\repository\com\google\guava\guava\19.0\guava-19.0.jar;C:\Users\thesp\.m2\repository\net\jpountz\lz4\lz4\1.3.0\lz4-1.3.0.jar;C:\Users\thesp\.m2\repository\org\mapdb\elsa\3.0.0-M5\elsa-3.0.0-M5.jar;C:\Users\thesp\.m2\repository\org\xerial\sqlite-jdbc\3.15.1\sqlite-jdbc-3.15.1.jar;C:\Users\thesp\.m2\repository\io\aeron\aeron-all\1.39.0\aeron-all-1.39.0.jar;C:\Users\thesp\.m2\repository\org\nd4j\nd4j-native\1.0.0-M2.1\nd4j-native-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\nd4j\nd4j-native\1.0.0-M2.1\nd4j-native-1.0.0-M2.1-windows-x86_64.jar;C:\Users\thesp\.m2\repository\org\nd4j\nd4j-native-api\1.0.0-M2.1\nd4j-native-api-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\nd4j\nd4j-native-preset\1.0.0-M2.1\nd4j-native-preset-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\nd4j\nd4j-presets-common\1.0.0-M2.1\nd4j-presets-common-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\nd4j\nd4j-native-preset\1.0.0-M2.1\nd4j-native-preset-1.0.0-M2.1-windows-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-windows-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-windows-x86_64.jar;C:\Users\thesp\.m2\repository\org\nd4j\nd4j-api\1.0.0-M2.1\nd4j-api-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\com\jakewharton\byteunits\byteunits\0.9.1\byteunits-0.9.1.jar;C:\Users\thesp\.m2\repository\org\apache\commons\commons-collections4\4.1\commons-collections4-4.1.jar;C:\Users\thesp\.m2\repository\com\google\flatbuffers\flatbuffers-java\1.12.0\flatbuffers-java-1.12.0.jar;C:\Users\thesp\.m2\repository\org\nd4j\protobuf\1.0.0-M2.1\protobuf-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\commons-net\commons-net\3.1\commons-net-3.1.jar;C:\Users\thesp\.m2\repository\net\ericaro\neoitertools\1.0.0\neoitertools-1.0.0.jar;C:\Users\thesp\.m2\repository\org\nd4j\nd4j-common\1.0.0-M2.1\nd4j-common-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\nd4j\guava\1.0.0-M2.1\guava-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\apache\logging\log4j\log4j-slf4j-impl\2.24.3\log4j-slf4j-impl-2.24.3.jar com.mtheory7.OcclupanidClassifier
-20:19:57.340 [main] INFO  org.nd4j.linalg.factory.Nd4jBackend - Loaded [CpuBackend] backend
-20:19:57.985 [main] INFO  org.nd4j.nativeblas.NativeOpsHolder - Number of threads used for linear algebra: 2
-20:19:57.992 [main] INFO  org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory - Binary level Generic x86 optimization level AVX/AVX2
-20:19:58.018 [main] INFO  org.nd4j.nativeblas.Nd4jBlas - Number of threads used for OpenMP BLAS: 2
-20:19:58.052 [main] INFO  org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner - Backend used: [CPU]; OS: [Windows 11]
-20:19:58.052 [main] INFO  org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner - Cores: [4]; Memory: [4.0GB];
-20:19:58.052 [main] INFO  org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner - Blas vendor: [OPENBLAS]
-20:19:58.057 [main] INFO  org.nd4j.linalg.cpu.nativecpu.CpuBackend - Backend build information:
+C:\Users\thesp\.jdks\corretto-23.0.2\bin\java.exe "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2025.3.1\lib\idea_rt.jar=50068" -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath C:\Users\thesp\Code\deeplearning4j-occlupanid\target\classes;C:\Users\thesp\.m2\repository\org\apache\logging\log4j\log4j-api\2.25.2\log4j-api-2.25.2.jar;C:\Users\thesp\.m2\repository\org\apache\logging\log4j\log4j-core\2.25.2\log4j-core-2.25.2.jar;C:\Users\thesp\.m2\repository\org\apache\logging\log4j\log4j-slf4j2-impl\2.25.2\log4j-slf4j2-impl-2.25.2.jar;C:\Users\thesp\.m2\repository\org\slf4j\slf4j-api\2.0.17\slf4j-api-2.0.17.jar;C:\Users\thesp\.m2\repository\org\datavec\datavec-data-image\1.0.0-M2.1\datavec-data-image-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\datavec\datavec-api\1.0.0-M2.1\datavec-api-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\commons-codec\commons-codec\1.10\commons-codec-1.10.jar;C:\Users\thesp\.m2\repository\joda-time\joda-time\2.2\joda-time-2.2.jar;C:\Users\thesp\.m2\repository\org\freemarker\freemarker\2.3.23\freemarker-2.3.23.jar;C:\Users\thesp\.m2\repository\com\clearspring\analytics\stream\2.9.8\stream-2.9.8.jar;C:\Users\thesp\.m2\repository\net\sf\opencsv\opencsv\2.3\opencsv-2.3.jar;C:\Users\thesp\.m2\repository\com\tdunning\t-digest\3.2\t-digest-3.2.jar;C:\Users\thesp\.m2\repository\it\unimi\dsi\fastutil\6.5.7\fastutil-6.5.7.jar;C:\Users\thesp\.m2\repository\com\github\jai-imageio\jai-imageio-core\1.3.0\jai-imageio-core-1.3.0.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\imageio\imageio-jpeg\3.1.1\imageio-jpeg-3.1.1.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\imageio\imageio-core\3.1.1\imageio-core-3.1.1.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\imageio\imageio-metadata\3.1.1\imageio-metadata-3.1.1.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\common\common-lang\3.1.1\common-lang-3.1.1.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\common\common-io\3.1.1\common-io-3.1.1.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\common\common-image\3.1.1\common-image-3.1.1.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\imageio\imageio-tiff\3.1.1\imageio-tiff-3.1.1.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\imageio\imageio-psd\3.1.1\imageio-psd-3.1.1.jar;C:\Users\thesp\.m2\repository\com\twelvemonkeys\imageio\imageio-bmp\3.1.1\imageio-bmp-3.1.1.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacv\1.5.7\javacv-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\flycapture\2.13.3.31-1.5.7\flycapture-2.13.3.31-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\libdc1394\2.2.6-1.5.7\libdc1394-2.2.6-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\libfreenect\0.5.7-1.5.7\libfreenect-0.5.7-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\libfreenect2\0.2.0-1.5.7\libfreenect2-0.2.0-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\librealsense\1.12.4-1.5.7\librealsense-1.12.4-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\librealsense2\2.50.0-1.5.7\librealsense2-2.50.0-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\videoinput\0.200-1.5.7\videoinput-0.200-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\artoolkitplus\2.3.1-1.5.7\artoolkitplus-2.3.1-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\flandmark\1.07-1.5.7\flandmark-1.07-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\tesseract\5.0.1-1.5.7\tesseract-5.0.1-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv-platform\4.5.5-1.5.7\opencv-platform-4.5.5-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas-platform\0.3.19-1.5.7\openblas-platform-0.3.19-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-android-arm.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-android-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-android-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-android-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-ios-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-ios-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-linux-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-linux-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-linux-armhf.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-linux-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-linux-ppc64le.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-macosx-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-macosx-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-windows-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-android-arm.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-android-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-android-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-android-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-ios-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-ios-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-linux-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-linux-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-linux-armhf.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-linux-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-linux-ppc64le.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-macosx-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-macosx-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-windows-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\opencv\4.5.5-1.5.7\opencv-4.5.5-1.5.7-windows-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica-platform\1.82.0-1.5.7\leptonica-platform-1.82.0-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp-platform\1.5.7\javacpp-platform-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-android-arm.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-android-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-android-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-android-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-ios-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-ios-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-linux-armhf.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-linux-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-linux-ppc64le.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-linux-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-linux-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-macosx-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-macosx-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-windows-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-android-arm.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-android-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-android-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-android-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-linux-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-linux-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-linux-armhf.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-linux-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-linux-ppc64le.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-macosx-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-windows-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\leptonica\1.82.0-1.5.7\leptonica-1.82.0-1.5.7-windows-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5-platform\1.12.1-1.5.7\hdf5-platform-1.12.1-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7-linux-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7-linux-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7-linux-armhf.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7-linux-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7-linux-ppc64le.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7-macosx-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7-windows-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\hdf5\1.12.1-1.5.7\hdf5-1.12.1-1.5.7-windows-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg-platform\5.0-1.5.7\ffmpeg-platform-5.0-1.5.7.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-android-arm.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-android-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-android-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-android-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-linux-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-linux-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-linux-armhf.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-linux-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-linux-ppc64le.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-macosx-arm64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-macosx-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-windows-x86.jar;C:\Users\thesp\.m2\repository\org\bytedeco\ffmpeg\5.0-1.5.7\ffmpeg-5.0-1.5.7-windows-x86_64.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\resources\1.0.0-M2.1\resources-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-core\1.0.0-M2.1\deeplearning4j-core-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\com\sun\activation\javax.activation\1.2.0\javax.activation-1.2.0.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-datavec-iterators\1.0.0-M2.1\deeplearning4j-datavec-iterators-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-modelimport\1.0.0-M2.1\deeplearning4j-modelimport-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\com\google\code\gson\gson\2.8.0\gson-2.8.0.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-nn\1.0.0-M2.1\deeplearning4j-nn-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-utility-iterators\1.0.0-M2.1\deeplearning4j-utility-iterators-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\apache\commons\commons-math3\3.5\commons-math3-3.5.jar;C:\Users\thesp\.m2\repository\commons-io\commons-io\2.7\commons-io-2.7.jar;C:\Users\thesp\.m2\repository\org\apache\commons\commons-compress\1.21\commons-compress-1.21.jar;C:\Users\thesp\.m2\repository\org\apache\commons\commons-lang3\3.11\commons-lang3-3.11.jar;C:\Users\thesp\.m2\repository\org\nd4j\jackson\1.0.0-M2.1\jackson-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-ui-components\1.0.0-M2.1\deeplearning4j-ui-components-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\com\github\oshi\oshi-json\3.4.2\oshi-json-3.4.2.jar;C:\Users\thesp\.m2\repository\org\glassfish\javax.json\1.0.4\javax.json-1.0.4.jar;C:\Users\thesp\.m2\repository\com\github\oshi\oshi-core\3.4.2\oshi-core-3.4.2.jar;C:\Users\thesp\.m2\repository\net\java\dev\jna\jna-platform\4.3.0\jna-platform-4.3.0.jar;C:\Users\thesp\.m2\repository\net\java\dev\jna\jna\4.3.0\jna-4.3.0.jar;C:\Users\thesp\.m2\repository\org\threeten\threetenbp\1.3.3\threetenbp-1.3.3.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-datasets\1.0.0-M2.1\deeplearning4j-datasets-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-ui\1.0.0-M2.1\deeplearning4j-ui-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-vertx\1.0.0-M2.1\deeplearning4j-vertx-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\io\vertx\vertx-core\3.9.0\vertx-core-3.9.0.jar;C:\Users\thesp\.m2\repository\io\netty\netty-common\4.1.48.Final\netty-common-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-buffer\4.1.48.Final\netty-buffer-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-transport\4.1.48.Final\netty-transport-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-handler\4.1.48.Final\netty-handler-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-codec\4.1.48.Final\netty-codec-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-handler-proxy\4.1.48.Final\netty-handler-proxy-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-codec-socks\4.1.48.Final\netty-codec-socks-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-codec-http\4.1.48.Final\netty-codec-http-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-codec-http2\4.1.48.Final\netty-codec-http2-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-resolver\4.1.48.Final\netty-resolver-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-resolver-dns\4.1.48.Final\netty-resolver-dns-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\io\netty\netty-codec-dns\4.1.48.Final\netty-codec-dns-4.1.48.Final.jar;C:\Users\thesp\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.10.2\jackson-core-2.10.2.jar;C:\Users\thesp\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.10.2\jackson-databind-2.10.2.jar;C:\Users\thesp\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.10.2\jackson-annotations-2.10.2.jar;C:\Users\thesp\.m2\repository\io\vertx\vertx-web\3.9.0\vertx-web-3.9.0.jar;C:\Users\thesp\.m2\repository\io\vertx\vertx-web-common\3.9.0\vertx-web-common-3.9.0.jar;C:\Users\thesp\.m2\repository\io\vertx\vertx-auth-common\3.9.0\vertx-auth-common-3.9.0.jar;C:\Users\thesp\.m2\repository\io\vertx\vertx-bridge-common\3.9.0\vertx-bridge-common-3.9.0.jar;C:\Users\thesp\.m2\repository\com\beust\jcommander\1.27\jcommander-1.27.jar;C:\Users\thesp\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\2.3.2\jakarta.xml.bind-api-2.3.2.jar;C:\Users\thesp\.m2\repository\jakarta\activation\jakarta.activation-api\1.2.1\jakarta.activation-api-1.2.1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\babel__polyfill\7.4.4\babel__polyfill-7.4.4.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\core-js\3.0.0-beta.9\core-js-3.0.0-beta.9.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\regenerator-runtime\0.13.11\regenerator-runtime-0.13.11.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\coreui__coreui\2.1.9\coreui__coreui-2.1.9.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\coreui__icons\0.3.0\coreui__icons-0.3.0.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\jquery\3.4.1\jquery-3.4.1.jar;C:\Users\thesp\.m2\repository\org\webjars\bower\popper.js\1.12.9\popper.js-1.12.9.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\bootstrap\4.3.1\bootstrap-4.3.1.jar;C:\Users\thesp\.m2\repository\org\webjars\jquery\2.2.0\jquery-2.2.0.jar;C:\Users\thesp\.m2\repository\org\webjars\jquery-migrate\1.2.1\jquery-migrate-1.2.1.jar;C:\Users\thesp\.m2\repository\org\webjars\jquery-ui\1.10.2\jquery-ui-1.10.2.jar;C:\Users\thesp\.m2\repository\org\webjars\modernizr\2.8.3-1\modernizr-2.8.3-1.jar;C:\Users\thesp\.m2\repository\org\webjars\jquery-cookie\1.4.1-1\jquery-cookie-1.4.1-1.jar;C:\Users\thesp\.m2\repository\org\webjars\fullcalendar\1.6.4\fullcalendar-1.6.4.jar;C:\Users\thesp\.m2\repository\org\webjars\excanvas\3\excanvas-3.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\cytoscape\3.3.3\cytoscape-3.3.3.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\heap\0.2.7\heap-0.2.7.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\lodash.debounce\4.0.8\lodash.debounce-4.0.8.jar;C:\Users\thesp\.m2\repository\org\webjars\bower\cytoscape-dagre\2.1.0\cytoscape-dagre-2.1.0.jar;C:\Users\thesp\.m2\repository\org\webjars\bower\cytoscape\3.2.5\cytoscape-3.2.5.jar;C:\Users\thesp\.m2\repository\org\webjars\bower\dagre\0.7.4\dagre-0.7.4.jar;C:\Users\thesp\.m2\repository\org\webjars\bower\graphlib\1.0.7\graphlib-1.0.7.jar;C:\Users\thesp\.m2\repository\org\webjars\bower\lodash\3.10.1-amd\lodash-3.10.1-amd.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\dagre\0.8.4\dagre-0.8.4.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\graphlib\2.1.8\graphlib-2.1.8.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\lodash\4.18.1\lodash-4.18.1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\cytoscape-cola\2.3.0\cytoscape-cola-2.3.0.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\webcola\3.4.0\webcola-3.4.0.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\d3-dispatch\2.0.0-rc.1\d3-dispatch-2.0.0-rc.1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\d3-drag\2.0.0-rc.1\d3-drag-2.0.0-rc.1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\d3-selection\3.0.0\d3-selection-3.0.0.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\d3-timer\2.0.0-rc.1\d3-timer-2.0.0-rc.1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\d3-shape\2.0.0-rc.1\d3-shape-2.0.0-rc.1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\d3-path\3.1.0\d3-path-3.1.0.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\cytoscape-cose-bilkent\4.0.0\cytoscape-cose-bilkent-4.0.0.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\cytoscape-euler\1.2.1\cytoscape-euler-1.2.1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\cytoscape-klay\3.1.2\cytoscape-klay-3.1.2.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\klayjs\0.4.1\klayjs-0.4.1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\cytoscape-spread\3.0.0\cytoscape-spread-3.0.0.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\weaverjs\1.2.0\weaverjs-1.2.0.jar;C:\Users\thesp\.m2\repository\org\webjars\retinajs\0.0.2\retinajs-0.0.2.jar;C:\Users\thesp\.m2\repository\org\webjars\flot\0.8.3\flot-0.8.3.jar;C:\Users\thesp\.m2\repository\org\webjars\explorercanvas\r3-1\explorercanvas-r3-1.jar;C:\Users\thesp\.m2\repository\org\webjars\chosen\0.9.8\chosen-0.9.8.jar;C:\Users\thesp\.m2\repository\org\webjars\uniform\2.1.2-1\uniform-2.1.2-1.jar;C:\Users\thesp\.m2\repository\org\webjars\noty\2.2.2\noty-2.2.2.jar;C:\Users\thesp\.m2\repository\org\webjars\jquery-raty\2.5.2\jquery-raty-2.5.2.jar;C:\Users\thesp\.m2\repository\org\webjars\imagesloaded\2.1.1\imagesloaded-2.1.1.jar;C:\Users\thesp\.m2\repository\org\webjars\masonry\3.1.5\masonry-3.1.5.jar;C:\Users\thesp\.m2\repository\org\webjars\jquery.sparkline\2.1.2\jquery.sparkline-2.1.2.jar;C:\Users\thesp\.m2\repository\org\webjars\jquery-knob\1.2.2\jquery-knob-1.2.2.jar;C:\Users\thesp\.m2\repository\org\webjars\datatables\1.9.4\datatables-1.9.4.jar;C:\Users\thesp\.m2\repository\org\webjars\jquery-ui-touch-punch\0.2.2\jquery-ui-touch-punch-0.2.2.jar;C:\Users\thesp\.m2\repository\org\webjars\d3js\3.3.5\d3js-3.3.5.jar;C:\Users\thesp\.m2\repository\org\webjars\bootstrap-notify\3.1.3-1\bootstrap-notify-3.1.3-1.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\github-com-jboesch-Gritter\1.7.4\github-com-jboesch-Gritter-1.7.4.jar;C:\Users\thesp\.m2\repository\org\webjars\bowergithub\stenin-nikita\open-sans\0.1.3\open-sans-0.1.3.jar;C:\Users\thesp\.m2\repository\org\webjars\font-awesome\3.0.2\font-awesome-3.0.2.jar;C:\Users\thesp\.m2\repository\org\webjars\bootstrap\2.2.2-1\bootstrap-2.2.2-1.jar;C:\Users\thesp\.m2\repository\org\webjars\bootstrap-glyphicons\bdd2cbfba0\bootstrap-glyphicons-bdd2cbfba0.jar;C:\Users\thesp\.m2\repository\org\webjars\npm\flatbuffers\1.9.0\flatbuffers-1.9.0.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-nlp\1.0.0-M2.1\deeplearning4j-nlp-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\commons-lang\commons-lang\2.6\commons-lang-2.6.jar;C:\Users\thesp\.m2\repository\org\threadly\threadly\4.10.0\threadly-4.10.0.jar;C:\Users\thesp\.m2\repository\com\github\vinhkhuc\jfasttext\0.4\jfasttext-0.4.jar;C:\Users\thesp\.m2\repository\org\deeplearning4j\deeplearning4j-ui-model\1.0.0-M2.1\deeplearning4j-ui-model-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\mapdb\mapdb\3.0.5\mapdb-3.0.5.jar;C:\Users\thesp\.m2\repository\org\jetbrains\kotlin\kotlin-stdlib\1.0.7\kotlin-stdlib-1.0.7.jar;C:\Users\thesp\.m2\repository\org\jetbrains\kotlin\kotlin-runtime\1.0.7\kotlin-runtime-1.0.7.jar;C:\Users\thesp\.m2\repository\org\eclipse\collections\eclipse-collections-api\7.1.2\eclipse-collections-api-7.1.2.jar;C:\Users\thesp\.m2\repository\net\jcip\jcip-annotations\1.0\jcip-annotations-1.0.jar;C:\Users\thesp\.m2\repository\org\eclipse\collections\eclipse-collections\7.1.2\eclipse-collections-7.1.2.jar;C:\Users\thesp\.m2\repository\org\eclipse\collections\eclipse-collections-forkjoin\7.1.2\eclipse-collections-forkjoin-7.1.2.jar;C:\Users\thesp\.m2\repository\com\google\guava\guava\19.0\guava-19.0.jar;C:\Users\thesp\.m2\repository\net\jpountz\lz4\lz4\1.3.0\lz4-1.3.0.jar;C:\Users\thesp\.m2\repository\org\mapdb\elsa\3.0.0-M5\elsa-3.0.0-M5.jar;C:\Users\thesp\.m2\repository\org\xerial\sqlite-jdbc\3.15.1\sqlite-jdbc-3.15.1.jar;C:\Users\thesp\.m2\repository\io\aeron\aeron-all\1.39.0\aeron-all-1.39.0.jar;C:\Users\thesp\.m2\repository\org\nd4j\nd4j-native\1.0.0-M2.1\nd4j-native-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\nd4j\nd4j-native\1.0.0-M2.1\nd4j-native-1.0.0-M2.1-windows-x86_64.jar;C:\Users\thesp\.m2\repository\org\nd4j\nd4j-native-api\1.0.0-M2.1\nd4j-native-api-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\nd4j\nd4j-native-preset\1.0.0-M2.1\nd4j-native-preset-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\nd4j\nd4j-presets-common\1.0.0-M2.1\nd4j-presets-common-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\nd4j\nd4j-native-preset\1.0.0-M2.1\nd4j-native-preset-1.0.0-M2.1-windows-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\openblas\0.3.19-1.5.7\openblas-0.3.19-1.5.7-windows-x86_64.jar;C:\Users\thesp\.m2\repository\org\bytedeco\javacpp\1.5.7\javacpp-1.5.7-windows-x86_64.jar;C:\Users\thesp\.m2\repository\org\nd4j\nd4j-api\1.0.0-M2.1\nd4j-api-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\com\jakewharton\byteunits\byteunits\0.9.1\byteunits-0.9.1.jar;C:\Users\thesp\.m2\repository\org\apache\commons\commons-collections4\4.1\commons-collections4-4.1.jar;C:\Users\thesp\.m2\repository\com\google\flatbuffers\flatbuffers-java\1.12.0\flatbuffers-java-1.12.0.jar;C:\Users\thesp\.m2\repository\org\nd4j\protobuf\1.0.0-M2.1\protobuf-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\commons-net\commons-net\3.1\commons-net-3.1.jar;C:\Users\thesp\.m2\repository\net\ericaro\neoitertools\1.0.0\neoitertools-1.0.0.jar;C:\Users\thesp\.m2\repository\org\nd4j\nd4j-common\1.0.0-M2.1\nd4j-common-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\nd4j\guava\1.0.0-M2.1\guava-1.0.0-M2.1.jar;C:\Users\thesp\.m2\repository\org\apache\logging\log4j\log4j-slf4j-impl\2.24.3\log4j-slf4j-impl-2.24.3.jar com.mtheory7.OcclupanidClassifier
+18:43:31.439 [main] INFO  org.nd4j.linalg.factory.Nd4jBackend - Loaded [CpuBackend] backend
+18:43:32.790 [main] INFO  org.nd4j.nativeblas.NativeOpsHolder - Number of threads used for linear algebra: 2
+18:43:32.799 [main] INFO  org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory - Binary level Generic x86 optimization level AVX/AVX2
+18:43:32.833 [main] INFO  org.nd4j.nativeblas.Nd4jBlas - Number of threads used for OpenMP BLAS: 2
+18:43:32.861 [main] INFO  org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner - Backend used: [CPU]; OS: [Windows 11]
+18:43:32.861 [main] INFO  org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner - Cores: [4]; Memory: [4.0GB];
+18:43:32.861 [main] INFO  org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner - Blas vendor: [OPENBLAS]
+18:43:32.870 [main] INFO  org.nd4j.linalg.cpu.nativecpu.CpuBackend - Backend build information:
  GCC: "12.1.0"
 STD version: 201103L
 DEFAULT_ENGINE: samediff::ENGINE_CPU
 HAVE_FLATBUFFERS
 HAVE_OPENBLAS
-20:19:58.147 [main] INFO  org.datavec.image.recordreader.BaseImageRecordReader - ImageRecordReader: 2 label classes inferred using label generator ParentPathLabelGenerator
-20:19:58.152 [main] INFO  com.mtheory7.OcclupanidClassifier - Detected training labels: [AdmordorsumFloridensis, PalpatophoraUtiliformis]
-20:19:58.159 [main] INFO  org.datavec.image.recordreader.BaseImageRecordReader - ImageRecordReader: 2 label classes inferred using label generator ParentPathLabelGenerator
-20:19:58.159 [main] INFO  com.mtheory7.OcclupanidClassifier - Detected testing labels: [AdmordorsumFloridensis, PalpatophoraUtiliformis]
-20:19:59.047 [vert.x-eventloop-thread-0] INFO  org.deeplearning4j.ui.VertxUIServer - Deeplearning4j UI server started at: http://localhost:9000
-20:19:59.057 [main] INFO  org.deeplearning4j.ui.VertxUIServer - StatsStorage instance attached to UI: InMemoryStatsStorage(uid=4f5f1dbc)
-20:19:59.147 [main] INFO  org.deeplearning4j.nn.multilayer.MultiLayerNetwork - Starting MultiLayerNetwork with WorkspaceModes set to [training: ENABLED; inference: ENABLED], cacheMode set to [NONE]
-20:19:59.561 [main] INFO  com.mtheory7.OcclupanidClassifier - Starting network training...
-20:19:59.565 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 1 / 50
-20:20:26.894 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 0 is 0.870493425243872
-20:23:52.317 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 10 is 1.0148123235327358
-20:26:00.822 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 1
-20:26:13.557 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-20:26:13.567 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+18:43:32.957 [main] INFO  org.datavec.image.recordreader.BaseImageRecordReader - ImageRecordReader: 2 label classes inferred using label generator ParentPathLabelGenerator
+18:43:32.962 [main] INFO  com.mtheory7.OcclupanidClassifier - Detected training labels: [AdmordorsumFloridensis, PalpatophoraUtiliformis]
+18:43:32.970 [main] INFO  org.datavec.image.recordreader.BaseImageRecordReader - ImageRecordReader: 2 label classes inferred using label generator ParentPathLabelGenerator
+18:43:32.970 [main] INFO  com.mtheory7.OcclupanidClassifier - Detected testing labels: [AdmordorsumFloridensis, PalpatophoraUtiliformis]
+18:43:34.003 [vert.x-eventloop-thread-0] INFO  org.deeplearning4j.ui.VertxUIServer - Deeplearning4j UI server started at: http://localhost:9000
+18:43:34.014 [main] INFO  org.deeplearning4j.ui.VertxUIServer - StatsStorage instance attached to UI: InMemoryStatsStorage(uid=b1d56f26)
+18:43:34.120 [main] INFO  org.deeplearning4j.nn.multilayer.MultiLayerNetwork - Starting MultiLayerNetwork with WorkspaceModes set to [training: ENABLED; inference: ENABLED], cacheMode set to [NONE]
+18:43:34.496 [main] INFO  com.mtheory7.OcclupanidClassifier - Starting network training...
+18:43:34.499 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 1 / 50
+18:44:05.428 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 0 is 0.819392932766455
+18:47:29.631 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 10 is 1.0006751536911165
+18:49:34.840 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 1
+18:49:48.182 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+18:49:48.192 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
@@ -45,86 +45,39 @@ Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-20:26:13.575 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 2 / 50
-20:27:08.943 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 20 is 0.8307574970735836
-20:31:24.988 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 30 is 0.7346794888666655
-20:32:49.659 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 2
-20:33:01.413 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-20:33:01.413 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+18:49:48.198 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 2 / 50
+18:50:46.163 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 20 is 0.9383804341365978
+18:54:05.723 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 30 is 0.90034295714131
+18:55:32.092 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 2
+18:55:44.224 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+18:55:44.225 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
  # of classes:    2
- Accuracy:        0.6333
- Precision:       0.8333
- Recall:          0.3333
- F1 Score:        0.4762
+ Accuracy:        0.5000
+ Precision:       0.5000
+ Recall:          1.0000
+ F1 Score:        0.6667
 Precision, recall & F1: reported for positive class (class 1 - "1") only
 
+Warning: 1 class was never predicted by the model and was excluded from average precision
+Classes excluded from average precision: [0]
 
 =========================Confusion Matrix=========================
   0  1
 -------
- 14  1 | 0 = 0
- 10  5 | 1 = 1
+  0 15 | 0 = 0
+  0 15 | 1 = 1
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-20:33:01.427 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 3 / 50
-20:35:02.913 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 40 is 0.8184799407674683
-20:38:27.883 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 50 is 0.7640446727531219
-20:39:14.872 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 3
-20:39:26.515 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-20:39:26.515 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.5333
- Precision:       1.0000
- Recall:          0.0667
- F1 Score:        0.1250
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
- 15  0 | 0 = 0
- 14  1 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-20:39:26.523 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 4 / 50
-20:41:43.475 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 60 is 0.8650930793957987
-20:45:00.903 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 70 is 0.6415186536969537
-20:45:04.215 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 4
-20:45:16.033 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-20:45:16.035 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.5667
- Precision:       1.0000
- Recall:          0.1333
- F1 Score:        0.2353
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
- 15  0 | 0 = 0
- 13  2 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-20:45:16.043 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 5 / 50
-20:48:22.704 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 80 is 0.6955824150970454
-20:51:24.117 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 5
-20:51:35.778 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-20:51:35.778 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+18:55:44.233 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 3 / 50
+18:57:22.267 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 40 is 0.7870380647081305
+19:00:41.324 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 50 is 0.7255230400406032
+19:01:28.894 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 3
+19:01:41.385 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+19:01:41.386 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
@@ -144,37 +97,12 @@ Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-20:51:35.785 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 6 / 50
-20:51:54.633 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 90 is 0.7455211065256112
-20:55:43.212 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 100 is 0.7640503994471627
-20:58:09.004 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 6
-20:58:19.585 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-20:58:19.585 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.7333
- Precision:       0.7333
- Recall:          0.7333
- F1 Score:        0.7333
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
- 11  4 | 0 = 0
-  4 11 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-20:58:19.590 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 7 / 50
-20:59:31.307 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 110 is 0.6540960796000026
-21:03:50.291 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 120 is 0.8331247146010932
-21:05:17.211 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 7
-21:05:28.899 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-21:05:28.899 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+19:01:41.394 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 4 / 50
+19:04:00.685 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 60 is 0.8900785462381021
+19:07:28.099 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 70 is 0.6814832868203148
+19:07:31.716 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 4
+19:07:44.458 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+19:07:44.458 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
@@ -194,61 +122,135 @@ Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-21:05:28.899 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 8 / 50
-21:07:01.777 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 130 is 0.6973996933086438
-21:10:45.698 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 140 is 0.6882677036454284
-21:11:34.709 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 8
-21:11:46.465 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-21:11:46.465 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+19:07:44.468 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 5 / 50
+19:10:42.532 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 80 is 0.6936504858893833
+19:13:31.056 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 5
+19:13:43.487 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+19:13:43.487 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
  # of classes:    2
- Accuracy:        0.7333
- Precision:       0.7692
- Recall:          0.6667
- F1 Score:        0.7143
+ Accuracy:        0.6000
+ Precision:       1.0000
+ Recall:          0.2000
+ F1 Score:        0.3333
 Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 
 =========================Confusion Matrix=========================
   0  1
 -------
- 12  3 | 0 = 0
-  5 10 | 1 = 1
+ 15  0 | 0 = 0
+ 12  3 | 1 = 1
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-21:11:46.479 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 9 / 50
-21:14:04.197 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 150 is 0.5521777431108964
-21:18:09.908 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 160 is 0.5788834020131167
-21:18:12.960 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 9
-21:18:24.578 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-21:18:24.578 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+19:13:43.502 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 6 / 50
+19:14:03.227 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 90 is 0.7537331455907387
+19:17:27.113 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 100 is 0.7473984335648114
+19:19:36.477 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 6
+19:19:49.951 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+19:19:49.962 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
  # of classes:    2
  Accuracy:        0.6333
- Precision:       0.5909
- Recall:          0.8667
- F1 Score:        0.7027
+ Precision:       0.7500
+ Recall:          0.4000
+ F1 Score:        0.5217
 Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 
 =========================Confusion Matrix=========================
   0  1
 -------
-  6  9 | 0 = 0
+ 13  2 | 0 = 0
+  9  6 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+19:19:49.962 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 7 / 50
+19:20:48.900 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 110 is 0.7630487551200081
+19:24:10.730 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 120 is 0.7589227373091698
+19:25:37.762 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 7
+19:25:50.400 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+19:25:50.400 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.6000
+ Precision:       1.0000
+ Recall:          0.2000
+ F1 Score:        0.3333
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+ 15  0 | 0 = 0
+ 12  3 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+19:25:50.408 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 8 / 50
+19:27:29.647 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 130 is 0.7634122522679635
+19:30:51.247 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 140 is 0.63031648288079
+19:31:40.836 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 8
+19:31:53.341 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+19:31:53.341 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.5333
+ Precision:       0.5200
+ Recall:          0.8667
+ F1 Score:        0.6500
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  3 12 | 0 = 0
   2 13 | 1 = 1
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-21:18:24.581 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 10 / 50
-21:22:07.834 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 170 is 0.5892848651158907
-21:25:07.553 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 10
-21:25:20.232 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-21:25:20.232 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+19:31:53.360 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 9 / 50
+19:34:11.834 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 150 is 0.5681562301946528
+19:37:34.079 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 160 is 0.6303926831733528
+19:37:37.573 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 9
+19:37:50.027 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+19:37:50.027 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.5667
+ Precision:       0.5417
+ Recall:          0.8667
+ F1 Score:        0.6667
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  4 11 | 0 = 0
+  2 13 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+19:37:50.027 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 10 / 50
+19:40:45.898 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 170 is 0.6491866890196069
+19:43:31.988 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 10
+19:43:44.492 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+19:43:44.492 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
@@ -268,45 +270,20 @@ Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-21:25:20.235 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 11 / 50
-21:25:39.661 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 180 is 0.7090623913618446
-21:29:20.221 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 190 is 0.8109744799395001
-21:31:46.190 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 11
-21:31:57.313 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-21:31:57.313 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+19:43:44.508 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 11 / 50
+19:44:03.973 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 180 is 0.7193633465017596
+19:47:26.889 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 190 is 0.7664423972521254
+19:49:34.231 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 11
+19:49:47.605 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+19:49:47.605 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
  # of classes:    2
- Accuracy:        0.6333
- Precision:       0.5909
- Recall:          0.8667
- F1 Score:        0.7027
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
-  6  9 | 0 = 0
-  2 13 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-21:31:57.330 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 12 / 50
-21:32:53.145 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 200 is 0.7150921572941207
-21:36:07.757 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 210 is 0.6088536620151299
-21:38:03.837 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 12
-21:38:23.762 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-21:38:23.762 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.7000
- Precision:       0.6500
- Recall:          0.8667
- F1 Score:        0.7429
+ Accuracy:        0.6667
+ Precision:       0.6316
+ Recall:          0.8000
+ F1 Score:        0.7059
 Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 
@@ -314,222 +291,24 @@ Precision, recall & F1: reported for positive class (class 1 - "1") only
   0  1
 -------
   8  7 | 0 = 0
-  2 13 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-21:38:23.765 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 13 / 50
-21:40:04.910 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 220 is 0.681508155809381
-21:44:06.458 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 230 is 0.6054734008454303
-21:45:03.806 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 13
-21:45:23.610 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-21:45:23.610 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.7667
- Precision:       0.7500
- Recall:          0.8000
- F1 Score:        0.7742
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
- 11  4 | 0 = 0
   3 12 | 1 = 1
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-21:45:23.625 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 14 / 50
-21:48:06.738 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 240 is 0.5186810319765343
-21:51:18.153 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 250 is 0.5532410530892392
-21:51:21.307 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 14
-21:51:33.007 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-21:51:33.007 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+19:49:47.613 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 12 / 50
+19:50:45.652 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 200 is 0.6801411676664245
+19:54:08.095 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 210 is 0.5714768124742442
+19:55:35.453 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 12
+19:55:48.019 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+19:55:48.019 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
  # of classes:    2
- Accuracy:        0.6000
- Precision:       0.5556
- Recall:          1.0000
- F1 Score:        0.7143
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
-  3 12 | 0 = 0
-  0 15 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-21:51:33.007 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 15 / 50
-21:54:23.272 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 260 is 0.5412960932504793
-21:57:06.594 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 15
-21:57:20.264 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-21:57:20.266 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.6333
- Precision:       0.5769
- Recall:          1.0000
- F1 Score:        0.7317
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
-  4 11 | 0 = 0
-  0 15 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-21:57:20.278 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 16 / 50
-21:57:40.570 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 270 is 0.5247763237716669
-22:01:00.406 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 280 is 0.7065220249237907
-22:03:05.522 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 16
-22:03:17.737 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-22:03:17.737 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.6667
- Precision:       0.7778
- Recall:          0.4667
- F1 Score:        0.5833
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
- 13  2 | 0 = 0
-  8  7 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-22:03:17.737 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 17 / 50
-22:04:15.791 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 290 is 0.4602131377001701
-22:07:37.900 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 300 is 0.5273555735593123
-22:09:04.133 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 17
-22:09:16.413 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-22:09:16.415 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.6667
- Precision:       0.6087
+ Accuracy:        0.7000
+ Precision:       0.6364
  Recall:          0.9333
- F1 Score:        0.7368
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
-  6  9 | 0 = 0
-  1 14 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-22:09:16.420 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 18 / 50
-22:10:52.672 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 310 is 0.5378110344276188
-22:14:10.268 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 320 is 0.6174090047093224
-22:14:58.129 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 18
-22:15:10.785 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-22:15:10.785 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.7333
- Precision:       0.8182
- Recall:          0.6000
- F1 Score:        0.6923
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
- 13  2 | 0 = 0
-  6  9 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-22:15:10.799 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 19 / 50
-22:17:26.977 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 330 is 0.38447163843430493
-22:20:45.239 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 340 is 0.8676889649822891
-22:20:49.148 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 19
-22:21:01.312 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-22:21:01.312 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.6667
- Precision:       0.6000
- Recall:          1.0000
- F1 Score:        0.7500
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
-  5 10 | 0 = 0
-  0 15 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-22:21:01.312 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 20 / 50
-22:23:54.317 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 350 is 0.4908493723515411
-22:26:37.546 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 20
-22:26:49.757 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-22:26:49.757 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.8000
- Precision:       0.7368
- Recall:          0.9333
- F1 Score:        0.8235
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
- 10  5 | 0 = 0
-  1 14 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-22:26:49.770 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 21 / 50
-22:27:09.321 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 360 is 0.32631070678613655
-22:30:28.150 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 370 is 0.4541323675541077
-22:32:34.313 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 21
-22:32:46.429 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-22:32:46.431 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.7333
- Precision:       0.6522
- Recall:          1.0000
- F1 Score:        0.7895
+ F1 Score:        0.7568
 Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 
@@ -537,41 +316,41 @@ Precision, recall & F1: reported for positive class (class 1 - "1") only
   0  1
 -------
   7  8 | 0 = 0
-  0 15 | 1 = 1
+  1 14 | 1 = 1
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-22:32:46.438 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 22 / 50
-22:33:43.910 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 380 is 0.6014461025865123
-22:37:05.010 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 390 is 0.6606917880017588
-22:38:33.104 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 22
-22:38:45.356 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-22:38:45.356 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+19:55:48.035 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 13 / 50
+19:57:27.971 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 220 is 0.6270676596684809
+20:00:48.719 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 230 is 0.6856797355542573
+20:01:37.603 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 13
+20:01:50.190 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+20:01:50.190 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
  # of classes:    2
- Accuracy:        0.8333
- Precision:       0.7500
- Recall:          1.0000
- F1 Score:        0.8571
+ Accuracy:        0.7333
+ Precision:       0.7333
+ Recall:          0.7333
+ F1 Score:        0.7333
 Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 
 =========================Confusion Matrix=========================
   0  1
 -------
- 10  5 | 0 = 0
-  0 15 | 1 = 1
+ 11  4 | 0 = 0
+  4 11 | 1 = 1
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-22:38:45.356 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 23 / 50
-22:40:22.875 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 400 is 0.4718005909943852
-22:43:42.092 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 410 is 0.5254678665942962
-22:44:30.132 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 23
-22:44:42.333 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-22:44:42.333 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+20:01:50.190 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 14 / 50
+20:04:08.507 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 240 is 0.5259040442235199
+20:07:30.672 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 250 is 0.7269192741709479
+20:07:34.282 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 14
+20:07:47.036 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+20:07:47.048 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
@@ -591,12 +370,11 @@ Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-22:44:42.333 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 24 / 50
-22:46:57.470 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 420 is 0.4347425878040694
-22:50:17.430 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 430 is 0.5928921844773422
-22:50:20.974 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 24
-22:50:33.066 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-22:50:33.066 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+20:07:47.054 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 15 / 50
+20:10:45.649 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 260 is 0.4785483314533047
+20:14:00.884 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 15
+20:14:13.054 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+20:14:13.054 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
@@ -616,259 +394,62 @@ Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-22:50:33.066 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 25 / 50
-22:53:49.600 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 440 is 0.48487391903743393
-22:56:33.596 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 25
-22:56:45.901 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-22:56:45.901 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+20:14:13.070 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 16 / 50
+20:14:32.259 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 270 is 0.4666614028646498
+20:17:54.850 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 280 is 0.7136555154799782
+20:20:00.730 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 16
+20:20:12.964 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+20:20:12.965 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
  # of classes:    2
- Accuracy:        0.7667
- Precision:       0.6818
- Recall:          1.0000
- F1 Score:        0.8108
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
-  8  7 | 0 = 0
-  0 15 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-22:56:45.901 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 26 / 50
-22:57:05.119 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 450 is 0.5342734682036318
-23:00:25.158 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 460 is 0.4156940410902846
-23:02:30.955 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 26
-23:02:42.644 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-23:02:42.655 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.8333
- Precision:       0.7778
- Recall:          0.9333
- F1 Score:        0.8485
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
- 11  4 | 0 = 0
-  1 14 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-23:02:42.655 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 27 / 50
-23:03:37.643 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 470 is 0.4419809898351653
-23:06:51.072 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 480 is 0.41381328709814347
-23:08:15.712 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 27
-23:08:27.451 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-23:08:27.451 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.7667
- Precision:       0.7000
- Recall:          0.9333
- F1 Score:        0.8000
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
-  9  6 | 0 = 0
-  1 14 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-23:08:27.467 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 28 / 50
-23:09:59.745 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 490 is 0.3091464094460722
-23:13:12.914 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 500 is 0.3716260241414682
-23:13:58.775 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 28
-23:14:10.519 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-23:14:10.521 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.7000
- Precision:       0.6250
- Recall:          1.0000
- F1 Score:        0.7692
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
-  6  9 | 0 = 0
-  0 15 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-23:14:10.529 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 29 / 50
-23:16:26.879 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 510 is 0.4164542571886355
-23:19:48.286 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 520 is 0.49286092055358144
-23:19:51.985 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 29
-23:20:04.280 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-23:20:04.280 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.6000
- Precision:       0.5556
- Recall:          1.0000
- F1 Score:        0.7143
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
-  3 12 | 0 = 0
-  0 15 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-23:20:04.283 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 30 / 50
-23:22:58.900 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 530 is 0.4094902535279589
-23:25:41.440 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 30
-23:25:53.959 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-23:25:53.959 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.7000
- Precision:       0.6250
- Recall:          1.0000
- F1 Score:        0.7692
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
-  6  9 | 0 = 0
-  0 15 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-23:25:53.975 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 31 / 50
-23:26:13.342 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 540 is 0.473480164042395
-23:29:34.713 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 550 is 0.4834616149260436
-23:31:40.229 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 31
-23:31:52.420 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-23:31:52.420 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.8000
- Precision:       0.7143
- Recall:          1.0000
- F1 Score:        0.8333
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
-  9  6 | 0 = 0
-  0 15 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-23:31:52.420 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 32 / 50
-23:32:50.161 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 560 is 0.3130475094537616
-23:36:09.014 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 570 is 0.6440779050396985
-23:37:40.038 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 32
-23:37:52.295 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-23:37:52.295 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.8000
- Precision:       0.7143
- Recall:          1.0000
- F1 Score:        0.8333
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
-  9  6 | 0 = 0
-  0 15 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-23:37:52.295 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 33 / 50
-23:39:28.218 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 580 is 0.4651148313666245
-23:42:47.665 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 590 is 0.46054582823705725
-23:43:35.981 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 33
-23:43:48.488 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-23:43:48.488 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.8000
- Precision:       0.7143
- Recall:          1.0000
- F1 Score:        0.8333
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
-  9  6 | 0 = 0
-  0 15 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-23:43:48.507 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 34 / 50
-23:46:02.926 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 600 is 0.476296462190552
-23:49:22.468 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 610 is 0.4691602803442591
-23:49:25.755 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 34
-23:49:37.504 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-23:49:37.506 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.7667
- Precision:       0.7500
+ Accuracy:        0.7333
+ Precision:       0.7059
  Recall:          0.8000
- F1 Score:        0.7742
+ F1 Score:        0.7500
 Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 
 =========================Confusion Matrix=========================
   0  1
 -------
- 11  4 | 0 = 0
+ 10  5 | 0 = 0
   3 12 | 1 = 1
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-23:49:37.506 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 35 / 50
-23:52:26.293 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 620 is 0.4445153958670645
-23:55:09.665 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 35
-23:55:22.077 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-23:55:22.088 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+20:20:12.971 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 17 / 50
+20:21:10.028 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 290 is 0.6126039800583112
+20:24:30.556 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 300 is 0.5847528785130076
+20:26:01.100 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 17
+20:26:13.373 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+20:26:13.373 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.7000
+ Precision:       0.6250
+ Recall:          1.0000
+ F1 Score:        0.7692
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  6  9 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+20:26:13.382 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 18 / 50
+20:27:50.145 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 310 is 0.4901196878916631
+20:31:08.747 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 320 is 0.503648649161391
+20:31:56.758 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 18
+20:32:08.931 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+20:32:08.932 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
@@ -888,37 +469,61 @@ Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-23:55:22.096 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 36 / 50
-23:55:41.327 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 630 is 0.5669233830845092
-23:59:51.436 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 640 is 0.4633379823386201
-00:01:58.427 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 36
-00:02:10.856 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-00:02:10.856 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+20:32:08.940 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 19 / 50
+20:34:23.023 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 330 is 0.33456785586323473
+20:37:42.712 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 340 is 0.8413590999665488
+20:37:46.152 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 19
+20:37:58.433 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+20:37:58.434 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
  # of classes:    2
- Accuracy:        0.8333
- Precision:       0.7500
+ Accuracy:        0.6667
+ Precision:       0.6000
  Recall:          1.0000
- F1 Score:        0.8571
+ F1 Score:        0.7500
 Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 
 =========================Confusion Matrix=========================
   0  1
 -------
- 10  5 | 0 = 0
+  5 10 | 0 = 0
   0 15 | 1 = 1
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-00:02:10.872 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 37 / 50
-00:03:08.959 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 650 is 0.4211045923057265
-00:06:29.741 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 660 is 0.3776271657614484
-00:07:59.263 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 37
-00:08:11.813 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-00:08:11.813 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+20:37:58.441 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 20 / 50
+20:40:50.759 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 350 is 0.5524515638213989
+20:43:33.236 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 20
+20:43:45.480 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+20:43:45.482 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.8000
+ Precision:       0.7143
+ Recall:          1.0000
+ F1 Score:        0.8333
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  9  6 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+20:43:45.489 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 21 / 50
+20:44:04.819 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 360 is 0.33364298611145504
+20:47:23.473 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 370 is 0.4880254159508384
+20:49:28.029 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 21
+20:49:39.969 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+20:49:39.969 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
@@ -938,12 +543,86 @@ Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-00:08:11.813 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 38 / 50
-00:09:48.214 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 670 is 0.7103506402211036
-00:13:05.365 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 680 is 0.2521536010579056
-00:13:53.156 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 38
-00:14:04.895 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-00:14:04.895 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+20:49:39.976 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 22 / 50
+20:50:38.792 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 380 is 0.6669048167361091
+20:53:59.223 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 390 is 0.7180193983960328
+20:55:25.737 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 22
+20:55:37.850 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+20:55:37.851 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.7667
+ Precision:       0.6818
+ Recall:          1.0000
+ F1 Score:        0.8108
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  8  7 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+20:55:37.858 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 23 / 50
+20:57:16.695 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 400 is 0.4159263576805904
+21:00:35.721 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 410 is 0.534004784928822
+21:01:23.952 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 23
+21:01:36.384 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+21:01:36.384 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.6667
+ Precision:       0.6000
+ Recall:          1.0000
+ F1 Score:        0.7500
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  5 10 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+21:01:36.392 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 24 / 50
+21:03:51.147 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 420 is 0.4900445437912931
+21:07:12.251 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 430 is 0.6746744351659207
+21:07:15.635 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 24
+21:07:28.164 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+21:07:28.165 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.6667
+ Precision:       0.6000
+ Recall:          1.0000
+ F1 Score:        0.7500
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  5 10 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+21:07:28.171 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 25 / 50
+21:10:20.003 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 440 is 0.411930863616266
+21:13:03.368 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 25
+21:13:15.456 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+21:13:15.457 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
@@ -963,12 +642,111 @@ Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-00:14:04.911 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 39 / 50
-00:16:14.424 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 690 is 0.3304668050760757
-00:19:29.117 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 700 is 0.3974306407072059
-00:19:32.367 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 39
-00:19:44.320 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-00:19:44.322 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+21:13:15.465 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 26 / 50
+21:13:34.591 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 450 is 0.4663194092403389
+21:16:53.900 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 460 is 0.47996611947298484
+21:18:59.287 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 26
+21:19:11.800 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+21:19:11.801 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.7333
+ Precision:       0.7333
+ Recall:          0.7333
+ F1 Score:        0.7333
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+ 11  4 | 0 = 0
+  4 11 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+21:19:11.808 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 27 / 50
+21:20:09.917 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 470 is 0.5676204879557925
+21:23:27.864 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 480 is 0.3964129315892641
+21:24:53.020 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 27
+21:25:05.658 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+21:25:05.659 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.8667
+ Precision:       0.7895
+ Recall:          1.0000
+ F1 Score:        0.8824
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+ 11  4 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+21:25:05.667 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 28 / 50
+21:26:41.675 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 490 is 0.35365985585998827
+21:30:01.187 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 500 is 0.3700628137291705
+21:30:48.923 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 28
+21:31:01.139 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+21:31:01.140 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.7000
+ Precision:       0.6250
+ Recall:          1.0000
+ F1 Score:        0.7692
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  6  9 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+21:31:01.150 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 29 / 50
+21:33:16.380 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 510 is 0.4299321313242038
+21:36:38.261 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 520 is 0.6510993788391226
+21:36:43.495 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 29
+21:36:56.192 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+21:36:56.194 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.6000
+ Precision:       0.5556
+ Recall:          1.0000
+ F1 Score:        0.7143
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  3 12 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+21:36:56.200 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 30 / 50
+21:39:51.379 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 530 is 0.46923897351171995
+21:42:34.349 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 30
+21:42:46.884 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+21:42:46.886 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
@@ -988,11 +766,12 @@ Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-00:19:44.322 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 40 / 50
-00:22:31.809 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 710 is 0.4082773507056806
-00:25:07.917 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 40
-00:25:19.801 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-00:25:19.801 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+21:42:46.895 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 31 / 50
+21:43:06.275 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 540 is 0.5060027838275263
+21:46:25.456 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 550 is 0.5285907729059719
+21:48:31.155 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 31
+21:48:43.314 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+21:48:43.314 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
@@ -1012,95 +791,70 @@ Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-00:25:19.817 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 41 / 50
-00:25:38.214 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 720 is 0.2532702229875738
-00:28:49.698 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 730 is 0.7569132039563095
-00:30:48.806 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 41
-00:31:00.667 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-00:31:00.667 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+21:48:43.321 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 32 / 50
+21:49:40.896 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 560 is 0.3257607088439538
+21:53:00.387 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 570 is 0.6712697257670456
+21:54:26.946 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 32
+21:54:39.058 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+21:54:39.059 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
  # of classes:    2
- Accuracy:        0.8000
- Precision:       0.7143
+ Accuracy:        0.8667
+ Precision:       0.7895
  Recall:          1.0000
- F1 Score:        0.8333
+ F1 Score:        0.8824
 Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 
 =========================Confusion Matrix=========================
   0  1
 -------
-  9  6 | 0 = 0
+ 11  4 | 0 = 0
   0 15 | 1 = 1
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-00:31:00.667 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 42 / 50
-00:31:57.101 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 740 is 0.37892339782686724
-00:35:08.915 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 750 is 0.41395300101704424
-00:36:30.745 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 42
-00:36:42.821 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-00:36:42.821 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.8333
- Precision:       0.7500
- Recall:          1.0000
- F1 Score:        0.8571
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
- 10  5 | 0 = 0
-  0 15 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-00:36:42.829 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 43 / 50
-00:38:17.805 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 760 is 0.24825583046628497
-00:41:28.077 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 770 is 0.2842834481264602
-00:42:13.790 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 43
-00:42:25.705 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-00:42:25.705 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.8333
- Precision:       0.7500
- Recall:          1.0000
- F1 Score:        0.8571
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
- 10  5 | 0 = 0
-  0 15 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-00:42:25.721 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 44 / 50
-00:44:34.078 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 780 is 0.41225221274506024
-00:47:45.592 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 790 is 0.23763187620952414
-00:47:49.312 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 44
-00:48:01.049 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-00:48:01.049 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+21:54:39.067 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 33 / 50
+21:56:16.821 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 580 is 0.29634232297565255
+21:59:37.481 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 590 is 0.3543807985909695
+22:00:25.837 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 33
+22:00:38.141 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+22:00:38.142 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
  # of classes:    2
  Accuracy:        0.7667
- Precision:       0.7500
- Recall:          0.8000
- F1 Score:        0.7742
+ Precision:       0.6818
+ Recall:          1.0000
+ F1 Score:        0.8108
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  8  7 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+22:00:38.150 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 34 / 50
+22:02:54.043 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 600 is 0.48673838909370387
+22:06:14.364 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 610 is 0.52780702346565
+22:06:17.748 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 34
+22:06:29.791 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+22:06:29.792 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.8667
+ Precision:       0.7895
+ Recall:          1.0000
+ F1 Score:        0.8824
 Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 
@@ -1108,23 +862,147 @@ Precision, recall & F1: reported for positive class (class 1 - "1") only
   0  1
 -------
  11  4 | 0 = 0
-  3 12 | 1 = 1
+  0 15 | 1 = 1
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-00:48:01.049 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 45 / 50
-00:50:47.411 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 800 is 0.6190707630015929
-00:53:25.308 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 45
-00:53:37.178 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-00:53:37.178 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+22:06:29.799 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 35 / 50
+22:09:23.965 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 620 is 0.31769525588795716
+22:12:07.169 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 35
+22:12:19.402 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+22:12:19.402 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.8333
+ Precision:       0.7778
+ Recall:          0.9333
+ F1 Score:        0.8485
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+ 11  4 | 0 = 0
+  1 14 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+22:12:19.412 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 36 / 50
+22:12:38.791 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 630 is 0.5512389477598012
+22:15:57.783 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 640 is 0.4553155526929457
+22:18:04.280 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 36
+22:18:16.713 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+22:18:16.713 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.7667
+ Precision:       0.6818
+ Recall:          1.0000
+ F1 Score:        0.8108
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  8  7 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+22:18:16.722 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 37 / 50
+22:19:15.622 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 650 is 0.418260618192101
+22:22:35.156 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 660 is 0.46339458502909026
+22:24:01.590 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 37
+22:24:13.578 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+22:24:13.578 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.7333
+ Precision:       0.6522
+ Recall:          1.0000
+ F1 Score:        0.7895
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  7  8 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+22:24:13.586 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 38 / 50
+22:25:48.929 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 670 is 0.5881665844200257
+22:29:08.138 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 680 is 0.27881517837035663
+22:29:55.552 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 38
+22:30:07.574 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+22:30:07.575 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.7667
+ Precision:       0.6818
+ Recall:          1.0000
+ F1 Score:        0.8108
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  8  7 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+22:30:07.584 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 39 / 50
+22:32:21.621 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 690 is 0.33687251288600706
+22:35:40.835 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 700 is 0.3791956482543544
+22:35:44.101 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 39
+22:35:56.417 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+22:35:56.418 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
  # of classes:    2
  Accuracy:        0.8000
- Precision:       0.7368
- Recall:          0.9333
- F1 Score:        0.8235
+ Precision:       0.7143
+ Recall:          1.0000
+ F1 Score:        0.8333
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  9  6 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+22:35:56.426 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 40 / 50
+22:38:51.218 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 710 is 0.32689347363637233
+22:41:33.223 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 40
+22:41:45.926 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+22:41:45.926 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.8333
+ Precision:       0.7500
+ Recall:          1.0000
+ F1 Score:        0.8571
 Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 
@@ -1132,91 +1010,66 @@ Precision, recall & F1: reported for positive class (class 1 - "1") only
   0  1
 -------
  10  5 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+22:41:45.943 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 41 / 50
+22:42:05.070 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 720 is 0.35769517867226236
+22:45:21.306 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 730 is 0.5539872982864315
+22:47:24.152 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 41
+22:47:36.163 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+22:47:36.164 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.8000
+ Precision:       0.7143
+ Recall:          1.0000
+ F1 Score:        0.8333
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  9  6 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+22:47:36.171 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 42 / 50
+22:48:32.808 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 740 is 0.3127602034241034
+22:51:59.452 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 750 is 0.2362505956495478
+22:53:24.158 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 42
+22:53:36.246 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+22:53:36.246 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.8333
+ Precision:       0.7778
+ Recall:          0.9333
+ F1 Score:        0.8485
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+ 11  4 | 0 = 0
   1 14 | 1 = 1
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-00:53:37.178 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 46 / 50
-00:53:55.670 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 810 is 0.3394719336808857
-00:57:07.289 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 820 is 0.3073334253356097
-00:59:07.405 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 46
-00:59:19.060 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-00:59:19.060 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.8000
- Precision:       0.7143
- Recall:          1.0000
- F1 Score:        0.8333
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
-  9  6 | 0 = 0
-  0 15 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-00:59:19.076 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 47 / 50
-01:00:15.078 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 830 is 0.23883563619313725
-01:03:28.473 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 840 is 0.24369412813657934
-01:04:50.261 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 47
-01:05:02.001 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-01:05:02.001 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.8000
- Precision:       0.7143
- Recall:          1.0000
- F1 Score:        0.8333
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
-  9  6 | 0 = 0
-  0 15 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-01:05:02.001 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 48 / 50
-01:06:33.751 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 850 is 0.4936486665457317
-01:09:46.039 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 860 is 0.25884304433166727
-01:10:31.651 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 48
-01:10:44.414 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-01:10:44.414 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
-
-
-========================Evaluation Metrics========================
- # of classes:    2
- Accuracy:        0.8000
- Precision:       0.7143
- Recall:          1.0000
- F1 Score:        0.8333
-Precision, recall & F1: reported for positive class (class 1 - "1") only
-
-
-=========================Confusion Matrix=========================
-  0  1
--------
-  9  6 | 0 = 0
-  0 15 | 1 = 1
-
-Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
-==================================================================
-01:10:44.422 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 49 / 50
-01:12:53.976 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 870 is 0.26201286778839233
-01:16:03.253 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 880 is 0.6143449515981374
-01:16:06.904 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 49
-01:16:18.893 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-01:16:18.893 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+22:53:36.255 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 43 / 50
+22:55:12.154 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 760 is 0.20778545166521162
+22:58:30.269 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 770 is 0.41111183544871305
+22:59:17.760 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 43
+22:59:31.410 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+22:59:31.410 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
@@ -1236,11 +1089,36 @@ Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-01:16:18.909 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 50 / 50
-01:19:07.670 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 890 is 0.2515733419702324
-01:21:43.287 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 50
-01:21:55.352 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
-01:21:55.352 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+22:59:31.410 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 44 / 50
+23:01:45.313 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 780 is 0.3527742785756919
+23:05:03.146 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 790 is 0.18989936838261595
+23:05:06.380 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 44
+23:05:18.328 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+23:05:18.328 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.8000
+ Precision:       0.7647
+ Recall:          0.8667
+ F1 Score:        0.8125
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+ 11  4 | 0 = 0
+  2 13 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+23:05:18.334 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 45 / 50
+23:08:10.852 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 800 is 0.45484101661453885
+23:10:52.577 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 45
+23:11:04.555 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+23:11:04.555 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
 
 
 ========================Evaluation Metrics========================
@@ -1260,27 +1138,151 @@ Precision, recall & F1: reported for positive class (class 1 - "1") only
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-01:21:55.368 [main] INFO  com.mtheory7.OcclupanidClassifier - Evaluating model accuracy using testing data directory...
-01:22:06.983 [main] INFO  com.mtheory7.OcclupanidClassifier - 
+23:11:04.564 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 46 / 50
+23:11:23.650 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 810 is 0.6018701271748134
+23:14:40.219 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 820 is 0.22928984771489563
+23:16:44.169 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 46
+23:16:56.527 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+23:16:56.527 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
 
 ========================Evaluation Metrics========================
  # of classes:    2
- Accuracy:        0.8667
- Precision:       0.7895
+ Accuracy:        0.8000
+ Precision:       0.7143
  Recall:          1.0000
- F1 Score:        0.8824
+ F1 Score:        0.8333
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  9  6 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+23:16:56.527 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 47 / 50
+23:17:54.274 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 830 is 0.24385036382879105
+23:21:13.485 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 840 is 0.27122489127447286
+23:22:38.506 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 47
+23:22:50.450 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+23:22:50.450 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.7667
+ Precision:       0.6818
+ Recall:          1.0000
+ F1 Score:        0.8108
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  8  7 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+23:22:50.458 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 48 / 50
+23:24:24.957 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 850 is 0.5274432422335695
+23:27:42.287 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 860 is 0.3330289057059588
+23:28:29.257 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 48
+23:28:43.612 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+23:28:43.612 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.7333
+ Precision:       0.6522
+ Recall:          1.0000
+ F1 Score:        0.7895
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  7  8 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+23:28:43.618 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 49 / 50
+23:31:03.546 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 870 is 0.2993153386729312
+23:34:53.040 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 880 is 0.38854426905403955
+23:34:56.694 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 49
+23:35:09.523 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+23:35:09.523 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.7667
+ Precision:       0.6818
+ Recall:          1.0000
+ F1 Score:        0.8108
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+  8  7 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+23:35:09.539 [main] INFO  com.mtheory7.OcclupanidClassifier - Epoch 50 / 50
+23:38:07.783 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 890 is 0.21752168493130297
+23:40:54.107 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Starting evaluation nr. 50
+23:41:06.440 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Reporting evaluation results:
+23:41:06.442 [main] INFO  org.deeplearning4j.optimize.listeners.EvaluativeListener - Evaluation:
+
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.8333
+ Precision:       0.7500
+ Recall:          1.0000
+ F1 Score:        0.8571
+Precision, recall & F1: reported for positive class (class 1 - "1") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+ 10  5 | 0 = 0
+  0 15 | 1 = 1
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+23:41:06.442 [main] INFO  com.mtheory7.OcclupanidClassifier - Evaluating model accuracy using testing data directory...
+23:41:18.754 [main] INFO  com.mtheory7.OcclupanidClassifier - 
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.8333
+ Precision:       0.7500
+ Recall:          1.0000
+ F1 Score:        0.8571
 Precision, recall & F1: reported for positive class (class 1 - "PalpatophoraUtiliformis") only
 
 
 =========================Confusion Matrix=========================
   0  1
 -------
- 11  4 | 0 = AdmordorsumFloridensis
+ 10  5 | 0 = AdmordorsumFloridensis
   0 15 | 1 = PalpatophoraUtiliformis
 
 Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
 ==================================================================
-01:22:07.945 [main] INFO  com.mtheory7.OcclupanidClassifier - Model successfully exported to: C:\Users\thesp\Code\deeplearning4j-occlupanid\models\deeplearning4jOcclupanidModel.zip
+23:41:19.685 [main] INFO  com.mtheory7.OcclupanidClassifier - Model successfully exported to: C:\Users\thesp\Code\deeplearning4j-occlupanid\models\deeplearning4jOcclupanidModel1.0.0.zip
+23:59:08.057 [Thread-2] INFO  org.deeplearning4j.ui.VertxUIServer - Deeplearning4j UI server is auto-stopping in shutdown hook.
 
-
- VERSION 1.0.0! COMMITED AND PUSHED EARLY 10/19/26
+Process finished with exit code 130
