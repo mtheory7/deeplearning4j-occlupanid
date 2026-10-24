@@ -1,27 +1,29 @@
 package com.mtheory7;
 
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.core.config.Configurator;
 import org.datavec.api.io.labels.ParentPathLabelGenerator;
 import org.datavec.api.split.FileSplit;
 import org.datavec.image.loader.BaseImageLoader;
 import org.datavec.image.recordreader.ImageRecordReader;
-import org.datavec.image.transform.*;
+import org.datavec.image.transform.CropImageTransform;
+import org.datavec.image.transform.PipelineImageTransform;
 import org.deeplearning4j.core.storage.StatsStorage;
 import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator;
-import org.deeplearning4j.nn.api.OptimizationAlgorithm;
+import org.deeplearning4j.earlystopping.EarlyStoppingConfiguration;
+import org.deeplearning4j.earlystopping.EarlyStoppingResult;
+import org.deeplearning4j.earlystopping.saver.LocalFileGraphSaver;
+import org.deeplearning4j.earlystopping.scorecalc.DataSetLossCalculator;
+import org.deeplearning4j.earlystopping.termination.MaxEpochsTerminationCondition;
+import org.deeplearning4j.earlystopping.termination.ScoreImprovementEpochTerminationCondition;
+import org.deeplearning4j.earlystopping.trainer.EarlyStoppingGraphTrainer;
 import org.deeplearning4j.nn.conf.layers.OutputLayer;
 import org.deeplearning4j.nn.graph.ComputationGraph;
 import org.deeplearning4j.nn.transferlearning.FineTuneConfiguration;
 import org.deeplearning4j.nn.transferlearning.TransferLearning;
-import org.deeplearning4j.optimize.api.InvocationType;
-import org.deeplearning4j.optimize.listeners.EvaluativeListener;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
 import org.deeplearning4j.ui.api.UIServer;
 import org.deeplearning4j.ui.model.stats.StatsListener;
 import org.deeplearning4j.ui.model.storage.InMemoryStatsStorage;
 import org.deeplearning4j.zoo.PretrainedType;
-import org.deeplearning4j.zoo.ZooModel;
 import org.deeplearning4j.zoo.model.VGG16;
 import org.nd4j.common.primitives.Pair;
 import org.nd4j.evaluation.classification.Evaluation;
@@ -36,12 +38,14 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class OcclupanidClassifier {
     protected static final Logger log = LoggerFactory.getLogger(OcclupanidClassifier.class);
-
+    private static final String modelCheckpointPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/models/checkpoints";
+    private static final String modelSavePath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/models/deeplearning4jOcclupanidModel1.0.0.zip";
+    private static final String trainingDataPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/trainingData/data/train";
+    private static final String testingDataPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/trainingData/data/test";
     // VGG16 models expect images strictly shaped at 224x224
     private static int height = 224;
     private static int width = 224;
@@ -49,11 +53,7 @@ public class OcclupanidClassifier {
     private static int numOfClasses = 2; // For now just using A. Floridensis and P. Utiliformis
     private static int batchSize = 16;
     private static long seed = 12345L;
-    private static int epochs = 150;
-
-    private static final String modelSavePath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/models/deeplearning4jOcclupanidModel1.0.0.zip";
-    private static final String trainingDataPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/trainingData/data/train";
-    private static final String testingDataPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/trainingData/data/test";
+    private static int epochs = 55;
 
     public static void main(String[] args) throws Exception {
         File trainingDataDirectory = new File(trainingDataPath);
@@ -65,7 +65,6 @@ public class OcclupanidClassifier {
         DataSetIterator trainingDataSetIterator = getDataSetIterator(trainingDataDirectory, transformPipeline);
         log.info("Detected training labels: " + trainingDataSetIterator.getLabels());
         DataSetIterator testingDataSetIterator = getDataSetIterator(testingDataDirectory, null);
-        log.info("Detected testing labels: " + trainingDataSetIterator.getLabels());
 
         VGG16ImagePreProcessor scaler = new VGG16ImagePreProcessor();
         trainingDataSetIterator.setPreProcessor(scaler);
@@ -77,7 +76,7 @@ public class OcclupanidClassifier {
 
         log.info("Loading pre-trained VGG16 weights from ImageNet...");
         VGG16 zooModel = VGG16.builder().build();
-        ComputationGraph pretrainedNet = (ComputationGraph)zooModel.initPretrained(PretrainedType.IMAGENET);
+        ComputationGraph pretrainedNet = (ComputationGraph) zooModel.initPretrained(PretrainedType.IMAGENET);
 
         log.info("Configuring Transfer Learning...");
         FineTuneConfiguration fineTuneConf = new FineTuneConfiguration.Builder()
@@ -102,23 +101,41 @@ public class OcclupanidClassifier {
 
         model.setListeners(
                 new ScoreIterationListener(5),
-                new StatsListener(statsStorage),
-                new EvaluativeListener(testingDataSetIterator, 1, InvocationType.EPOCH_END)
+                new StatsListener(statsStorage)
         );
 
-        log.info("Starting network training...");
-        for (int i = 0; i < epochs; i++) {
-            log.info("Epoch " + (i + 1) + " / " + epochs);
-            model.fit(trainingDataSetIterator);
-            trainingDataSetIterator.reset();
-        }
+        log.info("Configuring Early Stopping...");
+        EarlyStoppingConfiguration<ComputationGraph> esConf = new EarlyStoppingConfiguration.Builder<ComputationGraph>()
+                .epochTerminationConditions(
+                        new MaxEpochsTerminationCondition(epochs),
+                        new ScoreImprovementEpochTerminationCondition(5) // Wait 5 epochs before stopping if no improvement
+                )
+                .scoreCalculator(new DataSetLossCalculator(testingDataSetIterator, true))
+                .evaluateEveryNEpochs(1)
+                .modelSaver(new LocalFileGraphSaver(modelCheckpointPath))
+                .build();
 
-        log.info("Evaluating model accuracy using testing data directory...");
-        Evaluation eval = model.evaluate(testingDataSetIterator);
+        EarlyStoppingGraphTrainer trainer = new EarlyStoppingGraphTrainer(esConf, model, trainingDataSetIterator);
+
+        log.info("Starting network training with Early Stopping...");
+        EarlyStoppingResult<ComputationGraph> result = trainer.fit();
+
+        log.info("Training complete.");
+        log.info("Termination reason: " + result.getTerminationReason());
+        log.info("Total epochs: " + result.getTotalEpochs());
+        log.info("Best epoch number: " + result.getBestModelEpoch());
+        log.info("Score at best epoch: " + result.getBestModelScore());
+
+        // Retrieve the best model found before it started overfitting
+        ComputationGraph bestModel = result.getBestModel();
+
+        log.info("Evaluating best model accuracy using testing data directory...");
+        testingDataSetIterator.reset(); // Reset before final evaluation
+        Evaluation eval = bestModel.evaluate(testingDataSetIterator);
         log.info(eval.stats());
 
         File modelSaveFile = new File(modelSavePath);
-        model.save(modelSaveFile, true);
+        bestModel.save(modelSaveFile, true);
         log.info("Model successfully exported to: " + modelSaveFile.getAbsolutePath());
     }
 
