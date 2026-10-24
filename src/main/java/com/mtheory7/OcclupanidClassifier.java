@@ -10,29 +10,26 @@ import org.datavec.image.transform.*;
 import org.deeplearning4j.core.storage.StatsStorage;
 import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator;
 import org.deeplearning4j.nn.api.OptimizationAlgorithm;
-import org.deeplearning4j.nn.conf.GradientNormalization;
-import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
-import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
-import org.deeplearning4j.nn.conf.inputs.InputType;
-import org.deeplearning4j.nn.conf.layers.*;
-import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
-import org.deeplearning4j.nn.weights.WeightInit;
+import org.deeplearning4j.nn.conf.layers.OutputLayer;
+import org.deeplearning4j.nn.graph.ComputationGraph;
+import org.deeplearning4j.nn.transferlearning.FineTuneConfiguration;
+import org.deeplearning4j.nn.transferlearning.TransferLearning;
 import org.deeplearning4j.optimize.api.InvocationType;
 import org.deeplearning4j.optimize.listeners.EvaluativeListener;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
 import org.deeplearning4j.ui.api.UIServer;
 import org.deeplearning4j.ui.model.stats.StatsListener;
 import org.deeplearning4j.ui.model.storage.InMemoryStatsStorage;
-import org.jetbrains.annotations.NotNull;
+import org.deeplearning4j.zoo.PretrainedType;
+import org.deeplearning4j.zoo.ZooModel;
+import org.deeplearning4j.zoo.model.VGG16;
 import org.nd4j.common.primitives.Pair;
 import org.nd4j.evaluation.classification.Evaluation;
 import org.nd4j.linalg.activations.Activation;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
-import org.nd4j.linalg.dataset.api.preprocessor.ImagePreProcessingScaler;
+import org.nd4j.linalg.dataset.api.preprocessor.VGG16ImagePreProcessor;
 import org.nd4j.linalg.learning.config.Adam;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
-import org.nd4j.linalg.schedule.ExponentialSchedule;
-import org.nd4j.linalg.schedule.ScheduleType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,6 +42,7 @@ import java.util.Random;
 public class OcclupanidClassifier {
     protected static final Logger log = LoggerFactory.getLogger(OcclupanidClassifier.class);
 
+    // VGG16 models expect images strictly shaped at 224x224
     private static int height = 224;
     private static int width = 224;
     private static int channels = 3; // Keep this as 3 it means RGB
@@ -61,25 +59,15 @@ public class OcclupanidClassifier {
         File trainingDataDirectory = new File(trainingDataPath);
         File testingDataDirectory = new File(testingDataPath);
 
-        // 1. Define individual transforms
-        ImageTransform padToSquare = new PadToSquare();
-        //ImageTransform flip = new FlipImageTransform(1); // 1 = horizontal flip
-        //ImageTransform rotate = new RotateImageTransform(new Random(seed), 15); // Random rotation up to 15 degrees
-        ImageTransform crop = new CropImageTransform(10); // Crop 10 pixels off borders
-        // 2. Combine them into a Pipeline
-        // The boolean 'true' flags shuffle the order of transformations for randomness
-        List<Pair<ImageTransform, Double>> pipeline = Arrays.asList(
-                new Pair<>(padToSquare, 1.0),
-                //new Pair<>(flip, 0.5),   // 50% chance to flip
-                //new Pair<>(rotate, 0.8), // 80% chance to rotate
-                new Pair<>(crop, 0.3)    // 30% chance to crop
-        );
-        PipelineImageTransform transformPipeline = new PipelineImageTransform(pipeline, true);
+        PipelineImageTransform transformPipeline = new PipelineImageTransform(
+                Arrays.asList(new Pair<>(new PadToSquare(), 1.0), new Pair<>(new CropImageTransform(10), 0.3)), true);
+
         DataSetIterator trainingDataSetIterator = getDataSetIterator(trainingDataDirectory, transformPipeline);
         log.info("Detected training labels: " + trainingDataSetIterator.getLabels());
         DataSetIterator testingDataSetIterator = getDataSetIterator(testingDataDirectory, null);
         log.info("Detected testing labels: " + trainingDataSetIterator.getLabels());
-        ImagePreProcessingScaler scaler = new ImagePreProcessingScaler(0, 1);
+
+        VGG16ImagePreProcessor scaler = new VGG16ImagePreProcessor();
         trainingDataSetIterator.setPreProcessor(scaler);
         testingDataSetIterator.setPreProcessor(scaler);
 
@@ -87,10 +75,33 @@ public class OcclupanidClassifier {
         StatsStorage statsStorage = new InMemoryStatsStorage();
         uiServer.attach(statsStorage);
 
-        MultiLayerNetwork model = new MultiLayerNetwork(getMLConfiguration(numOfClasses));
-        model.init();
+        log.info("Loading pre-trained VGG16 weights from ImageNet...");
+        VGG16 zooModel = VGG16.builder().build();
+        ComputationGraph pretrainedNet = (ComputationGraph)zooModel.initPretrained(PretrainedType.IMAGENET);
+
+        log.info("Configuring Transfer Learning...");
+        FineTuneConfiguration fineTuneConf = new FineTuneConfiguration.Builder()
+                .updater(new Adam(1e-4))
+                .seed(seed)
+                .build();
+
+        // TransferLearning.GraphBuilder modifies ComputationGraph architectures
+        // Freeze everything up to and including 'fc2', replacing the original 1000-class output
+        ComputationGraph model = new TransferLearning.GraphBuilder(pretrainedNet)
+                .fineTuneConfiguration(fineTuneConf)
+                .setFeatureExtractor("fc2")
+                .removeVertexKeepConnections("predictions")
+                .addLayer("predictions",
+                        new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
+                                .nIn(4096)
+                                .nOut(numOfClasses)
+                                .activation(Activation.SOFTMAX)
+                                .build(),
+                        "fc2")
+                .build();
+
         model.setListeners(
-                new ScoreIterationListener(10),
+                new ScoreIterationListener(5),
                 new StatsListener(statsStorage),
                 new EvaluativeListener(testingDataSetIterator, 1, InvocationType.EPOCH_END)
         );
@@ -121,67 +132,5 @@ public class OcclupanidClassifier {
             recordReader.initialize(fileSplit, pipelineImageTransform);
         }
         return new RecordReaderDataSetIterator(recordReader, batchSize, 1, numOfClasses);
-    }
-
-    public static MultiLayerConfiguration getMLConfiguration(int numOfClasses) {
-        return new NeuralNetConfiguration.Builder()
-                .seed(seed)
-                .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
-                // Replaced static learning rate with an exponential decay schedule
-                .updater(new Adam(new ExponentialSchedule(ScheduleType.EPOCH, 1e-3, 0.95)))
-                //.updater(new Adam(1e-4))
-                .l2(1e-4) // Retained L2 regularization, removed L1
-                .weightInit(WeightInit.RELU)
-                .list()
-                // Block 1
-                .layer(0, new ConvolutionLayer.Builder(3, 3)
-                        .nIn(channels)
-                        .nOut(32)
-                        .stride(1, 1)
-                        .activation(Activation.RELU)
-                        .build())
-                .layer(1, new BatchNormalization.Builder().build())
-                .layer(2, new SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.MAX)
-                        .kernelSize(2, 2)
-                        .stride(2, 2)
-                        .build())
-                // Block 2
-                .layer(3, new ConvolutionLayer.Builder(3, 3)
-                        .nOut(64)
-                        .stride(1, 1)
-                        .activation(Activation.RELU)
-                        .build())
-                .layer(4, new BatchNormalization.Builder().build())
-                .layer(5, new SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.MAX)
-                        .kernelSize(2, 2)
-                        .stride(2, 2)
-                        .build())
-                // Block 3
-                .layer(6, new ConvolutionLayer.Builder(3, 3)
-                        .nOut(128)
-                        .stride(1, 1)
-                        .activation(Activation.RELU)
-                        .build())
-                .layer(7, new BatchNormalization.Builder().build())
-                .layer(8, new SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.MAX)
-                        .kernelSize(2, 2)
-                        .stride(2, 2)
-                        .build())
-                // Global Average Pooling
-                .layer(9, new GlobalPoolingLayer.Builder(PoolingType.AVG).build())
-                // Dense Layer
-                .layer(10, new DenseLayer.Builder()
-                        .nOut(128)
-                        .activation(Activation.RELU)
-                        .build())
-                // Dropout Layer
-                .layer(11, new DropoutLayer(0.5))
-                // Output Layer
-                .layer(12, new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
-                        .nOut(numOfClasses)
-                        .activation(Activation.SOFTMAX)
-                        .build())
-                .setInputType(InputType.convolutional(height, width, channels))
-                .build();
     }
 }
