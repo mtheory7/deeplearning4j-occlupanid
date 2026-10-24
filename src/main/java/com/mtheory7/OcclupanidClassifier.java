@@ -45,15 +45,15 @@ import java.util.Random;
 public class OcclupanidClassifier {
     protected static final Logger log = LoggerFactory.getLogger(OcclupanidClassifier.class);
 
-    private static int height = 300;
-    private static int width = 300;
+    private static int height = 224;
+    private static int width = 224;
     private static int channels = 3; // Keep this as 3 it means RGB
     private static int numOfClasses = 2; // For now just using A. Floridensis and P. Utiliformis
     private static int batchSize = 16;
     private static long seed = 12345L;
     private static int epochs = 150;
 
-    private static final String modelSavePath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/models/deeplearning4jOcclupanidModel1.0.2-SNAPSHOT.zip";
+    private static final String modelSavePath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/models/deeplearning4jOcclupanidModel1.0.0.zip";
     private static final String trainingDataPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/trainingData/data/train";
     private static final String testingDataPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/trainingData/data/test";
 
@@ -63,15 +63,15 @@ public class OcclupanidClassifier {
 
         // 1. Define individual transforms
         ImageTransform padToSquare = new PadToSquare();
-        ImageTransform flip = new FlipImageTransform(1); // 1 = horizontal flip
-        ImageTransform rotate = new RotateImageTransform(new Random(seed), 15); // Random rotation up to 15 degrees
+        //ImageTransform flip = new FlipImageTransform(1); // 1 = horizontal flip
+        //ImageTransform rotate = new RotateImageTransform(new Random(seed), 15); // Random rotation up to 15 degrees
         ImageTransform crop = new CropImageTransform(10); // Crop 10 pixels off borders
         // 2. Combine them into a Pipeline
         // The boolean 'true' flags shuffle the order of transformations for randomness
         List<Pair<ImageTransform, Double>> pipeline = Arrays.asList(
                 new Pair<>(padToSquare, 1.0),
-                new Pair<>(flip, 0.5),   // 50% chance to flip
-                new Pair<>(rotate, 0.8), // 80% chance to rotate
+                //new Pair<>(flip, 0.5),   // 50% chance to flip
+                //new Pair<>(rotate, 0.8), // 80% chance to rotate
                 new Pair<>(crop, 0.3)    // 30% chance to crop
         );
         PipelineImageTransform transformPipeline = new PipelineImageTransform(pipeline, true);
@@ -128,8 +128,8 @@ public class OcclupanidClassifier {
                 .seed(seed)
                 .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
                 // Replaced static learning rate with an exponential decay schedule
-                //.updater(new Adam(new ExponentialSchedule(ScheduleType.EPOCH, 1e-3, 0.85)))
-                .updater(new Adam(1e-4))
+                .updater(new Adam(new ExponentialSchedule(ScheduleType.EPOCH, 1e-3, 0.95)))
+                //.updater(new Adam(1e-4))
                 .l2(1e-4) // Retained L2 regularization, removed L1
                 .weightInit(WeightInit.RELU)
                 .list()
@@ -140,63 +140,46 @@ public class OcclupanidClassifier {
                         .stride(1, 1)
                         .activation(Activation.RELU)
                         .build())
-                .layer(1, new SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.MAX)
+                .layer(1, new BatchNormalization.Builder().build())
+                .layer(2, new SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.MAX)
                         .kernelSize(2, 2)
                         .stride(2, 2)
                         .build())
                 // Block 2
-                .layer(2, new ConvolutionLayer.Builder(3, 3)
+                .layer(3, new ConvolutionLayer.Builder(3, 3)
                         .nOut(64)
                         .stride(1, 1)
                         .activation(Activation.RELU)
                         .build())
-                .layer(3, new SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.MAX)
-                        .kernelSize(2, 2)
-                        .stride(2, 2)
-                        .build())
-                // Block 3
-                .layer(4, new ConvolutionLayer.Builder(3, 3)
-                        .nOut(128)
-                        .stride(1, 1)
-                        .activation(Activation.RELU)
-                        .build())
+                .layer(4, new BatchNormalization.Builder().build())
                 .layer(5, new SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.MAX)
                         .kernelSize(2, 2)
                         .stride(2, 2)
                         .build())
-                // Block 4 (New: Deeper feature extraction)
+                // Block 3
                 .layer(6, new ConvolutionLayer.Builder(3, 3)
-                        .nOut(256)
+                        .nOut(128)
                         .stride(1, 1)
                         .activation(Activation.RELU)
                         .build())
-                .layer(7, new SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.MAX)
+                .layer(7, new BatchNormalization.Builder().build())
+                .layer(8, new SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.MAX)
                         .kernelSize(2, 2)
                         .stride(2, 2)
                         .build())
-                // Block 5 (New: Deeper feature extraction)
-                .layer(8, new ConvolutionLayer.Builder(3, 3)
-                        .nOut(256)
-                        .stride(1, 1)
-                        .activation(Activation.RELU)
-                        .build())
-                .layer(9, new SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.MAX)
-                        .kernelSize(2, 2)
-                        .stride(2, 2)
-                        .build())
-                // Global Average Pooling (New: Replaces flattening to prevent parameter explosion)
-                .layer(10, new GlobalPoolingLayer.Builder(PoolingType.AVG).build())
+                // Global Average Pooling
+                .layer(9, new GlobalPoolingLayer.Builder(PoolingType.AVG).build())
                 // Dense Layer
-                .layer(11, new DenseLayer.Builder()
+                .layer(10, new DenseLayer.Builder()
                         .nOut(128)
                         .activation(Activation.RELU)
                         .build())
-                // Dropout Layer (New: Prevents overfitting to specific training examples)
-                .layer(12, new DropoutLayer(0.5))
+                // Dropout Layer
+                .layer(11, new DropoutLayer(0.5))
                 // Output Layer
-                .layer(13, new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
+                .layer(12, new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
                         .nOut(numOfClasses)
-                        .activation(Activation.SOFTMAX) // Binary categorical probability distribution
+                        .activation(Activation.SOFTMAX)
                         .build())
                 .setInputType(InputType.convolutional(height, width, channels))
                 .build();
