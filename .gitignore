@@ -40,3 +40,4 @@ build/
 
 /models/
 /.idea/
+/.mvn/
