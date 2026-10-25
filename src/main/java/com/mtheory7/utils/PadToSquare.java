@@ -1,4 +1,4 @@
-package com.mtheory7;
+package com.mtheory7.utils;
 
 import org.bytedeco.javacv.OpenCVFrameConverter; // Added missing import
 import org.bytedeco.opencv.opencv_core.Mat;
@@ -16,8 +16,8 @@ public class PadToSquare extends BaseImageTransform<Mat> {
     // 1. Create a strongly-typed converter specifically for Mat objects
     private static final OpenCVFrameConverter.ToMat toMatConverter = new OpenCVFrameConverter.ToMat();
 
-    public PadToSquare() {
-        super(null);
+    public PadToSquare(long seed) {
+        super(new Random(seed));
     }
 
     @Override
