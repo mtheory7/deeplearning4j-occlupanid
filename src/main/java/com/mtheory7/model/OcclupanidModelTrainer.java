@@ -1,5 +1,6 @@
-package com.mtheory7;
+package com.mtheory7.model;
 
+import com.mtheory7.utils.PadToSquare;
 import org.datavec.api.io.labels.ParentPathLabelGenerator;
 import org.datavec.api.split.FileSplit;
 import org.datavec.image.loader.BaseImageLoader;
@@ -40,30 +41,31 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 
-public class OcclupanidClassifier {
-    protected static final Logger log = LoggerFactory.getLogger(OcclupanidClassifier.class);
-    private static final String modelCheckpointPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/models/checkpoints";
-    private static final String modelSavePath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/models/deeplearning4jOcclupanidModel1.0.0.zip";
-    private static final String trainingDataPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/trainingData/data/train";
-    private static final String testingDataPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/trainingData/data/test";
+public class OcclupanidModelTrainer {
+    protected static final Logger log = LoggerFactory.getLogger(OcclupanidModelTrainer.class);
     // VGG16 models expect images strictly shaped at 224x224
-    private static int height = 224;
-    private static int width = 224;
-    private static int channels = 3; // Keep this as 3 it means RGB
-    private static int numOfClasses = 2; // For now just using A. Floridensis and P. Utiliformis
-    private static int batchSize = 16;
-    private static long seed = 12345L;
-    private static int epochs = 55;
+    private static final int height = 224;
+    private static final int width = 224;
+    private static final int channels = 3; // Keep this as 3 it means RGB
+    private static final int numOfClasses = 2; // For now just using A.Floridensis and P.Utiliformis
+    private static final int batchSize = 16;
+    private static final long seed = 12345L;
+    private static final int epochs = 55;
 
-    public static void main(String[] args) throws Exception {
+    public void trainModelAndSave(String modelPath, String dataPath) throws IOException {
+        String modelCheckpointPath = modelPath + "/checkpoints";
+        String modelSavePath = modelPath + "/deeplearning4jOcclupanidModel1.0.0.zip";
+        String trainingDataPath = dataPath + "/train";
+        String testingDataPath = dataPath + "/test";
+
         File trainingDataDirectory = new File(trainingDataPath);
         File testingDataDirectory = new File(testingDataPath);
 
         PipelineImageTransform transformPipeline = new PipelineImageTransform(
-                Arrays.asList(new Pair<>(new PadToSquare(), 1.0), new Pair<>(new CropImageTransform(10), 0.3)), true);
+                Arrays.asList(new Pair<>(new PadToSquare(seed), 1.0), new Pair<>(new CropImageTransform(10), 0.3)), true);
 
         DataSetIterator trainingDataSetIterator = getDataSetIterator(trainingDataDirectory, transformPipeline);
-        log.info("Detected training labels: " + trainingDataSetIterator.getLabels());
+        log.info("Detected training labels: {}", trainingDataSetIterator.getLabels());
         DataSetIterator testingDataSetIterator = getDataSetIterator(testingDataDirectory, null);
 
         VGG16ImagePreProcessor scaler = new VGG16ImagePreProcessor();
@@ -121,10 +123,10 @@ public class OcclupanidClassifier {
         EarlyStoppingResult<ComputationGraph> result = trainer.fit();
 
         log.info("Training complete.");
-        log.info("Termination reason: " + result.getTerminationReason());
-        log.info("Total epochs: " + result.getTotalEpochs());
-        log.info("Best epoch number: " + result.getBestModelEpoch());
-        log.info("Score at best epoch: " + result.getBestModelScore());
+        log.info("Termination reason: {}", result.getTerminationReason());
+        log.info("Total epochs: {}", result.getTotalEpochs());
+        log.info("Best epoch number: {}", result.getBestModelEpoch());
+        log.info("Score at best epoch: {}", result.getBestModelScore());
 
         // Retrieve the best model found before it started overfitting
         ComputationGraph bestModel = result.getBestModel();
@@ -136,10 +138,10 @@ public class OcclupanidClassifier {
 
         File modelSaveFile = new File(modelSavePath);
         bestModel.save(modelSaveFile, true);
-        log.info("Model successfully exported to: " + modelSaveFile.getAbsolutePath());
+        log.info("Model successfully exported to: {}", modelSaveFile.getAbsolutePath());
     }
 
-    private static DataSetIterator getDataSetIterator(File rootDir, PipelineImageTransform pipelineImageTransform) throws IOException {
+    private DataSetIterator getDataSetIterator(File rootDir, PipelineImageTransform pipelineImageTransform) throws IOException {
         FileSplit fileSplit = new FileSplit(rootDir, BaseImageLoader.ALLOWED_FORMATS, new Random(seed));
         ParentPathLabelGenerator labelMaker = new ParentPathLabelGenerator();
         ImageRecordReader recordReader = new ImageRecordReader(height, width, channels, labelMaker);
