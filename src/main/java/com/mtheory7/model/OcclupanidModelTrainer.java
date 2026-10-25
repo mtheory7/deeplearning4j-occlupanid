@@ -23,9 +23,10 @@ import org.deeplearning4j.nn.transferlearning.TransferLearning;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
 import org.deeplearning4j.ui.api.UIServer;
 import org.deeplearning4j.ui.model.stats.StatsListener;
+import org.deeplearning4j.ui.model.storage.FileStatsStorage;
 import org.deeplearning4j.ui.model.storage.InMemoryStatsStorage;
 import org.deeplearning4j.zoo.PretrainedType;
-import org.deeplearning4j.zoo.model.VGG16;
+import org.deeplearning4j.zoo.model.ResNet50;
 import org.nd4j.common.primitives.Pair;
 import org.nd4j.evaluation.classification.Evaluation;
 import org.nd4j.linalg.activations.Activation;
@@ -43,14 +44,14 @@ import java.util.Random;
 
 public class OcclupanidModelTrainer {
     protected static final Logger log = LoggerFactory.getLogger(OcclupanidModelTrainer.class);
-    // VGG16 models expect images strictly shaped at 224x224
+
     private static final int height = 224;
     private static final int width = 224;
     private static final int channels = 3; // Keep this as 3 it means RGB
     private static final int numOfClasses = 2; // For now just using A.Floridensis and P.Utiliformis
-    private static final int batchSize = 16;
+    private static final int batchSize = 4;
     private static final long seed = 12345L;
-    private static final int epochs = 55;
+    private static final int epochs = 100;
 
     public void trainModelAndSave(String modelPath, String dataPath) throws IOException {
         String modelCheckpointPath = modelPath + "/checkpoints";
@@ -62,7 +63,7 @@ public class OcclupanidModelTrainer {
         File testingDataDirectory = new File(testingDataPath);
 
         PipelineImageTransform transformPipeline = new PipelineImageTransform(
-                Arrays.asList(new Pair<>(new PadToSquare(seed), 1.0), new Pair<>(new CropImageTransform(10), 0.3)), true);
+                Arrays.asList(new Pair<>(new PadToSquare(), 1.0), new Pair<>(new CropImageTransform(10), 0.3)), true);
 
         DataSetIterator trainingDataSetIterator = getDataSetIterator(trainingDataDirectory, transformPipeline);
         log.info("Detected training labels: {}", trainingDataSetIterator.getLabels());
@@ -73,11 +74,12 @@ public class OcclupanidModelTrainer {
         testingDataSetIterator.setPreProcessor(scaler);
 
         UIServer uiServer = UIServer.getInstance();
-        StatsStorage statsStorage = new InMemoryStatsStorage();
+        File statsFile = new File(modelPath, "training_stats.dl4j");
+        StatsStorage statsStorage = new FileStatsStorage(statsFile);
         uiServer.attach(statsStorage);
 
-        log.info("Loading pre-trained VGG16 weights from ImageNet...");
-        VGG16 zooModel = VGG16.builder().build();
+        log.info("Loading pre-trained ResNet50 weights from ImageNet...");
+        ResNet50 zooModel = ResNet50.builder().build();
         ComputationGraph pretrainedNet = (ComputationGraph) zooModel.initPretrained(PretrainedType.IMAGENET);
 
         log.info("Configuring Transfer Learning...");
@@ -86,19 +88,19 @@ public class OcclupanidModelTrainer {
                 .seed(seed)
                 .build();
 
-        // TransferLearning.GraphBuilder modifies ComputationGraph architectures
-        // Freeze everything up to and including 'fc2', replacing the original 1000-class output
+        log.info("Building ComputationGraph...");
         ComputationGraph model = new TransferLearning.GraphBuilder(pretrainedNet)
                 .fineTuneConfiguration(fineTuneConf)
-                .setFeatureExtractor("fc2")
-                .removeVertexKeepConnections("predictions")
+                .setFeatureExtractor("flatten_1")
+                .removeVertexAndConnections("fc1000")
                 .addLayer("predictions",
                         new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
-                                .nIn(4096)
+                                .nIn(2048)
                                 .nOut(numOfClasses)
                                 .activation(Activation.SOFTMAX)
                                 .build(),
-                        "fc2")
+                        "flatten_1")
+                .setOutputs("predictions")
                 .build();
 
         model.setListeners(
