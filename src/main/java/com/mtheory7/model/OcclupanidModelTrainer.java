@@ -27,8 +27,6 @@ import org.deeplearning4j.nn.conf.layers.PoolingType;
 import org.deeplearning4j.nn.graph.ComputationGraph;
 import org.deeplearning4j.nn.transferlearning.FineTuneConfiguration;
 import org.deeplearning4j.nn.transferlearning.TransferLearning;
-import org.deeplearning4j.optimize.api.InvocationType;
-import org.deeplearning4j.optimize.listeners.EvaluativeListener;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
 import org.deeplearning4j.ui.api.UIServer;
 import org.deeplearning4j.ui.model.stats.StatsListener;
@@ -40,7 +38,6 @@ import org.nd4j.evaluation.classification.Evaluation;
 import org.nd4j.linalg.activations.Activation;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
 import org.nd4j.linalg.dataset.api.preprocessor.DataNormalization;
-import org.nd4j.linalg.dataset.api.preprocessor.ImagePreProcessingScaler;
 import org.nd4j.linalg.dataset.api.preprocessor.VGG16ImagePreProcessor;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.learning.config.Adam;
@@ -50,7 +47,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.Instant;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -75,6 +71,11 @@ public class OcclupanidModelTrainer {
             new File(modelCheckpointPath).mkdirs();
         String modelSavePath = modelPath + "/deeplearning4jOcclupanidModel1.0.0.zip";
 
+        UIServer uiServer = UIServer.getInstance();
+        File statsFile = new File(modelPath, "training_stats.dl4j");
+        StatsStorage statsStorage = new FileStatsStorage(statsFile);
+        uiServer.attach(statsStorage);
+
         File trainingDataDirectory = new File(dataPath);
         FileSplit fileSplit = new FileSplit(trainingDataDirectory, NativeImageLoader.ALLOWED_FORMATS, new Random(123));
         ParentPathLabelGenerator labelMaker = new ParentPathLabelGenerator();
@@ -83,18 +84,16 @@ public class OcclupanidModelTrainer {
                 NativeImageLoader.ALLOWED_FORMATS,
                 labelMaker
         );
-// Add augmentation to train to stretch the 210-image training pool
         PipelineImageTransform trainTransform = new PipelineImageTransform(Arrays.asList(
                 new Pair<>(new PadToSquare(), 1.0),
                 new Pair<>(new FlipImageTransform(1), 0.5), // Horizontal flip
                 new Pair<>(new RotateImageTransform(15), 0.5), // Slight rotation
                 new Pair<>(new CropImageTransform(10), 0.3)
         ), true);
-
         PipelineImageTransform valTransform = new PipelineImageTransform(Arrays.asList(
                 new Pair<>(new PadToSquare(), 1.0)
         ), true);
-
+        // Split the 300 (150x2) images into 3 groups
         InputSplit[] splits = fileSplit.sample(pathFilter, 70, 16, 14);
         InputSplit trainSplit = splits[0];
         InputSplit valSplit = splits[1];
@@ -109,15 +108,11 @@ public class OcclupanidModelTrainer {
         DataSetIterator trainIter = new RecordReaderDataSetIterator(trainRR, batchSize, 1, numOfClasses);
         DataSetIterator valIter = new RecordReaderDataSetIterator(valRR, batchSize, 1, numOfClasses);
         DataSetIterator testIter = new RecordReaderDataSetIterator(testRR, batchSize, 1, numOfClasses);
+
         DataNormalization scaler = new VGG16ImagePreProcessor();
         trainIter.setPreProcessor(scaler);
         valIter.setPreProcessor(scaler);
         testIter.setPreProcessor(scaler);
-
-        UIServer uiServer = UIServer.getInstance();
-        File statsFile = new File(modelPath, "training_stats.dl4j");
-        StatsStorage statsStorage = new FileStatsStorage(statsFile);
-        uiServer.attach(statsStorage);
 
         log.info("Loading pre-trained SqueezeNet weights from ImageNet...");
         SqueezeNet zooModel = SqueezeNet.builder().build();
@@ -126,8 +121,8 @@ public class OcclupanidModelTrainer {
 
         log.info("Configuring Transfer Learning...");
         FineTuneConfiguration fineTuneConf = new FineTuneConfiguration.Builder()
-                .updater(new Adam(1e-4)) // Reduced from 1e-4
-                //.weightDecay(1e-3) // Added L2 regularization
+                .updater(new Adam(1e-4))
+                //.weightDecay(1e-3) // L2 regularization
                 .seed(seed)
                 .build();
 
@@ -138,7 +133,7 @@ public class OcclupanidModelTrainer {
                 .removeVertexAndConnections("conv10")
                 .removeVertexAndConnections("relu10")
                 .removeVertexAndConnections("global_average_pooling2d_5")
-                .removeVertexAndConnections("loss") // This is usually the final layer name
+                .removeVertexAndConnections("loss")
                 .addLayer("gap", new GlobalPoolingLayer.Builder(PoolingType.AVG).build(), "drop9")
                 .addLayer("predictions",
                         new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
@@ -154,7 +149,6 @@ public class OcclupanidModelTrainer {
         model.setListeners(
                 new ScoreIterationListener(10),
                 new StatsListener(statsStorage)
-                //new EvaluativeListener(valIter, 1, InvocationType.EPOCH_END)
         );
 
         log.info("Configuring Early Stopping...");
@@ -188,17 +182,5 @@ public class OcclupanidModelTrainer {
         File modelSaveFile = new File(modelSavePath);
         bestModel.save(modelSaveFile, true);
         log.info("Model successfully exported to: {}", modelSaveFile.getAbsolutePath());
-    }
-
-    private DataSetIterator getDataSetIterator(File rootDir, PipelineImageTransform pipelineImageTransform) throws IOException {
-        FileSplit fileSplit = new FileSplit(rootDir, BaseImageLoader.ALLOWED_FORMATS, new Random(seed));
-        ParentPathLabelGenerator labelMaker = new ParentPathLabelGenerator();
-        ImageRecordReader recordReader = new ImageRecordReader(height, width, channels, labelMaker);
-        if (pipelineImageTransform == null) {
-            recordReader.initialize(fileSplit);
-        } else {
-            recordReader.initialize(fileSplit, pipelineImageTransform);
-        }
-        return new RecordReaderDataSetIterator(recordReader, batchSize, 1, numOfClasses);
     }
 }
