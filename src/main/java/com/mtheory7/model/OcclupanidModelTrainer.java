@@ -69,7 +69,7 @@ public class OcclupanidModelTrainer {
         String modelCheckpointPath = modelPath + "/checkpoints";
         if (!new File(modelCheckpointPath).exists()) //noinspection ResultOfMethodCallIgnored
             new File(modelCheckpointPath).mkdirs();
-        String modelSavePath = modelPath + "/deeplearning4jOcclupanidModel1.0.0.zip";
+        String modelSavePath = modelPath + "/deeplearning4jOcclupanidModel1.1.0-SNAPSHOT.zip";
 
         UIServer uiServer = UIServer.getInstance();
         File statsFile = new File(modelPath, "training_stats.dl4j");
