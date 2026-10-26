@@ -38,6 +38,7 @@ build/
 ### Mac OS ###
 .DS_Store
 
-/models/
+models/*
+!models/deeplearning4jOcclupanidModel1.0.0.zip
 /.idea/
 /.mvn/

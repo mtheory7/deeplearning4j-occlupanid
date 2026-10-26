@@ -1,0 +1,821 @@
+18:20:23.826 [main] INFO  com.mtheory7.Main - Starting trainModelAndSave function
+18:20:23.874 [main] INFO  com.mtheory7.model.OcclupanidModelTrainer - Configuring aggressive native memory garbage collection...
+18:20:23.984 [main] INFO  org.nd4j.linalg.factory.Nd4jBackend - Loaded [CpuBackend] backend
+18:20:27.036 [main] INFO  org.nd4j.nativeblas.NativeOpsHolder - Number of threads used for linear algebra: 2
+18:20:27.045 [main] INFO  org.nd4j.linalg.cpu.nativecpu.CpuNDArrayFactory - Binary level Generic x86 optimization level AVX/AVX2
+18:20:27.089 [main] INFO  org.nd4j.nativeblas.Nd4jBlas - Number of threads used for OpenMP BLAS: 2
+18:20:27.134 [main] INFO  org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner - Backend used: [CPU]; OS: [Windows 11]
+18:20:27.134 [main] INFO  org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner - Cores: [4]; Memory: [4.0GB];
+18:20:27.134 [main] INFO  org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner - Blas vendor: [OPENBLAS]
+18:20:27.149 [main] INFO  org.nd4j.linalg.cpu.nativecpu.CpuBackend - Backend build information:
+ GCC: "12.1.0"
+STD version: 201103L
+DEFAULT_ENGINE: samediff::ENGINE_CPU
+HAVE_FLATBUFFERS
+HAVE_OPENBLAS
+18:20:28.507 [main] INFO  org.datavec.image.recordreader.BaseImageRecordReader - ImageRecordReader: 2 label classes inferred using label generator ParentPathLabelGenerator
+18:20:28.509 [main] INFO  org.datavec.image.recordreader.BaseImageRecordReader - ImageRecordReader: 2 label classes inferred using label generator ParentPathLabelGenerator
+18:20:28.511 [main] INFO  org.datavec.image.recordreader.BaseImageRecordReader - ImageRecordReader: 2 label classes inferred using label generator ParentPathLabelGenerator
+18:20:28.512 [main] INFO  com.mtheory7.model.OcclupanidModelTrainer - Detected training labels: [AdmordorsumFloridensis, PalpatophoraUtiliformis]
+18:20:29.789 [vert.x-eventloop-thread-0] INFO  org.deeplearning4j.ui.VertxUIServer - Deeplearning4j UI server started at: http://localhost:9000
+18:20:30.646 [main] INFO  org.deeplearning4j.ui.VertxUIServer - StatsStorage instance attached to UI: FileStatsStorage(C:\Users\thesp\Code\deeplearning4j-occlupanid\models\training_stats.dl4j)
+18:20:30.646 [main] INFO  com.mtheory7.model.OcclupanidModelTrainer - Loading pre-trained SqueezeNet weights from ImageNet...
+18:20:30.661 [main] INFO  org.deeplearning4j.zoo.ZooModel - Using cached model at C:\Users\thesp\.deeplearning4j\models\squeezenet\squeezenet_dl4j_inference.v2.zip
+18:20:30.661 [main] INFO  org.deeplearning4j.zoo.ZooModel - Verifying download...
+18:20:30.680 [main] INFO  org.deeplearning4j.zoo.ZooModel - Checksum local is 3711411239, expecting 3711411239
+18:20:31.894 [main] INFO  org.deeplearning4j.nn.graph.ComputationGraph - Starting ComputationGraph with WorkspaceModes set to [training: ENABLED; inference: ENABLED], cacheMode set to [NONE]
+18:20:32.030 [main] INFO  com.mtheory7.model.OcclupanidModelTrainer - 
+====================================================================================================================================================
+VertexName (VertexType)                           nIn,nOut   TotalParams   ParamsShape                  Vertex Inputs                               
+====================================================================================================================================================
+input_5 (InputVertex)                             -,-        -             -                            -                                           
+conv1 (ConvolutionLayer)                          3,64       1,792         W:{64,3,3,3}, b:{64}         [input_5]                                   
+relu1 (ActivationLayer)                           -,-        0             -                            [conv1]                                     
+pool1 (SubsamplingLayer)                          -,-        0             -                            [relu1]                                     
+fire2_squeeze1x1 (ConvolutionLayer)               64,16      1,040         W:{16,64,1,1}, b:{16}        [pool1]                                     
+fire2_relu_squeeze1x1 (ActivationLayer)           -,-        0             -                            [fire2_squeeze1x1]                          
+fire2_expand1x1 (ConvolutionLayer)                16,64      1,088         W:{64,16,1,1}, b:{64}        [fire2_relu_squeeze1x1]                     
+fire2_expand3x3 (ConvolutionLayer)                16,64      9,280         W:{64,16,3,3}, b:{64}        [fire2_relu_squeeze1x1]                     
+fire2_relu_expand1x1 (ActivationLayer)            -,-        0             -                            [fire2_expand1x1]                           
+fire2_relu_expand3x3 (ActivationLayer)            -,-        0             -                            [fire2_expand3x3]                           
+fire2_concat (MergeVertex)                        -,-        -             -                            [fire2_relu_expand1x1, fire2_relu_expand3x3]
+fire3_squeeze1x1 (ConvolutionLayer)               128,16     2,064         W:{16,128,1,1}, b:{16}       [fire2_concat]                              
+fire3_relu_squeeze1x1 (ActivationLayer)           -,-        0             -                            [fire3_squeeze1x1]                          
+fire3_expand1x1 (ConvolutionLayer)                16,64      1,088         W:{64,16,1,1}, b:{64}        [fire3_relu_squeeze1x1]                     
+fire3_expand3x3 (ConvolutionLayer)                16,64      9,280         W:{64,16,3,3}, b:{64}        [fire3_relu_squeeze1x1]                     
+fire3_relu_expand1x1 (ActivationLayer)            -,-        0             -                            [fire3_expand1x1]                           
+fire3_relu_expand3x3 (ActivationLayer)            -,-        0             -                            [fire3_expand3x3]                           
+fire3_concat (MergeVertex)                        -,-        -             -                            [fire3_relu_expand1x1, fire3_relu_expand3x3]
+pool3 (SubsamplingLayer)                          -,-        0             -                            [fire3_concat]                              
+fire4_squeeze1x1 (ConvolutionLayer)               128,32     4,128         W:{32,128,1,1}, b:{32}       [pool3]                                     
+fire4_relu_squeeze1x1 (ActivationLayer)           -,-        0             -                            [fire4_squeeze1x1]                          
+fire4_expand1x1 (ConvolutionLayer)                32,128     4,224         W:{128,32,1,1}, b:{128}      [fire4_relu_squeeze1x1]                     
+fire4_expand3x3 (ConvolutionLayer)                32,128     36,992        W:{128,32,3,3}, b:{128}      [fire4_relu_squeeze1x1]                     
+fire4_relu_expand1x1 (ActivationLayer)            -,-        0             -                            [fire4_expand1x1]                           
+fire4_relu_expand3x3 (ActivationLayer)            -,-        0             -                            [fire4_expand3x3]                           
+fire4_concat (MergeVertex)                        -,-        -             -                            [fire4_relu_expand1x1, fire4_relu_expand3x3]
+fire5_squeeze1x1 (ConvolutionLayer)               256,32     8,224         W:{32,256,1,1}, b:{32}       [fire4_concat]                              
+fire5_relu_squeeze1x1 (ActivationLayer)           -,-        0             -                            [fire5_squeeze1x1]                          
+fire5_expand1x1 (ConvolutionLayer)                32,128     4,224         W:{128,32,1,1}, b:{128}      [fire5_relu_squeeze1x1]                     
+fire5_expand3x3 (ConvolutionLayer)                32,128     36,992        W:{128,32,3,3}, b:{128}      [fire5_relu_squeeze1x1]                     
+fire5_relu_expand1x1 (ActivationLayer)            -,-        0             -                            [fire5_expand1x1]                           
+fire5_relu_expand3x3 (ActivationLayer)            -,-        0             -                            [fire5_expand3x3]                           
+fire5_concat (MergeVertex)                        -,-        -             -                            [fire5_relu_expand1x1, fire5_relu_expand3x3]
+pool5 (SubsamplingLayer)                          -,-        0             -                            [fire5_concat]                              
+fire6_squeeze1x1 (ConvolutionLayer)               256,48     12,336        W:{48,256,1,1}, b:{48}       [pool5]                                     
+fire6_relu_squeeze1x1 (ActivationLayer)           -,-        0             -                            [fire6_squeeze1x1]                          
+fire6_expand1x1 (ConvolutionLayer)                48,192     9,408         W:{192,48,1,1}, b:{192}      [fire6_relu_squeeze1x1]                     
+fire6_expand3x3 (ConvolutionLayer)                48,192     83,136        W:{192,48,3,3}, b:{192}      [fire6_relu_squeeze1x1]                     
+fire6_relu_expand1x1 (ActivationLayer)            -,-        0             -                            [fire6_expand1x1]                           
+fire6_relu_expand3x3 (ActivationLayer)            -,-        0             -                            [fire6_expand3x3]                           
+fire6_concat (MergeVertex)                        -,-        -             -                            [fire6_relu_expand1x1, fire6_relu_expand3x3]
+fire7_squeeze1x1 (ConvolutionLayer)               384,48     18,480        W:{48,384,1,1}, b:{48}       [fire6_concat]                              
+fire7_relu_squeeze1x1 (ActivationLayer)           -,-        0             -                            [fire7_squeeze1x1]                          
+fire7_expand1x1 (ConvolutionLayer)                48,192     9,408         W:{192,48,1,1}, b:{192}      [fire7_relu_squeeze1x1]                     
+fire7_expand3x3 (ConvolutionLayer)                48,192     83,136        W:{192,48,3,3}, b:{192}      [fire7_relu_squeeze1x1]                     
+fire7_relu_expand1x1 (ActivationLayer)            -,-        0             -                            [fire7_expand1x1]                           
+fire7_relu_expand3x3 (ActivationLayer)            -,-        0             -                            [fire7_expand3x3]                           
+fire7_concat (MergeVertex)                        -,-        -             -                            [fire7_relu_expand1x1, fire7_relu_expand3x3]
+fire8_squeeze1x1 (ConvolutionLayer)               384,64     24,640        W:{64,384,1,1}, b:{64}       [fire7_concat]                              
+fire8_relu_squeeze1x1 (ActivationLayer)           -,-        0             -                            [fire8_squeeze1x1]                          
+fire8_expand1x1 (ConvolutionLayer)                64,256     16,640        W:{256,64,1,1}, b:{256}      [fire8_relu_squeeze1x1]                     
+fire8_expand3x3 (ConvolutionLayer)                64,256     147,712       W:{256,64,3,3}, b:{256}      [fire8_relu_squeeze1x1]                     
+fire8_relu_expand1x1 (ActivationLayer)            -,-        0             -                            [fire8_expand1x1]                           
+fire8_relu_expand3x3 (ActivationLayer)            -,-        0             -                            [fire8_expand3x3]                           
+fire8_concat (MergeVertex)                        -,-        -             -                            [fire8_relu_expand1x1, fire8_relu_expand3x3]
+fire9_squeeze1x1 (ConvolutionLayer)               512,64     32,832        W:{64,512,1,1}, b:{64}       [fire8_concat]                              
+fire9_relu_squeeze1x1 (ActivationLayer)           -,-        0             -                            [fire9_squeeze1x1]                          
+fire9_expand1x1 (ConvolutionLayer)                64,256     16,640        W:{256,64,1,1}, b:{256}      [fire9_relu_squeeze1x1]                     
+fire9_expand3x3 (ConvolutionLayer)                64,256     147,712       W:{256,64,3,3}, b:{256}      [fire9_relu_squeeze1x1]                     
+fire9_relu_expand1x1 (ActivationLayer)            -,-        0             -                            [fire9_expand1x1]                           
+fire9_relu_expand3x3 (ActivationLayer)            -,-        0             -                            [fire9_expand3x3]                           
+fire9_concat (MergeVertex)                        -,-        -             -                            [fire9_relu_expand1x1, fire9_relu_expand3x3]
+drop9 (DropoutLayer)                              -,-        0             -                            [fire9_concat]                              
+conv10 (ConvolutionLayer)                         512,1000   513,000       W:{1000,512,1,1}, b:{1000}   [drop9]                                     
+relu10 (ActivationLayer)                          -,-        0             -                            [conv10]                                    
+global_average_pooling2d_5 (GlobalPoolingLayer)   -,-        0             -                            [relu10]                                    
+loss (ActivationLayer)                            -,-        0             -                            [global_average_pooling2d_5]                
+----------------------------------------------------------------------------------------------------------------------------------------------------
+            Total Parameters:  1,235,496
+        Trainable Parameters:  1,235,496
+           Frozen Parameters:  0
+====================================================================================================================================================
+
+18:20:32.038 [main] INFO  com.mtheory7.model.OcclupanidModelTrainer - Configuring Transfer Learning...
+18:20:32.066 [main] INFO  com.mtheory7.model.OcclupanidModelTrainer - Building ComputationGraph...
+18:20:32.288 [main] INFO  org.deeplearning4j.nn.layers.FrozenLayer - Gradients for the frozen layer are not set and will therefore will not be updated.Warning will be issued only once per instance
+18:20:32.315 [main] INFO  com.mtheory7.model.OcclupanidModelTrainer - Configuring Early Stopping...
+18:20:32.708 [main] INFO  com.mtheory7.model.OcclupanidModelTrainer - Starting network training with Early Stopping...
+18:20:32.708 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Starting early stopping training
+18:20:33.304 [main] INFO  org.deeplearning4j.nn.layers.FrozenLayer - Frozen layer instance found! Frozen layers are treated as always in test mode. Warning will only be issued once per instance
+18:20:42.392 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 0 is 2.333531379699707
+18:21:14.506 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 10 is 1.377878189086914
+18:21:25.754 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 0
+18:21:39.170 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 0: 1.4485974311828613
+18:21:56.529 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 20 is 1.7222381830215454
+18:22:17.751 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 1
+18:22:29.958 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 1.0237362384796143, epoch = 1 (previous: score = 1.4485974311828613, epoch = 0)
+18:22:37.893 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 30 is 0.5440064072608948
+18:23:08.527 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 40 is 0.5114334225654602
+18:23:10.095 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 2
+18:23:22.167 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.854353537162145, epoch = 2 (previous: score = 1.0237362384796143, epoch = 1)
+18:23:44.573 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 50 is 1.1119776964187622
+18:24:01.308 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 3
+18:24:13.434 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.799951454003652, epoch = 3 (previous: score = 0.854353537162145, epoch = 2)
+18:24:25.804 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 60 is 1.3170044422149658
+18:24:52.707 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 4
+18:25:04.887 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.7701673905054728, epoch = 4 (previous: score = 0.799951454003652, epoch = 3)
+18:25:08.770 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 70 is 0.7305304408073425
+18:25:40.259 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 80 is 1.1833330392837524
+18:25:52.554 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 5
+18:26:04.577 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.7479532857735952, epoch = 5 (previous: score = 0.7701673905054728, epoch = 4)
+18:26:23.562 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 90 is 0.8577675223350525
+18:26:45.550 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 6
+18:26:57.720 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.7246760725975037, epoch = 6 (previous: score = 0.7479532857735952, epoch = 5)
+18:27:05.555 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 100 is 0.35020774602890015
+18:27:35.731 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 110 is 0.7890139222145081
+18:27:36.932 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 7
+18:27:48.912 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.6989919046560923, epoch = 7 (previous: score = 0.7246760725975037, epoch = 6)
+18:28:12.149 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 120 is 0.9319418668746948
+18:28:28.129 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 8
+18:28:39.971 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.6771183709303538, epoch = 8 (previous: score = 0.6989919046560923, epoch = 7)
+18:28:52.181 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 130 is 1.0232651233673096
+18:29:17.379 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 9
+18:29:29.472 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.6577376325925192, epoch = 9 (previous: score = 0.6771183709303538, epoch = 8)
+18:29:32.510 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 140 is 0.5169978141784668
+18:30:02.186 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 150 is 0.667975664138794
+18:30:13.594 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 10
+18:30:25.769 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.6389984687169393, epoch = 10 (previous: score = 0.6577376325925192, epoch = 9)
+18:30:42.901 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 160 is 1.3913418054580688
+18:31:03.605 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 11
+18:31:16.072 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.6220734417438507, epoch = 11 (previous: score = 0.6389984687169393, epoch = 10)
+18:31:24.215 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 170 is 0.3372350335121155
+18:31:53.668 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 180 is 0.5132618546485901
+18:31:54.886 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 12
+18:32:07.741 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.6062385042508444, epoch = 12 (previous: score = 0.6220734417438507, epoch = 11)
+18:32:29.394 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 190 is 0.665844202041626
+18:32:45.209 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 13
+18:32:57.181 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.5890098512172699, epoch = 13 (previous: score = 0.6062385042508444, epoch = 12)
+18:33:09.650 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 200 is 1.0157248973846436
+18:33:34.604 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 14
+18:33:46.661 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.5718378822008768, epoch = 14 (previous: score = 0.5890098512172699, epoch = 13)
+18:33:49.763 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 210 is 0.758140504360199
+18:34:19.331 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 220 is 0.7737338542938232
+18:34:30.667 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 15
+18:34:42.665 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.5574298202991486, epoch = 15 (previous: score = 0.5718378822008768, epoch = 14)
+18:34:59.679 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 230 is 0.6660571694374084
+18:35:20.278 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 16
+18:35:32.574 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.5442900657653809, epoch = 16 (previous: score = 0.5574298202991486, epoch = 15)
+18:35:40.330 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 240 is 0.3000496029853821
+18:36:11.200 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 250 is 0.41943809390068054
+18:36:12.556 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 17
+18:36:24.513 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.5336760481198629, epoch = 17 (previous: score = 0.5442900657653809, epoch = 16)
+18:36:46.576 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 260 is 0.8548641204833984
+18:37:02.483 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 18
+18:37:14.888 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.5245252251625061, epoch = 18 (previous: score = 0.5336760481198629, epoch = 17)
+18:37:27.363 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 270 is 0.9340708255767822
+18:37:52.447 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 19
+18:38:04.424 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.510346715648969, epoch = 19 (previous: score = 0.5245252251625061, epoch = 18)
+18:38:07.500 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 280 is 0.5370295643806458
+18:38:37.372 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 290 is 0.4754945635795593
+18:38:48.673 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 20
+18:39:00.699 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.4986072580019633, epoch = 20 (previous: score = 0.510346715648969, epoch = 19)
+18:39:17.835 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 300 is 0.44296303391456604
+18:39:38.277 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 21
+18:39:50.298 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.4911043743292491, epoch = 21 (previous: score = 0.4986072580019633, epoch = 20)
+18:39:58.042 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 310 is 0.2385120987892151
+18:40:28.832 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 320 is 0.39089858531951904
+18:40:30.078 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 22
+18:40:42.276 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.48335432012875873, epoch = 22 (previous: score = 0.4911043743292491, epoch = 21)
+18:41:04.398 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 330 is 0.7482689619064331
+18:41:20.531 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 23
+18:41:32.570 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.47019648055235547, epoch = 23 (previous: score = 0.48335432012875873, epoch = 22)
+18:41:44.929 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 340 is 0.5126069188117981
+18:42:11.470 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 24
+18:42:23.794 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.4646169990301132, epoch = 24 (previous: score = 0.47019648055235547, epoch = 23)
+18:42:27.011 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 350 is 0.4108840525150299
+18:42:56.614 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 360 is 0.2897960841655731
+18:43:08.013 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 25
+18:43:20.140 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.4610210061073303, epoch = 25 (previous: score = 0.4646169990301132, epoch = 24)
+18:43:36.955 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 370 is 0.4151184856891632
+18:43:57.418 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 26
+18:44:09.714 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.44652412831783295, epoch = 26 (previous: score = 0.4610210061073303, epoch = 25)
+18:44:17.439 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 380 is 0.14560209214687347
+18:44:47.224 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 390 is 0.45296791195869446
+18:44:48.533 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 27
+18:45:00.532 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.4373318354288737, epoch = 27 (previous: score = 0.44652412831783295, epoch = 26)
+18:45:23.248 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 400 is 0.6372801065444946
+18:45:40.499 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 28
+18:45:52.418 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.4329065680503845, epoch = 28 (previous: score = 0.4373318354288737, epoch = 27)
+18:46:04.762 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 410 is 1.092366337776184
+18:46:30.760 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 29
+18:46:43.313 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.43036753435929614, epoch = 29 (previous: score = 0.4329065680503845, epoch = 28)
+18:46:46.282 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 420 is 0.40853220224380493
+18:47:17.764 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 430 is 0.39123862981796265
+18:47:30.043 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 30
+18:47:42.176 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.424154132604599, epoch = 30 (previous: score = 0.43036753435929614, epoch = 29)
+18:47:59.246 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 440 is 0.32430675625801086
+18:48:20.822 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 31
+18:48:32.741 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.41671180725097656, epoch = 31 (previous: score = 0.424154132604599, epoch = 30)
+18:48:40.402 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 450 is 0.25445011258125305
+18:49:10.942 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 460 is 0.20666418969631195
+18:49:12.320 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 32
+18:49:24.106 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.40869977573553723, epoch = 32 (previous: score = 0.41671180725097656, epoch = 31)
+18:49:45.584 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 470 is 0.5074150562286377
+18:50:02.225 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 33
+18:50:14.763 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.3971038411060969, epoch = 33 (previous: score = 0.40869977573553723, epoch = 32)
+18:50:27.261 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 480 is 0.8260148167610168
+18:50:53.117 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 34
+18:51:05.109 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.392812579870224, epoch = 34 (previous: score = 0.3971038411060969, epoch = 33)
+18:51:08.540 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 490 is 0.3085178732872009
+18:51:38.816 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 500 is 0.5414610505104065
+18:51:50.965 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 35
+18:52:03.021 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.387036273876826, epoch = 35 (previous: score = 0.392812579870224, epoch = 34)
+18:52:21.145 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 510 is 0.3700908124446869
+18:52:41.349 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 36
+18:52:53.427 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.3820189932982127, epoch = 36 (previous: score = 0.387036273876826, epoch = 35)
+18:53:01.173 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 520 is 0.18669453263282776
+18:53:31.802 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 530 is 0.23507140576839447
+18:53:33.095 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 37
+18:53:44.992 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.37596895297368366, epoch = 37 (previous: score = 0.3820189932982127, epoch = 36)
+18:54:07.299 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 540 is 0.541447639465332
+18:54:24.025 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 38
+18:54:37.100 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.36846650143464404, epoch = 38 (previous: score = 0.37596895297368366, epoch = 37)
+18:54:50.819 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 550 is 0.6991338729858398
+18:55:17.700 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 39
+18:55:30.081 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.3656938423713048, epoch = 39 (previous: score = 0.36846650143464404, epoch = 38)
+18:55:33.082 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 560 is 0.3501095771789551
+18:56:03.416 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 570 is 0.3497844636440277
+18:56:15.482 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 40
+18:56:27.361 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.36439954737822217, epoch = 40 (previous: score = 0.3656938423713048, epoch = 39)
+18:56:44.767 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 580 is 0.226293683052063
+18:57:06.073 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 41
+18:57:18.076 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.36133581896622974, epoch = 41 (previous: score = 0.36439954737822217, epoch = 40)
+18:57:25.759 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 590 is 0.1939164698123932
+18:57:55.590 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 600 is 0.24026237428188324
+18:57:56.874 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 42
+18:58:09.470 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.3552532345056534, epoch = 42 (previous: score = 0.36133581896622974, epoch = 41)
+18:58:31.230 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 610 is 0.5882735252380371
+18:58:47.868 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 43
+18:58:59.732 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.3482881983121236, epoch = 43 (previous: score = 0.3552532345056534, epoch = 42)
+18:59:12.081 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 620 is 0.5078991651535034
+18:59:37.725 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 44
+18:59:49.648 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.3427576820055644, epoch = 44 (previous: score = 0.3482881983121236, epoch = 43)
+18:59:52.815 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 630 is 0.2922438383102417
+19:00:23.850 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 640 is 0.43562519550323486
+19:00:35.653 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 45
+19:00:47.713 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.3409876078367233, epoch = 45 (previous: score = 0.3427576820055644, epoch = 44)
+19:01:04.654 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 650 is 0.32876652479171753
+19:01:25.984 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 46
+19:01:37.872 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.33644041419029236, epoch = 46 (previous: score = 0.3409876078367233, epoch = 45)
+19:01:45.592 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 660 is 0.24133606255054474
+19:02:17.206 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 670 is 0.2352336198091507
+19:02:18.526 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 47
+19:02:30.503 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.3355569044748942, epoch = 47 (previous: score = 0.33644041419029236, epoch = 46)
+19:02:51.842 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 680 is 0.5503334403038025
+19:03:08.901 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 48
+19:03:20.870 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.33167042831579846, epoch = 48 (previous: score = 0.3355569044748942, epoch = 47)
+19:03:33.215 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 690 is 0.5453078150749207
+19:03:58.996 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 49
+19:04:11.130 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.3241681605577469, epoch = 49 (previous: score = 0.33167042831579846, epoch = 48)
+19:04:14.116 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 700 is 0.23066888749599457
+19:04:44.194 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 710 is 0.4824674725532532
+19:04:56.121 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 50
+19:05:08.302 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.3203417460123698, epoch = 50 (previous: score = 0.3241681605577469, epoch = 49)
+19:05:25.249 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 720 is 0.27305641770362854
+19:05:46.213 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 51
+19:05:58.096 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 51: 0.32043612003326416
+19:06:05.963 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 730 is 0.2341095507144928
+19:06:36.428 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 740 is 0.1529926061630249
+19:06:37.739 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 52
+19:06:49.672 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.3191454956928889, epoch = 52 (previous: score = 0.3203417460123698, epoch = 50)
+19:07:11.217 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 750 is 0.520519495010376
+19:07:27.733 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 53
+19:07:39.726 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.31496145327885944, epoch = 53 (previous: score = 0.3191454956928889, epoch = 52)
+19:07:51.984 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 760 is 0.6940450072288513
+19:08:17.874 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 54
+19:08:30.034 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.3140483225385348, epoch = 54 (previous: score = 0.31496145327885944, epoch = 53)
+19:08:33.026 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 770 is 0.23191240429878235
+19:09:02.408 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 780 is 0.3095954358577728
+19:09:14.147 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 55
+19:09:26.089 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.30941955745220184, epoch = 55 (previous: score = 0.3140483225385348, epoch = 54)
+19:09:43.184 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 790 is 0.3513856530189514
+19:10:03.358 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 56
+19:10:15.787 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.3047957643866539, epoch = 56 (previous: score = 0.30941955745220184, epoch = 55)
+19:10:24.156 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 800 is 0.10824937373399734
+19:10:53.913 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 810 is 0.20802463591098785
+19:10:55.123 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 57
+19:11:07.276 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.3017209395766258, epoch = 57 (previous: score = 0.3047957643866539, epoch = 56)
+19:11:28.521 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 820 is 0.552247166633606
+19:11:44.373 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 58
+19:11:56.480 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.30027498801549274, epoch = 58 (previous: score = 0.3017209395766258, epoch = 57)
+19:12:08.984 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 830 is 0.5793776512145996
+19:12:33.988 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 59
+19:12:45.979 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 59: 0.3008404125769933
+19:12:48.777 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 840 is 0.32425999641418457
+19:13:18.744 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 850 is 0.32445114850997925
+19:13:29.946 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 60
+19:13:41.928 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.2908598507444064, epoch = 60 (previous: score = 0.30027498801549274, epoch = 58)
+19:13:58.765 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 860 is 0.2818799614906311
+19:14:19.660 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 61
+19:14:31.944 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.28314754366874695, epoch = 61 (previous: score = 0.2908598507444064, epoch = 60)
+19:14:39.494 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 870 is 0.11613510549068451
+19:15:09.054 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 880 is 0.2740304470062256
+19:15:10.620 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 62
+19:15:22.921 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.28232498466968536, epoch = 62 (previous: score = 0.28314754366874695, epoch = 61)
+19:15:44.282 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 890 is 0.538530170917511
+19:16:00.173 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 63
+19:16:12.295 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 63: 0.28586513300736743
+19:16:24.546 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 900 is 0.5461035370826721
+19:16:50.354 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 64
+19:17:02.455 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 64: 0.2838178873062134
+19:17:05.388 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 910 is 0.26899710297584534
+19:17:34.864 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 920 is 0.4346751868724823
+19:17:46.029 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 65
+19:17:58.075 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.2813334638873736, epoch = 65 (previous: score = 0.28232498466968536, epoch = 62)
+19:18:15.539 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 930 is 0.2012965828180313
+19:18:35.969 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 66
+19:18:47.867 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.2739015767971675, epoch = 66 (previous: score = 0.2813334638873736, epoch = 65)
+19:18:55.558 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 940 is 0.13690781593322754
+19:19:25.289 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 950 is 0.09269355237483978
+19:19:26.479 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 67
+19:19:38.215 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.2676502565542857, epoch = 67 (previous: score = 0.2739015767971675, epoch = 66)
+19:19:59.802 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 960 is 0.3731182813644409
+19:20:15.820 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 68
+19:20:28.872 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.26750680307547253, epoch = 68 (previous: score = 0.2676502565542857, epoch = 67)
+19:20:41.635 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 970 is 0.6868851780891418
+19:21:06.779 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 69
+19:21:18.622 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 69: 0.2719822923342387
+19:21:21.468 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 980 is 0.22188830375671387
+19:21:50.940 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 990 is 0.311301052570343
+19:22:02.190 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 70
+19:22:14.438 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 70: 0.2679732119043668
+19:22:31.138 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1000 is 0.27713388204574585
+19:22:51.628 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 71
+19:23:03.613 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.2620795990029971, epoch = 71 (previous: score = 0.26750680307547253, epoch = 68)
+19:23:11.861 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1010 is 0.07990096509456635
+19:23:40.978 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1020 is 0.19351722300052643
+19:23:42.218 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 72
+19:23:54.043 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.2595349798599879, epoch = 72 (previous: score = 0.2620795990029971, epoch = 71)
+19:24:16.258 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1030 is 0.3412892520427704
+19:24:31.963 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 73
+19:24:45.188 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.2578440656264623, epoch = 73 (previous: score = 0.2595349798599879, epoch = 72)
+19:24:57.349 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1040 is 0.16793778538703918
+19:25:23.615 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 74
+19:25:35.541 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.25515690445899963, epoch = 74 (previous: score = 0.2578440656264623, epoch = 73)
+19:25:38.437 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1050 is 0.2397879809141159
+19:26:08.838 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1060 is 0.44420894980430603
+19:26:20.202 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 75
+19:26:32.131 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.2534603178501129, epoch = 75 (previous: score = 0.25515690445899963, epoch = 74)
+19:26:49.550 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1070 is 0.13468173146247864
+19:27:10.307 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 76
+19:27:22.309 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.24932300547758737, epoch = 76 (previous: score = 0.2534603178501129, epoch = 75)
+19:27:29.930 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1080 is 0.13290546834468842
+19:27:59.373 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1090 is 0.10200972855091095
+19:28:00.601 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 77
+19:28:13.610 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 77: 0.25378086666266125
+19:28:34.761 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1100 is 0.4749836325645447
+19:28:50.559 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 78
+19:29:02.551 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.2488265261054039, epoch = 78 (previous: score = 0.24932300547758737, epoch = 76)
+19:29:15.288 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1110 is 0.17582841217517853
+19:29:40.434 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 79
+19:29:52.304 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.24084770927826563, epoch = 79 (previous: score = 0.2488265261054039, epoch = 78)
+19:29:55.295 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1120 is 0.2099427580833435
+19:30:25.546 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1130 is 0.2494099885225296
+19:30:36.828 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 80
+19:30:48.820 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 80: 0.2413891926407814
+19:31:05.777 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1140 is 0.2864183485507965
+19:31:26.306 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 81
+19:31:38.521 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 81: 0.2453209087252617
+19:31:46.077 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1150 is 0.25144100189208984
+19:32:15.869 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1160 is 0.12727712094783783
+19:32:17.051 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 82
+19:32:28.858 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.23819887389739355, epoch = 82 (previous: score = 0.24084770927826563, epoch = 79)
+19:32:50.214 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1170 is 0.4559321999549866
+19:33:06.523 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 83
+19:33:18.568 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 83: 0.24079948912064233
+19:33:30.559 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1180 is 0.5770703554153442
+19:33:55.643 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 84
+19:34:08.044 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 84: 0.2445166359345118
+19:34:10.814 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1190 is 0.2084096223115921
+19:34:40.190 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1200 is 0.4497649073600769
+19:34:51.372 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 85
+19:35:03.227 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 85: 0.23823002725839615
+19:35:20.351 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1210 is 0.1487835794687271
+19:35:40.929 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 86
+19:35:52.937 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.23180649926265082, epoch = 86 (previous: score = 0.23819887389739355, epoch = 82)
+19:36:00.726 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1220 is 0.16339240968227386
+19:36:30.330 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1230 is 0.09195956587791443
+19:36:31.527 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 87
+19:36:43.960 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.22834111750125885, epoch = 87 (previous: score = 0.23180649926265082, epoch = 86)
+19:37:05.598 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1240 is 0.296193927526474
+19:37:21.526 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 88
+19:37:33.398 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.2266378104686737, epoch = 88 (previous: score = 0.22834111750125885, epoch = 87)
+19:37:45.752 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1250 is 0.27397438883781433
+19:38:11.203 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 89
+19:38:23.598 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.22594466557105383, epoch = 89 (previous: score = 0.2266378104686737, epoch = 88)
+19:38:26.506 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1260 is 0.33940640091896057
+19:38:55.914 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1270 is 0.3793797791004181
+19:39:07.558 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 90
+19:39:19.749 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.21989324937264124, epoch = 90 (previous: score = 0.22594466557105383, epoch = 89)
+19:39:37.287 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1280 is 0.22363239526748657
+19:39:57.738 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 91
+19:40:09.958 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.2177450731396675, epoch = 91 (previous: score = 0.21989324937264124, epoch = 90)
+19:40:18.276 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1290 is 0.14659665524959564
+19:40:51.472 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1300 is 0.19178873300552368
+19:40:52.728 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 92
+19:41:04.705 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 92: 0.21934285014867783
+19:41:26.243 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1310 is 0.3620643615722656
+19:41:42.040 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 93
+19:41:54.194 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 93: 0.22088432063659033
+19:42:06.533 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1320 is 0.32026392221450806
+19:42:31.666 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 94
+19:42:43.690 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 94: 0.21795674661795297
+19:42:46.405 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1330 is 0.17648793756961823
+19:43:16.506 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1340 is 0.3706505596637726
+19:43:28.352 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 95
+19:43:40.358 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.21288931121428809, epoch = 95 (previous: score = 0.2177450731396675, epoch = 91)
+19:43:57.140 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1350 is 0.12116511911153793
+19:44:18.366 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 96
+19:44:30.215 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 96: 0.21334200849135718
+19:44:37.724 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1360 is 0.14661307632923126
+19:45:07.073 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1370 is 0.10434536635875702
+19:45:08.279 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 97
+19:45:20.189 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 97: 0.21550557017326355
+19:45:41.728 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1380 is 0.36781471967697144
+19:45:57.452 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 98
+19:46:09.689 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.21077913542588553, epoch = 98 (previous: score = 0.21288931121428809, epoch = 95)
+19:46:21.961 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1390 is 0.34789133071899414
+19:46:47.664 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 99
+19:46:59.684 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.20428850750128427, epoch = 99 (previous: score = 0.21077913542588553, epoch = 98)
+19:47:02.872 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1400 is 0.14224067330360413
+19:47:32.514 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1410 is 0.3381061851978302
+19:47:43.796 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 100
+19:47:55.607 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.20264933009942374, epoch = 100 (previous: score = 0.20428850750128427, epoch = 99)
+19:48:13.205 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1420 is 0.28443247079849243
+19:48:33.753 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 101
+19:48:45.801 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.2025079553325971, epoch = 101 (previous: score = 0.20264933009942374, epoch = 100)
+19:48:53.461 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1430 is 0.14055633544921875
+19:49:23.721 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1440 is 0.1558302491903305
+19:49:24.916 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 102
+19:49:36.730 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.19966406871875128, epoch = 102 (previous: score = 0.2025079553325971, epoch = 101)
+19:49:58.118 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1450 is 0.3560950458049774
+19:50:14.144 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 103
+19:50:26.451 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 103: 0.20111204435427985
+19:50:38.420 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1460 is 0.446031391620636
+19:51:03.545 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 104
+19:51:15.824 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.19685676197210947, epoch = 104 (previous: score = 0.19966406871875128, epoch = 102)
+19:51:18.853 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1470 is 0.18061098456382751
+19:51:48.266 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1480 is 0.3480466306209564
+19:51:59.558 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 105
+19:52:11.773 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.19680942595005035, epoch = 105 (previous: score = 0.19685676197210947, epoch = 104)
+19:52:28.865 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1490 is 0.20771797001361847
+19:52:49.323 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 106
+19:53:01.315 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.1967702309290568, epoch = 106 (previous: score = 0.19680942595005035, epoch = 105)
+19:53:09.373 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1500 is 0.08016439527273178
+19:53:38.781 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1510 is 0.16818957030773163
+19:53:39.995 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 107
+19:53:51.847 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 107: 0.19742562373479208
+19:54:13.575 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1520 is 0.34186774492263794
+19:54:30.608 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 108
+19:54:42.592 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.1959956039985021, epoch = 108 (previous: score = 0.1967702309290568, epoch = 106)
+19:54:54.932 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1530 is 0.23265781998634338
+19:55:20.699 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 109
+19:55:34.184 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.1937089463075002, epoch = 109 (previous: score = 0.1959956039985021, epoch = 108)
+19:55:37.211 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1540 is 0.17789560556411743
+19:56:07.748 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1550 is 0.39998728036880493
+19:56:19.247 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 110
+19:56:31.070 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.19127146154642105, epoch = 110 (previous: score = 0.1937089463075002, epoch = 109)
+19:56:48.404 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1560 is 0.16755862534046173
+19:57:08.980 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 111
+19:57:21.033 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 111: 0.19766431053479513
+19:57:28.467 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1570 is 0.2768547832965851
+19:57:57.849 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1580 is 0.14538149535655975
+19:57:59.066 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 112
+19:58:11.549 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.19016075879335403, epoch = 112 (previous: score = 0.19127146154642105, epoch = 110)
+19:58:32.944 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1590 is 0.31751832365989685
+19:58:48.720 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 113
+19:59:00.553 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.1870335265994072, epoch = 113 (previous: score = 0.19016075879335403, epoch = 112)
+19:59:13.446 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1600 is 0.3253765106201172
+19:59:39.190 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 114
+19:59:51.136 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.18494265526533127, epoch = 114 (previous: score = 0.1870335265994072, epoch = 113)
+19:59:54.127 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1610 is 0.13754358887672424
+20:00:23.953 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1620 is 0.20968443155288696
+20:00:35.244 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 115
+20:00:47.177 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.18441428740819296, epoch = 115 (previous: score = 0.18494265526533127, epoch = 114)
+20:01:04.173 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1630 is 0.13561280071735382
+20:01:24.894 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 116
+20:01:36.695 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.18284156918525696, epoch = 116 (previous: score = 0.18441428740819296, epoch = 115)
+20:01:44.337 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1640 is 0.11511826515197754
+20:02:14.438 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1650 is 0.1159573420882225
+20:02:15.648 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 117
+20:02:27.657 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.1814326892296473, epoch = 117 (previous: score = 0.18284156918525696, epoch = 116)
+20:02:49.148 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1660 is 0.4779667556285858
+20:03:05.443 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 118
+20:03:17.511 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.17772577702999115, epoch = 118 (previous: score = 0.1814326892296473, epoch = 117)
+20:03:29.763 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1670 is 0.31593677401542664
+20:03:54.942 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 119
+20:04:07.355 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.17528865238030752, epoch = 119 (previous: score = 0.17772577702999115, epoch = 118)
+20:04:10.334 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1680 is 0.20874477922916412
+20:04:39.774 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1690 is 0.20856092870235443
+20:04:50.946 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 120
+20:05:03.042 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 120: 0.18109427640835443
+20:05:20.070 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1700 is 0.2132108211517334
+20:05:40.813 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 121
+20:05:52.717 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 121: 0.1791139468550682
+20:06:00.134 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1710 is 0.07248131185770035
+20:06:29.818 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1720 is 0.14669756591320038
+20:06:30.997 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 122
+20:06:43.465 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.17424791802962622, epoch = 122 (previous: score = 0.17528865238030752, epoch = 119)
+20:07:04.936 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1730 is 0.31297653913497925
+20:07:20.956 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 123
+20:07:32.905 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.17082643260558447, epoch = 123 (previous: score = 0.17424791802962622, epoch = 122)
+20:07:45.281 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1740 is 0.41676077246665955
+20:08:10.828 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 124
+20:08:22.745 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 124: 0.17387941976388296
+20:08:25.509 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1750 is 0.19147102534770966
+20:08:55.081 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1760 is 0.23386326432228088
+20:09:06.946 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 125
+20:09:19.027 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 125: 0.17430696388085684
+20:09:35.706 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1770 is 0.061281003057956696
+20:09:56.107 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 126
+20:10:08.299 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.16885045915842056, epoch = 126 (previous: score = 0.17082643260558447, epoch = 123)
+20:10:15.887 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1780 is 0.327057421207428
+20:10:46.983 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1790 is 0.08982478827238083
+20:10:48.194 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 127
+20:11:00.136 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.16818562150001526, epoch = 127 (previous: score = 0.16885045915842056, epoch = 126)
+20:11:21.916 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1800 is 0.24544520676136017
+20:11:37.614 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 128
+20:11:49.570 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.1673097014427185, epoch = 128 (previous: score = 0.16818562150001526, epoch = 127)
+20:12:01.949 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1810 is 0.17912958562374115
+20:12:27.411 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 129
+20:12:39.217 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 129: 0.17172119269768396
+20:12:41.952 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1820 is 0.13710324466228485
+20:13:11.926 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1830 is 0.21281294524669647
+20:13:23.146 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 130
+20:13:35.107 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 130: 0.17296945303678513
+20:13:51.785 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1840 is 0.23340219259262085
+20:14:12.873 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 131
+20:14:24.831 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.16242786248524985, epoch = 131 (previous: score = 0.1673097014427185, epoch = 128)
+20:14:32.635 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1850 is 0.09317310899496078
+20:15:01.980 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1860 is 0.07182285934686661
+20:15:03.205 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 132
+20:15:15.631 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 132: 0.16303160538276038
+20:15:37.189 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1870 is 0.27537864446640015
+20:15:52.973 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 133
+20:16:05.144 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 133: 0.1651067907611529
+20:16:17.157 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1880 is 0.07197518646717072
+20:16:42.807 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 134
+20:16:54.588 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 134: 0.16760756323734918
+20:16:57.339 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1890 is 0.16344009339809418
+20:17:29.550 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1900 is 0.2724492847919464
+20:17:40.923 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 135
+20:17:52.852 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 135: 0.16791213800509772
+20:18:10.558 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1910 is 0.20748701691627502
+20:18:30.952 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 136
+20:18:42.889 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 136: 0.1638573855161667
+20:18:50.309 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1920 is 0.11273076385259628
+20:19:20.166 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1930 is 0.13098986446857452
+20:19:21.900 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 137
+20:19:33.813 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.1613111992677053, epoch = 137 (previous: score = 0.16242786248524985, epoch = 131)
+20:19:55.098 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1940 is 0.2854923605918884
+20:20:11.114 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 138
+20:20:23.245 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 138: 0.16337523112694421
+20:20:35.243 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1950 is 0.2156648486852646
+20:21:00.306 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 139
+20:21:12.582 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 139: 0.1633428285519282
+20:21:15.331 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1960 is 0.17696228623390198
+20:21:44.831 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1970 is 0.25418421626091003
+20:21:56.120 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 140
+20:22:08.320 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.1605509196718534, epoch = 140 (previous: score = 0.1613111992677053, epoch = 137)
+20:22:25.325 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1980 is 0.13517162203788757
+20:22:45.816 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 141
+20:22:57.911 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.15850829581419626, epoch = 141 (previous: score = 0.1605509196718534, epoch = 140)
+20:23:05.928 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 1990 is 0.13253924250602722
+20:23:35.302 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2000 is 0.12063219398260117
+20:23:36.535 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 142
+20:23:48.307 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.15763843804597855, epoch = 142 (previous: score = 0.15850829581419626, epoch = 141)
+20:24:10.247 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2010 is 0.26360857486724854
+20:24:26.020 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 143
+20:24:38.785 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 143: 0.1599553550283114
+20:24:50.722 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2020 is 0.2058425098657608
+20:25:15.823 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 144
+20:25:28.058 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 144: 0.15890217324097952
+20:25:30.781 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2030 is 0.1217312291264534
+20:26:02.186 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2040 is 0.24637165665626526
+20:26:13.641 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 145
+20:26:25.597 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.15280617028474808, epoch = 145 (previous: score = 0.15763843804597855, epoch = 142)
+20:26:43.073 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2050 is 0.1324332058429718
+20:27:03.538 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 146
+20:27:15.777 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 146: 0.1558736984928449
+20:27:23.207 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2060 is 0.2868322432041168
+20:27:52.737 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2070 is 0.07325544208288193
+20:27:53.934 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 147
+20:28:06.247 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 147: 0.15794731428225836
+20:28:27.698 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2080 is 0.4110363721847534
+20:28:43.554 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 148
+20:28:55.571 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.15159970770279566, epoch = 148 (previous: score = 0.15280617028474808, epoch = 145)
+20:29:08.454 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2090 is 0.11019740998744965
+20:29:33.458 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 149
+20:29:45.453 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 149: 0.15478700399398804
+20:29:48.235 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2100 is 0.14981308579444885
+20:30:17.811 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2110 is 0.1637059599161148
+20:30:29.161 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 150
+20:30:41.203 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 150: 0.15628466258446375
+20:30:57.673 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2120 is 0.1358323097229004
+20:31:18.411 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 151
+20:31:30.389 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 151: 0.15458265443642935
+20:31:37.803 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2130 is 0.06422758847475052
+20:32:07.768 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2140 is 0.15631167590618134
+20:32:08.985 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 152
+20:32:21.002 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.15134489287932715, epoch = 152 (previous: score = 0.15159970770279566, epoch = 148)
+20:32:42.330 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2150 is 0.2648417055606842
+20:32:58.168 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 153
+20:33:10.803 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 153: 0.15399872759977976
+20:33:22.980 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2160 is 0.12488808482885361
+20:33:48.100 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 154
+20:34:00.272 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 154: 0.15789944430192313
+20:34:03.070 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2170 is 0.09464055299758911
+20:34:32.962 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2180 is 0.14690044522285461
+20:34:44.084 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 155
+20:34:56.060 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 155: 0.15810284515221915
+20:35:13.204 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2190 is 0.12946338951587677
+20:35:33.921 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 156
+20:35:45.865 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 156: 0.15666823337475458
+20:35:53.461 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2200 is 0.13596150279045105
+20:36:23.157 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2210 is 0.07386181503534317
+20:36:24.441 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 157
+20:36:36.799 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 157: 0.15514539430538812
+20:36:58.106 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2220 is 0.20010747015476227
+20:37:14.385 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 158
+20:37:26.409 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 158: 0.15322176118691763
+20:37:38.447 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2230 is 0.32698091864585876
+20:38:03.518 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 159
+20:38:15.838 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 159: 0.15376034875710806
+20:38:18.617 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2240 is 0.149235799908638
+20:38:48.460 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2250 is 0.11638840287923813
+20:38:59.927 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 160
+20:39:12.952 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.14952815075715384, epoch = 160 (previous: score = 0.15134489287932715, epoch = 152)
+20:39:29.961 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2260 is 0.10800699144601822
+20:39:50.489 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 161
+20:40:02.741 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.14929799487193426, epoch = 161 (previous: score = 0.14952815075715384, epoch = 160)
+20:40:10.694 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2270 is 0.03391101211309433
+20:40:40.189 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2280 is 0.0780661553144455
+20:40:41.419 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 162
+20:40:54.332 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 162: 0.15307334810495377
+20:41:16.263 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2290 is 0.22305671870708466
+20:41:32.211 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 163
+20:41:44.261 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.14868505795796713, epoch = 163 (previous: score = 0.14929799487193426, epoch = 161)
+20:41:56.592 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2300 is 0.1343802511692047
+20:42:21.833 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 164
+20:42:33.787 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.145858866473039, epoch = 164 (previous: score = 0.14868505795796713, epoch = 163)
+20:42:36.935 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2310 is 0.13041803240776062
+20:43:07.282 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2320 is 0.1302614063024521
+20:43:18.559 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 165
+20:43:30.480 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 165: 0.14618830134471258
+20:43:47.223 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2330 is 0.1717197597026825
+20:44:08.128 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 166
+20:44:20.043 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.1448571359117826, epoch = 166 (previous: score = 0.145858866473039, epoch = 164)
+20:44:27.680 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2340 is 0.054436929523944855
+20:44:57.034 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2350 is 0.07689671218395233
+20:44:58.254 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 167
+20:45:10.326 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 167: 0.14915655553340912
+20:45:31.873 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2360 is 0.16455252468585968
+20:45:47.770 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 168
+20:45:59.632 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.14403501898050308, epoch = 168 (previous: score = 0.1448571359117826, epoch = 166)
+20:46:12.173 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2370 is 0.08575081080198288
+20:46:37.739 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 169
+20:46:49.736 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.14157978693644205, epoch = 169 (previous: score = 0.14403501898050308, epoch = 168)
+20:46:52.658 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2380 is 0.16050633788108826
+20:47:22.405 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2390 is 0.18470948934555054
+20:47:33.644 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 170
+20:47:45.504 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 170: 0.14323093245426813
+20:48:02.098 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2400 is 0.13881774246692657
+20:48:23.053 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 171
+20:48:34.984 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 171: 0.1500379517674446
+20:48:42.350 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2410 is 0.10630536079406738
+20:49:12.349 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2420 is 0.0532664954662323
+20:49:13.537 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 172
+20:49:25.463 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 172: 0.14381011575460434
+20:49:46.701 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2430 is 0.24170921742916107
+20:50:03.171 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 173
+20:50:15.417 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.13977218170960745, epoch = 173 (previous: score = 0.14157978693644205, epoch = 169)
+20:50:28.046 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2440 is 0.09259601682424545
+20:50:52.941 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 174
+20:51:05.020 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 174: 0.1432472343246142
+20:51:07.811 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2450 is 0.10406999289989471
+20:51:37.387 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2460 is 0.20172521471977234
+20:51:49.022 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 175
+20:52:01.059 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 175: 0.1432055483261744
+20:52:18.141 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2470 is 0.1109965443611145
+20:52:38.597 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 176
+20:52:50.469 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 176: 0.14281460642814636
+20:52:57.786 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2480 is 0.03590637817978859
+20:53:27.670 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2490 is 0.08062420785427094
+20:53:28.864 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 177
+20:53:40.777 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 177: 0.1434100791811943
+20:54:01.911 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2500 is 0.14684900641441345
+20:54:18.396 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 178
+20:54:30.328 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 178: 0.1438099592924118
+20:54:42.465 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2510 is 0.11453093588352203
+20:55:07.624 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 179
+20:55:19.773 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.13915917774041495, epoch = 179 (previous: score = 0.13977218170960745, epoch = 173)
+20:55:22.930 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2520 is 0.1443314403295517
+20:55:53.057 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2530 is 0.18835803866386414
+20:56:05.065 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 180
+20:56:17.294 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.13697264343500137, epoch = 180 (previous: score = 0.13915917774041495, epoch = 179)
+20:56:34.050 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2540 is 0.07120543718338013
+20:56:55.070 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 181
+20:57:07.318 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.1365106776356697, epoch = 181 (previous: score = 0.13697264343500137, epoch = 180)
+20:57:15.102 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2550 is 0.17581121623516083
+20:57:44.390 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2560 is 0.05959836021065712
+20:57:45.633 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 182
+20:57:57.492 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 182: 0.13886374483505884
+20:58:19.247 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2570 is 0.2037939429283142
+20:58:35.045 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 183
+20:58:47.542 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 183: 0.14030556629101434
+20:58:59.558 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2580 is 0.11092434823513031
+20:59:25.277 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 184
+20:59:37.240 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.13567033410072327, epoch = 184 (previous: score = 0.1365106776356697, epoch = 181)
+20:59:40.155 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2590 is 0.10790067166090012
+21:00:09.869 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2600 is 0.2319904863834381
+21:00:21.177 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 185
+21:00:33.383 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.13297906517982483, epoch = 185 (previous: score = 0.13567033410072327, epoch = 184)
+21:00:50.153 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2610 is 0.05597896873950958
+21:01:10.635 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 186
+21:01:22.617 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 186: 0.13612204293409982
+21:01:30.064 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2620 is 0.11072441190481186
+21:01:59.544 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2630 is 0.056154657155275345
+21:02:00.766 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 187
+21:02:13.088 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 187: 0.13731145858764648
+21:02:34.381 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2640 is 0.17490702867507935
+21:02:50.070 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 188
+21:03:01.953 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.13065611074368158, epoch = 188 (previous: score = 0.13297906517982483, epoch = 185)
+21:03:14.785 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2650 is 0.22352378070354462
+21:03:39.768 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 189
+21:03:51.686 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.12778948744138083, epoch = 189 (previous: score = 0.13065611074368158, epoch = 188)
+21:03:54.622 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2660 is 0.13044799864292145
+21:04:24.537 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2670 is 0.2038462609052658
+21:04:35.786 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 190
+21:04:47.693 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 190: 0.1323187326391538
+21:05:05.139 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2680 is 0.14599746465682983
+21:05:25.959 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 191
+21:05:37.865 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 191: 0.130062406261762
+21:05:45.284 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2690 is 0.05342933163046837
+21:06:17.279 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2700 is 0.05164549872279167
+21:06:18.461 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 192
+21:06:30.453 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 192: 0.12981696178515753
+21:06:52.312 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2710 is 0.1870545595884323
+21:07:08.494 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 193
+21:07:20.343 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 193: 0.13416461398204169
+21:07:32.337 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2720 is 0.12489674985408783
+21:07:57.292 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 194
+21:08:09.757 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 194: 0.1324596405029297
+21:08:12.554 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2730 is 0.08156802505254745
+21:08:41.788 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2740 is 0.1104164868593216
+21:08:53.004 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 195
+21:09:05.366 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 195: 0.13359610984722772
+21:09:22.369 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2750 is 0.1617216318845749
+21:09:42.822 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 196
+21:09:54.781 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 196: 0.1304730847477913
+21:10:02.261 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2760 is 0.05054908245801926
+21:10:32.240 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2770 is 0.040908653289079666
+21:10:33.450 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 197
+21:10:48.253 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - New best model: score = 0.12697307765483856, epoch = 197 (previous: score = 0.12778948744138083, epoch = 189)
+21:11:10.980 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2780 is 0.14791692793369293
+21:11:26.958 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 198
+21:11:38.945 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 198: 0.13052684192856154
+21:11:50.898 [main] INFO  org.deeplearning4j.optimize.listeners.ScoreIterationListener - Score at iteration 2790 is 0.1581718623638153
+21:12:16.297 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Completed training epoch 199
+21:12:28.298 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Score at epoch 199: 0.12792310615380606
+21:12:28.301 [main] INFO  org.deeplearning4j.earlystopping.trainer.BaseEarlyStoppingTrainer - Hit epoch termination condition at epoch 199. Details: MaxEpochsTerminationCondition(200)
+21:12:28.596 [main] INFO  com.mtheory7.model.OcclupanidModelTrainer - Training complete.
+21:12:28.597 [main] INFO  com.mtheory7.model.OcclupanidModelTrainer - Termination reason: EpochTerminationCondition
+21:12:28.597 [main] INFO  com.mtheory7.model.OcclupanidModelTrainer - Total epochs: 200
+21:12:28.597 [main] INFO  com.mtheory7.model.OcclupanidModelTrainer - Best epoch number: 197
+21:12:28.597 [main] INFO  com.mtheory7.model.OcclupanidModelTrainer - Score at best epoch: 0.0
+21:12:28.597 [main] INFO  com.mtheory7.model.OcclupanidModelTrainer - Evaluating best model accuracy using testing data directory...
+21:12:33.021 [main] INFO  com.mtheory7.model.OcclupanidModelTrainer - 
+
+========================Evaluation Metrics========================
+ # of classes:    2
+ Accuracy:        0.9762
+ Precision:       0.9545
+ Recall:          1.0000
+ F1 Score:        0.9767
+Precision, recall & F1: reported for positive class (class 1 - "PalpatophoraUtiliformis") only
+
+
+=========================Confusion Matrix=========================
+  0  1
+-------
+ 20  1 | 0 = AdmordorsumFloridensis
+  0 21 | 1 = PalpatophoraUtiliformis
+
+Confusion matrix format: Actual (rowClass) predicted as (columnClass) N times
+==================================================================
+21:12:33.257 [main] INFO  com.mtheory7.model.OcclupanidModelTrainer - Model successfully exported to: C:\Users\thesp\Code\deeplearning4j-occlupanid\models\deeplearning4jOcclupanidModel1.0.0.zip
+21:12:33.257 [main] INFO  com.mtheory7.Main - Finished trainModelAndSave function
+21:12:33.257 [main] INFO  com.mtheory7.Main - Starting testAndPrintResults function
+21:12:33.258 [main] INFO  com.mtheory7.Main - Finished testAndPrintResults function
+21:12:33.260 [Thread-4] INFO  org.deeplearning4j.ui.VertxUIServer - Deeplearning4j UI server is auto-stopping in shutdown hook.

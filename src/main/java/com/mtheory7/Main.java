@@ -20,5 +20,7 @@ public class Main {
         OcclupanidModelTester occlupanidModelTester = new OcclupanidModelTester();
         occlupanidModelTester.testAndPrintResults(modelPath, dataPath);
         log.info("Finished testAndPrintResults function");
+
+        System.exit(0);
     }
 }
