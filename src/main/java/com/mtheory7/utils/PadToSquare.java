@@ -16,8 +16,8 @@ public class PadToSquare extends BaseImageTransform<Mat> {
     // 1. Create a strongly-typed converter specifically for Mat objects
     private static final OpenCVFrameConverter.ToMat toMatConverter = new OpenCVFrameConverter.ToMat();
 
-    public PadToSquare(long seed) {
-        super(new Random(seed));
+    public PadToSquare() {
+        super(null);
     }
 
     @Override
