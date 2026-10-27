@@ -154,8 +154,8 @@ public class OcclupanidModelTrainer {
         log.info("Configuring Early Stopping...");
         EarlyStoppingConfiguration<ComputationGraph> esConf = new EarlyStoppingConfiguration.Builder<ComputationGraph>()
                 .epochTerminationConditions(
-                        new MaxEpochsTerminationCondition(epochs)
-                        //new ScoreImprovementEpochTerminationCondition(10)
+                        new MaxEpochsTerminationCondition(epochs),
+                        new ScoreImprovementEpochTerminationCondition(15)
                 )
                 .scoreCalculator(new DataSetLossCalculator(valIter, true))
                 .evaluateEveryNEpochs(1)
