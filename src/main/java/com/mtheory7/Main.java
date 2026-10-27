@@ -16,8 +16,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         log.info("Starting trainModelAndSave function...");
-        //OcclupanidModelTrainer occlupanidModelTrainer = new OcclupanidModelTrainer();
-        //occlupanidModelTrainer.trainModelAndSave(modelPath, dataPath);
+        OcclupanidModelTrainer occlupanidModelTrainer = new OcclupanidModelTrainer();
+        occlupanidModelTrainer.trainModelAndSave(modelPath, dataPath);
         log.info("Finished trainModelAndSave function...");
 
         log.info("Starting model tests...");
