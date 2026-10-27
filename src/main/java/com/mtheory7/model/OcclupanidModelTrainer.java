@@ -59,7 +59,7 @@ public class OcclupanidModelTrainer {
     private static final int numOfClasses = 2;
     private static final int batchSize = 16;
     private static final long seed = 12345L;
-    private static final int epochs = 200;
+    private static final int epochs = 500;
 
     public void trainModelAndSave(String modelPath, String dataPath) throws IOException {
         log.info("Configuring aggressive native memory garbage collection...");
@@ -154,8 +154,8 @@ public class OcclupanidModelTrainer {
         log.info("Configuring Early Stopping...");
         EarlyStoppingConfiguration<ComputationGraph> esConf = new EarlyStoppingConfiguration.Builder<ComputationGraph>()
                 .epochTerminationConditions(
-                        new MaxEpochsTerminationCondition(epochs),
-                        new ScoreImprovementEpochTerminationCondition(15)
+                        new MaxEpochsTerminationCondition(epochs)
+                        //new ScoreImprovementEpochTerminationCondition(10)
                 )
                 .scoreCalculator(new DataSetLossCalculator(valIter, true))
                 .evaluateEveryNEpochs(1)
