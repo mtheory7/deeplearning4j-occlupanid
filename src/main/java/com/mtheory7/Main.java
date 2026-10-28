@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 public class Main {
     protected static final Logger log = LoggerFactory.getLogger(Main.class);
+    public static final String MODEL_NAME = "deeplearning4jOcclupanidModel1.1.0.zip";
     private static final String modelPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/models";
     private static final String dataPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/trainingData/data";
 
@@ -18,7 +19,7 @@ public class Main {
 
         log.info("Starting model tests...");
         OcclupanidModelTester occlupanidModelTester = new OcclupanidModelTester();
-        occlupanidModelTester.predictImages((modelPath + "/deeplearning4jOcclupanidModel1.1.0-SNAPSHOT.zip"), dataPath);
+        occlupanidModelTester.predictImages((modelPath + "/" + MODEL_NAME), dataPath);
         log.info("Finished testing model");
 
         System.exit(0);

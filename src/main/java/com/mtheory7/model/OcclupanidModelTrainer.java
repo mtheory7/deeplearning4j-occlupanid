@@ -50,6 +50,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 
+import static com.mtheory7.Main.MODEL_NAME;
+
 public class OcclupanidModelTrainer {
     protected static final Logger log = LoggerFactory.getLogger(OcclupanidModelTrainer.class);
 
@@ -69,7 +71,7 @@ public class OcclupanidModelTrainer {
         String modelCheckpointPath = modelPath + "/checkpoints";
         if (!new File(modelCheckpointPath).exists()) //noinspection ResultOfMethodCallIgnored
             new File(modelCheckpointPath).mkdirs();
-        String modelSavePath = modelPath + "/deeplearning4jOcclupanidModel1.1.0-SNAPSHOT.zip";
+        String modelSavePath = modelPath + "/" + MODEL_NAME;
 
         UIServer uiServer = UIServer.getInstance();
         File statsFile = new File(modelPath, "training_stats.dl4j");
