@@ -12,43 +12,66 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class OcclupanidModelTester {
     protected static final Logger log = LoggerFactory.getLogger(OcclupanidModelTester.class);
 
-    public void predictImage(String modelPath, String imagePath) throws Exception {
-        // Set loadUpdater to false in order to prevent Adam state from loading saving memory
+    public void predictImages(String modelPath, String imagesPath) throws Exception {
+        log.info("Loading saved model from .zip...");
         ComputationGraph model = ComputationGraph.load(new File(modelPath), false);
 
-        log.info("Preparing image loader and transforms...");
-        // Same image padding as in training (a must!)
+        log.info("Configuring image preprocessor...");
         PipelineImageTransform inferenceTransform = new PipelineImageTransform(Arrays.asList(
                 new Pair<>(new PadToSquare(), 1.0)
         ), true);
-
         NativeImageLoader loader = new NativeImageLoader(224, 224, 3, inferenceTransform);
-        INDArray imageMatrix = loader.asMatrix(new File(imagePath));
         DataNormalization scaler = new VGG16ImagePreProcessor();
-        scaler.transform(imageMatrix);
 
-        log.info("Running inference...");
-        // The output() method returns an array of INDArrays (one for each output layer).
-        // SqueezeNet only has one output layer, so we take index 0.
-        INDArray[] output = model.output(false, imageMatrix);
-        INDArray predictions = output[0];
-
-        // Map the indices back to labels, DL4J sorts folder names alphabetically during training
         List<String> classLabels = Arrays.asList("AdmordorsumFloridensis", "PalpatophoraUtiliformis");
-        int predictedClassIndex = predictions.argMax(1).getInt(0);
-        double confidence = predictions.getDouble(predictedClassIndex) * 100.0;
+        int errorCount = 0;
+        int totalCount = 0;
 
-        log.info("--- Prediction Results ---");
-        log.info("Predicted Class: {}", classLabels.get(predictedClassIndex));
-        log.info("Confidence: {}%", String.format("%.2f", confidence));
-        log.info("Raw Probabilities: A. Floridensis: {}, P. Utiliformis: {}",
-                String.format("%.4f", predictions.getDouble(0)),
-                String.format("%.4f", predictions.getDouble(1)));
+        log.info("Scanning directory: {}", imagesPath);
+        try (Stream<Path> paths = Files.walk(Paths.get(imagesPath))) {
+            List<Path> imagePaths = paths
+                    .filter(Files::isRegularFile)
+                    .filter(p -> p.toString().toLowerCase().endsWith(".jpg") || p.toString().toLowerCase().endsWith(".png"))
+                    .toList();
+            for (Path imagePath : imagePaths) {
+                totalCount++;
+                String actualLabel = imagePath.getParent().getFileName().toString();
+                INDArray imageMatrix = loader.asMatrix(imagePath.toFile());
+                scaler.transform(imageMatrix);
+
+                INDArray[] output = model.output(false, imageMatrix);
+
+                INDArray predictions = output[0];
+                int predictedIndex = predictions.argMax(1).getInt(0);
+                String predictedLabel = classLabels.get(predictedIndex);
+                double confidence = predictions.getDouble(predictedIndex) * 100.0;
+
+                if (!actualLabel.equals(predictedLabel)) {
+                    errorCount++;
+                    log.info("Incorrect: File '{}' | Actual: '{}' | Predicted: '{}' (Confidence: {}%)",
+                            imagePath.getFileName(),
+                            actualLabel,
+                            predictedLabel,
+                            String.format("%.2f", confidence));
+                } else {
+                    log.info("Correct: File '{}' | Actual: '{}' | Predicted: '{}' (Confidence: {}%)",
+                            imagePath.getFileName(),
+                            actualLabel,
+                            predictedLabel,
+                            String.format("%.2f", confidence));
+                }
+            }
+        }
+        log.info("Verification complete. Scanned {} images. Found {} incorrect predictions.", totalCount, errorCount);
     }
 }
