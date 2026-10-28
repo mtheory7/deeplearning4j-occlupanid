@@ -59,7 +59,7 @@ public class OcclupanidModelTrainer {
     private static final int numOfClasses = 2;
     private static final int batchSize = 16;
     private static final long seed = 12345L;
-    private static final int epochs = 200;
+    private static final int epochs = 500;
 
     public void trainModelAndSave(String modelPath, String dataPath) throws IOException {
         log.info("Configuring aggressive native memory garbage collection...");
@@ -69,7 +69,7 @@ public class OcclupanidModelTrainer {
         String modelCheckpointPath = modelPath + "/checkpoints";
         if (!new File(modelCheckpointPath).exists()) //noinspection ResultOfMethodCallIgnored
             new File(modelCheckpointPath).mkdirs();
-        String modelSavePath = modelPath + "/deeplearning4jOcclupanidModel1.0.0.zip";
+        String modelSavePath = modelPath + "/deeplearning4jOcclupanidModel1.1.0-SNAPSHOT.zip";
 
         UIServer uiServer = UIServer.getInstance();
         File statsFile = new File(modelPath, "training_stats.dl4j");
@@ -122,7 +122,7 @@ public class OcclupanidModelTrainer {
         log.info("Configuring Transfer Learning...");
         FineTuneConfiguration fineTuneConf = new FineTuneConfiguration.Builder()
                 .updater(new Adam(1e-4))
-                //.weightDecay(1e-3) // L2 regularization
+                .weightDecay(1e-3) // L2 regularization
                 .seed(seed)
                 .build();
 

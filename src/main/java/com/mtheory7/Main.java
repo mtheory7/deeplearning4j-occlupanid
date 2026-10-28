@@ -11,15 +11,15 @@ public class Main {
     private static final String dataPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/trainingData/data";
 
     public static void main(String[] args) throws Exception {
-        log.info("Starting trainModelAndSave function");
+        log.info("Starting trainModelAndSave function...");
         OcclupanidModelTrainer occlupanidModelTrainer = new OcclupanidModelTrainer();
         occlupanidModelTrainer.trainModelAndSave(modelPath, dataPath);
-        log.info("Finished trainModelAndSave function");
+        log.info("Finished trainModelAndSave function...");
 
-        log.info("Starting testAndPrintResults function");
+        log.info("Starting model tests...");
         OcclupanidModelTester occlupanidModelTester = new OcclupanidModelTester();
-        occlupanidModelTester.testAndPrintResults(modelPath, dataPath);
-        log.info("Finished testAndPrintResults function");
+        occlupanidModelTester.predictImages((modelPath + "/deeplearning4jOcclupanidModel1.1.0-SNAPSHOT.zip"), dataPath);
+        log.info("Finished testing model");
 
         System.exit(0);
     }
