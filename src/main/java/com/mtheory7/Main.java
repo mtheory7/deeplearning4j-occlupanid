@@ -5,9 +5,13 @@ import com.mtheory7.model.OcclupanidModelTrainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
     protected static final Logger log = LoggerFactory.getLogger(Main.class);
-    public static final String MODEL_NAME = "deeplearning4jOcclupanidModel1.1.0.zip";
+    public static final List<String> CLASS_LABELS = Arrays.asList("AdmordorsumFloridensis", "PalpatophoraUtiliformis", "PorrectofrontusMechadeus");
+    public static final String MODEL_NAME = "deeplearning4jOcclupanidModel1.2.0.zip";
     private static final String modelPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/models";
     private static final String dataPath = "C:/Users/thesp/Code/deeplearning4j-occlupanid/trainingData/data";
 

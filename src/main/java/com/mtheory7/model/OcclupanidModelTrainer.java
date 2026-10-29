@@ -58,7 +58,7 @@ public class OcclupanidModelTrainer {
     private static final int height = 224;
     private static final int width = 224;
     private static final int channels = 3;
-    private static final int numOfClasses = 2;
+    private static final int numOfClasses = 3;
     private static final int batchSize = 16;
     private static final long seed = 12345L;
     private static final int epochs = 500;
@@ -95,7 +95,7 @@ public class OcclupanidModelTrainer {
         PipelineImageTransform valTransform = new PipelineImageTransform(Arrays.asList(
                 new Pair<>(new PadToSquare(), 1.0)
         ), true);
-        // Split the 300 (150x2) images into 3 groups
+        // Split the 450 (150x3) images into 3 groups
         InputSplit[] splits = fileSplit.sample(pathFilter, 70, 16, 14);
         InputSplit trainSplit = splits[0];
         InputSplit valSplit = splits[1];
@@ -119,7 +119,7 @@ public class OcclupanidModelTrainer {
         log.info("Loading pre-trained SqueezeNet weights from ImageNet...");
         SqueezeNet zooModel = SqueezeNet.builder().build();
         ComputationGraph pretrainedNet = zooModel.initPretrained(PretrainedType.IMAGENET);
-        log.info(pretrainedNet.summary());
+        //log.info(pretrainedNet.summary());
 
         log.info("Configuring Transfer Learning...");
         FineTuneConfiguration fineTuneConf = new FineTuneConfiguration.Builder()
@@ -149,7 +149,7 @@ public class OcclupanidModelTrainer {
                 .build();
 
         model.setListeners(
-                new ScoreIterationListener(10),
+                //new ScoreIterationListener(10),
                 new StatsListener(statsStorage)
         );
 
