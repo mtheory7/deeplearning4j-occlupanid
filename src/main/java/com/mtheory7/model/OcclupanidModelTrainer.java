@@ -156,7 +156,7 @@ public class OcclupanidModelTrainer {
         model.setListeners(
                 new ScoreIterationListener(50),
                 new StatsListener(statsStorage),
-                new CustomEpochListener()
+                new ProgressEpochListener()
         );
 
         log.info("Configuring Early Stopping...");
@@ -192,7 +192,7 @@ public class OcclupanidModelTrainer {
         log.info("Model successfully exported to: {}", modelSaveFile.getAbsolutePath());
     }
 
-    public class CustomEpochListener extends BaseTrainingListener {
+    public class ProgressEpochListener extends BaseTrainingListener {
         @Override
         public void onEpochEnd(Model model) {
             float percentage = (((float) currentEpoch / epochs) * 100);
