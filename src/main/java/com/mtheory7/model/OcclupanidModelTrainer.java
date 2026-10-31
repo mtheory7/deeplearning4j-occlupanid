@@ -53,21 +53,19 @@ import java.time.Instant;
 import java.util.Arrays;
 import java.util.Random;
 
-import static com.mtheory7.Main.CLASS_LABELS;
-import static com.mtheory7.Main.MODEL_NAME;
+import static com.mtheory7.Main.*;
 
 public class OcclupanidModelTrainer {
     protected static final Logger log = LoggerFactory.getLogger(OcclupanidModelTrainer.class);
 
-    private static final int height = 224;
-    private static final int width = 224;
-    private static final int channels = 3;
-    private static final int numOfClasses = CLASS_LABELS.size();
-    private static final int batchSize = 16;
-    private static final long seed = 12345L;
-    private static final int epochs = 500;
-    private static final Instant startTime = Instant.now();
-    private int currentEpoch = 1;
+    private static final int HEIGHT = 224;
+    private static final int WIDTH = 224;
+    private static final int CHANNELS = 3;
+    private static final int NUM_OF_CLASSES = CLASS_LABELS.size();
+    private static final int BATCH_SIZE = 16;
+    private static final long SEED = 12345L;
+    private static final int MAX_EPOCHS = 500;
+    private int CURRENT_EPOCH = 1;
 
     public void trainModelAndSave(String modelPath, String dataPath) throws IOException {
         log.info("Configuring aggressive native memory garbage collection...");
@@ -88,7 +86,7 @@ public class OcclupanidModelTrainer {
         FileSplit fileSplit = new FileSplit(trainingDataDirectory, NativeImageLoader.ALLOWED_FORMATS, new Random(123));
         ParentPathLabelGenerator labelMaker = new ParentPathLabelGenerator();
         BalancedPathFilter pathFilter = new BalancedPathFilter(
-                new Random(seed),
+                new Random(SEED),
                 NativeImageLoader.ALLOWED_FORMATS,
                 labelMaker
         );
@@ -105,16 +103,16 @@ public class OcclupanidModelTrainer {
         InputSplit trainSplit = splits[0];
         InputSplit valSplit = splits[1];
         InputSplit testSplit = splits[2];
-        ImageRecordReader trainRR = new ImageRecordReader(height, width, channels, labelMaker);
-        ImageRecordReader valRR = new ImageRecordReader(height, width, channels, labelMaker);
-        ImageRecordReader testRR = new ImageRecordReader(height, width, channels, labelMaker);
+        ImageRecordReader trainRR = new ImageRecordReader(HEIGHT, WIDTH, CHANNELS, labelMaker);
+        ImageRecordReader valRR = new ImageRecordReader(HEIGHT, WIDTH, CHANNELS, labelMaker);
+        ImageRecordReader testRR = new ImageRecordReader(HEIGHT, WIDTH, CHANNELS, labelMaker);
         trainRR.initialize(trainSplit, trainTransform);
         valRR.initialize(valSplit, valTransform);
         testRR.initialize(testSplit, valTransform);
         log.info("Detected training labels: {}", trainRR.getLabels());
-        DataSetIterator trainIter = new RecordReaderDataSetIterator(trainRR, batchSize, 1, numOfClasses);
-        DataSetIterator valIter = new RecordReaderDataSetIterator(valRR, batchSize, 1, numOfClasses);
-        DataSetIterator testIter = new RecordReaderDataSetIterator(testRR, batchSize, 1, numOfClasses);
+        DataSetIterator trainIter = new RecordReaderDataSetIterator(trainRR, BATCH_SIZE, 1, NUM_OF_CLASSES);
+        DataSetIterator valIter = new RecordReaderDataSetIterator(valRR, BATCH_SIZE, 1, NUM_OF_CLASSES);
+        DataSetIterator testIter = new RecordReaderDataSetIterator(testRR, BATCH_SIZE, 1, NUM_OF_CLASSES);
 
         DataNormalization scaler = new VGG16ImagePreProcessor();
         trainIter.setPreProcessor(scaler);
@@ -130,7 +128,7 @@ public class OcclupanidModelTrainer {
         FineTuneConfiguration fineTuneConf = new FineTuneConfiguration.Builder()
                 .updater(new Adam(1e-4))
                 .weightDecay(1e-3)
-                .seed(seed)
+                .seed(SEED)
                 .build();
 
         log.info("Building ComputationGraph...");
@@ -145,7 +143,7 @@ public class OcclupanidModelTrainer {
                 .addLayer("predictions",
                         new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
                                 .nIn(512)
-                                .nOut(numOfClasses)
+                                .nOut(NUM_OF_CLASSES)
                                 .weightInit(org.deeplearning4j.nn.weights.WeightInit.XAVIER)
                                 .activation(Activation.SOFTMAX)
                                 .build(),
@@ -162,7 +160,7 @@ public class OcclupanidModelTrainer {
         log.info("Configuring Early Stopping...");
         EarlyStoppingConfiguration<ComputationGraph> esConf = new EarlyStoppingConfiguration.Builder<ComputationGraph>()
                 .epochTerminationConditions(
-                        new MaxEpochsTerminationCondition(epochs),
+                        new MaxEpochsTerminationCondition(MAX_EPOCHS),
                         new ScoreImprovementEpochTerminationCondition(15)
                 )
                 .scoreCalculator(new DataSetLossCalculator(valIter, true))
@@ -195,11 +193,11 @@ public class OcclupanidModelTrainer {
     public class ProgressEpochListener extends BaseTrainingListener {
         @Override
         public void onEpochEnd(Model model) {
-            float percentage = (((float) currentEpoch / epochs) * 100);
-            float totalHours = ((float) (Duration.between(startTime, Instant.now()).toMillis()) / 1000 / (currentEpoch) * epochs) / 3600;
-            float elapsedHours = (float) (Duration.between(startTime, Instant.now()).toMillis()) / 1000 / 3600;
+            float percentage = (((float) CURRENT_EPOCH / MAX_EPOCHS) * 100);
+            float totalHours = ((float) (Duration.between(START_TIME, Instant.now()).toMillis()) / 1000 / (CURRENT_EPOCH) * MAX_EPOCHS) / 3600;
+            float elapsedHours = (float) (Duration.between(START_TIME, Instant.now()).toMillis()) / 1000 / 3600;
             log.info("Percent complete: {}% - Estimated hours remaining to max epoch: {}", percentage, (totalHours - elapsedHours));
-            currentEpoch++;
+            CURRENT_EPOCH++;
         }
     }
 }
