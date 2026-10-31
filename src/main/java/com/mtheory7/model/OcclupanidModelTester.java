@@ -65,11 +65,13 @@ public class OcclupanidModelTester {
                             predictedLabel,
                             String.format("%.2f", confidence));
                 } else {
-                    log.info("Correct: File '{}' | Actual: '{}' | Predicted: '{}' (Confidence: {}%)",
-                            imagePath.getFileName(),
-                            actualLabel,
-                            predictedLabel,
-                            String.format("%.2f", confidence));
+                    if (confidence < 80) {
+                        log.info("Correct: File '{}' | Actual: '{}' | Predicted: '{}' (Confidence: {}%)",
+                                imagePath.getFileName(),
+                                actualLabel,
+                                predictedLabel,
+                                String.format("%.2f", confidence));
+                    }
                 }
             }
         }

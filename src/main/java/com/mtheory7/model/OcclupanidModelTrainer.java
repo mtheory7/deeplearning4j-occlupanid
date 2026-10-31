@@ -53,6 +53,7 @@ import java.time.Instant;
 import java.util.Arrays;
 import java.util.Random;
 
+import static com.mtheory7.Main.CLASS_LABELS;
 import static com.mtheory7.Main.MODEL_NAME;
 
 public class OcclupanidModelTrainer {
@@ -61,7 +62,7 @@ public class OcclupanidModelTrainer {
     private static final int height = 224;
     private static final int width = 224;
     private static final int channels = 3;
-    private static final int numOfClasses = 3;
+    private static final int numOfClasses = CLASS_LABELS.size();
     private static final int batchSize = 16;
     private static final long seed = 12345L;
     private static final int epochs = 500;
@@ -87,7 +88,7 @@ public class OcclupanidModelTrainer {
         FileSplit fileSplit = new FileSplit(trainingDataDirectory, NativeImageLoader.ALLOWED_FORMATS, new Random(123));
         ParentPathLabelGenerator labelMaker = new ParentPathLabelGenerator();
         BalancedPathFilter pathFilter = new BalancedPathFilter(
-                new Random(123),
+                new Random(seed),
                 NativeImageLoader.ALLOWED_FORMATS,
                 labelMaker
         );
@@ -100,7 +101,6 @@ public class OcclupanidModelTrainer {
         PipelineImageTransform valTransform = new PipelineImageTransform(Arrays.asList(
                 new Pair<>(new PadToSquare(), 1.0)
         ), true);
-        // Split the 450 (150x3) images into 3 groups
         InputSplit[] splits = fileSplit.sample(pathFilter, 70, 16, 14);
         InputSplit trainSplit = splits[0];
         InputSplit valSplit = splits[1];
@@ -129,7 +129,7 @@ public class OcclupanidModelTrainer {
         log.info("Configuring Transfer Learning...");
         FineTuneConfiguration fineTuneConf = new FineTuneConfiguration.Builder()
                 .updater(new Adam(1e-4))
-                .weightDecay(1e-3) // L2 regularization
+                .weightDecay(1e-3)
                 .seed(seed)
                 .build();
 
@@ -198,7 +198,6 @@ public class OcclupanidModelTrainer {
             float percentage = (((float) currentEpoch / epochs) * 100);
             float totalHours = ((float) (Duration.between(startTime, Instant.now()).toMillis()) / 1000 / (currentEpoch) * epochs) / 3600;
             float elapsedHours = (float) (Duration.between(startTime, Instant.now()).toMillis()) / 1000 / 3600;
-            // Put your custom code here to run after each epoch
             log.info("Percent complete: {}% - Estimated hours remaining to max epoch: {}", percentage, (totalHours - elapsedHours));
             currentEpoch++;
         }
