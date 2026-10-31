@@ -56,7 +56,8 @@ public class OcclupanidModelTester {
                 int predictedIndex = predictions.argMax(1).getInt(0);
                 String predictedLabel = CLASS_LABELS.get(predictedIndex);
                 double confidence = predictions.getDouble(predictedIndex) * 100.0;
-
+                int logThreshold = 80;
+                log.info("Logging any images that are incorrect or less than {}% confident...", logThreshold);
                 if (!actualLabel.equals(predictedLabel)) {
                     errorCount++;
                     log.info("Incorrect: File '{}' | Actual: '{}' | Predicted: '{}' (Confidence: {}%)",
@@ -65,7 +66,7 @@ public class OcclupanidModelTester {
                             predictedLabel,
                             String.format("%.2f", confidence));
                 } else {
-                    if (confidence < 80) {
+                    if (confidence < logThreshold) {
                         log.info("Correct: File '{}' | Actual: '{}' | Predicted: '{}' (Confidence: {}%)",
                                 imagePath.getFileName(),
                                 actualLabel,
