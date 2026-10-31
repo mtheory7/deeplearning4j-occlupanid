@@ -5,7 +5,6 @@ import org.datavec.api.io.filters.BalancedPathFilter;
 import org.datavec.api.io.labels.ParentPathLabelGenerator;
 import org.datavec.api.split.FileSplit;
 import org.datavec.api.split.InputSplit;
-import org.datavec.image.loader.BaseImageLoader;
 import org.datavec.image.loader.NativeImageLoader;
 import org.datavec.image.recordreader.ImageRecordReader;
 import org.datavec.image.transform.CropImageTransform;
@@ -21,12 +20,14 @@ import org.deeplearning4j.earlystopping.scorecalc.DataSetLossCalculator;
 import org.deeplearning4j.earlystopping.termination.MaxEpochsTerminationCondition;
 import org.deeplearning4j.earlystopping.termination.ScoreImprovementEpochTerminationCondition;
 import org.deeplearning4j.earlystopping.trainer.EarlyStoppingGraphTrainer;
+import org.deeplearning4j.nn.api.Model;
 import org.deeplearning4j.nn.conf.layers.GlobalPoolingLayer;
 import org.deeplearning4j.nn.conf.layers.OutputLayer;
 import org.deeplearning4j.nn.conf.layers.PoolingType;
 import org.deeplearning4j.nn.graph.ComputationGraph;
 import org.deeplearning4j.nn.transferlearning.FineTuneConfiguration;
 import org.deeplearning4j.nn.transferlearning.TransferLearning;
+import org.deeplearning4j.optimize.api.BaseTrainingListener;
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
 import org.deeplearning4j.ui.api.UIServer;
 import org.deeplearning4j.ui.model.stats.StatsListener;
@@ -47,21 +48,24 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.Random;
 
-import static com.mtheory7.Main.MODEL_NAME;
+import static com.mtheory7.Main.*;
 
 public class OcclupanidModelTrainer {
     protected static final Logger log = LoggerFactory.getLogger(OcclupanidModelTrainer.class);
 
-    private static final int height = 224;
-    private static final int width = 224;
-    private static final int channels = 3;
-    private static final int numOfClasses = 2;
-    private static final int batchSize = 16;
-    private static final long seed = 12345L;
-    private static final int epochs = 500;
+    private static final int HEIGHT = 224;
+    private static final int WIDTH = 224;
+    private static final int CHANNELS = 3;
+    private static final int NUM_OF_CLASSES = CLASS_LABELS.size();
+    private static final int BATCH_SIZE = 16;
+    private static final long SEED = 12345L;
+    private static final int MAX_EPOCHS = 500;
+    private int CURRENT_EPOCH = 1;
 
     public void trainModelAndSave(String modelPath, String dataPath) throws IOException {
         log.info("Configuring aggressive native memory garbage collection...");
@@ -82,34 +86,33 @@ public class OcclupanidModelTrainer {
         FileSplit fileSplit = new FileSplit(trainingDataDirectory, NativeImageLoader.ALLOWED_FORMATS, new Random(123));
         ParentPathLabelGenerator labelMaker = new ParentPathLabelGenerator();
         BalancedPathFilter pathFilter = new BalancedPathFilter(
-                new Random(123),
+                new Random(SEED),
                 NativeImageLoader.ALLOWED_FORMATS,
                 labelMaker
         );
         PipelineImageTransform trainTransform = new PipelineImageTransform(Arrays.asList(
                 new Pair<>(new PadToSquare(), 1.0),
-                new Pair<>(new FlipImageTransform(1), 0.5), // Horizontal flip
-                new Pair<>(new RotateImageTransform(15), 0.5), // Slight rotation
+                new Pair<>(new FlipImageTransform(1), 0.5),
+                new Pair<>(new RotateImageTransform(45), 0.5),
                 new Pair<>(new CropImageTransform(10), 0.3)
         ), true);
         PipelineImageTransform valTransform = new PipelineImageTransform(Arrays.asList(
                 new Pair<>(new PadToSquare(), 1.0)
         ), true);
-        // Split the 300 (150x2) images into 3 groups
         InputSplit[] splits = fileSplit.sample(pathFilter, 70, 16, 14);
         InputSplit trainSplit = splits[0];
         InputSplit valSplit = splits[1];
         InputSplit testSplit = splits[2];
-        ImageRecordReader trainRR = new ImageRecordReader(height, width, channels, labelMaker);
-        ImageRecordReader valRR = new ImageRecordReader(height, width, channels, labelMaker);
-        ImageRecordReader testRR = new ImageRecordReader(height, width, channels, labelMaker);
+        ImageRecordReader trainRR = new ImageRecordReader(HEIGHT, WIDTH, CHANNELS, labelMaker);
+        ImageRecordReader valRR = new ImageRecordReader(HEIGHT, WIDTH, CHANNELS, labelMaker);
+        ImageRecordReader testRR = new ImageRecordReader(HEIGHT, WIDTH, CHANNELS, labelMaker);
         trainRR.initialize(trainSplit, trainTransform);
         valRR.initialize(valSplit, valTransform);
         testRR.initialize(testSplit, valTransform);
         log.info("Detected training labels: {}", trainRR.getLabels());
-        DataSetIterator trainIter = new RecordReaderDataSetIterator(trainRR, batchSize, 1, numOfClasses);
-        DataSetIterator valIter = new RecordReaderDataSetIterator(valRR, batchSize, 1, numOfClasses);
-        DataSetIterator testIter = new RecordReaderDataSetIterator(testRR, batchSize, 1, numOfClasses);
+        DataSetIterator trainIter = new RecordReaderDataSetIterator(trainRR, BATCH_SIZE, 1, NUM_OF_CLASSES);
+        DataSetIterator valIter = new RecordReaderDataSetIterator(valRR, BATCH_SIZE, 1, NUM_OF_CLASSES);
+        DataSetIterator testIter = new RecordReaderDataSetIterator(testRR, BATCH_SIZE, 1, NUM_OF_CLASSES);
 
         DataNormalization scaler = new VGG16ImagePreProcessor();
         trainIter.setPreProcessor(scaler);
@@ -124,8 +127,8 @@ public class OcclupanidModelTrainer {
         log.info("Configuring Transfer Learning...");
         FineTuneConfiguration fineTuneConf = new FineTuneConfiguration.Builder()
                 .updater(new Adam(1e-4))
-                .weightDecay(1e-3) // L2 regularization
-                .seed(seed)
+                .weightDecay(1e-3)
+                .seed(SEED)
                 .build();
 
         log.info("Building ComputationGraph...");
@@ -140,7 +143,7 @@ public class OcclupanidModelTrainer {
                 .addLayer("predictions",
                         new OutputLayer.Builder(LossFunctions.LossFunction.NEGATIVELOGLIKELIHOOD)
                                 .nIn(512)
-                                .nOut(numOfClasses)
+                                .nOut(NUM_OF_CLASSES)
                                 .weightInit(org.deeplearning4j.nn.weights.WeightInit.XAVIER)
                                 .activation(Activation.SOFTMAX)
                                 .build(),
@@ -149,14 +152,15 @@ public class OcclupanidModelTrainer {
                 .build();
 
         model.setListeners(
-                new ScoreIterationListener(10),
-                new StatsListener(statsStorage)
+                new ScoreIterationListener(50),
+                new StatsListener(statsStorage),
+                new ProgressEpochListener()
         );
 
         log.info("Configuring Early Stopping...");
         EarlyStoppingConfiguration<ComputationGraph> esConf = new EarlyStoppingConfiguration.Builder<ComputationGraph>()
                 .epochTerminationConditions(
-                        new MaxEpochsTerminationCondition(epochs),
+                        new MaxEpochsTerminationCondition(MAX_EPOCHS),
                         new ScoreImprovementEpochTerminationCondition(15)
                 )
                 .scoreCalculator(new DataSetLossCalculator(valIter, true))
@@ -184,5 +188,16 @@ public class OcclupanidModelTrainer {
         File modelSaveFile = new File(modelSavePath);
         bestModel.save(modelSaveFile, true);
         log.info("Model successfully exported to: {}", modelSaveFile.getAbsolutePath());
+    }
+
+    public class ProgressEpochListener extends BaseTrainingListener {
+        @Override
+        public void onEpochEnd(Model model) {
+            float percentage = (((float) CURRENT_EPOCH / MAX_EPOCHS) * 100);
+            float totalHours = ((float) (Duration.between(START_TIME, Instant.now()).toMillis()) / 1000 / (CURRENT_EPOCH) * MAX_EPOCHS) / 3600;
+            float elapsedHours = (float) (Duration.between(START_TIME, Instant.now()).toMillis()) / 1000 / 3600;
+            log.info("Percent complete: {}% - Estimated hours remaining to max epoch: {}", percentage, (totalHours - elapsedHours));
+            CURRENT_EPOCH++;
+        }
     }
 }

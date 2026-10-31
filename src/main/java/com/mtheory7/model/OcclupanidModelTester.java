@@ -19,6 +19,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static com.mtheory7.Main.CLASS_LABELS;
+
 public class OcclupanidModelTester {
     protected static final Logger log = LoggerFactory.getLogger(OcclupanidModelTester.class);
 
@@ -33,7 +35,6 @@ public class OcclupanidModelTester {
         NativeImageLoader loader = new NativeImageLoader(224, 224, 3, inferenceTransform);
         DataNormalization scaler = new VGG16ImagePreProcessor();
 
-        List<String> classLabels = Arrays.asList("AdmordorsumFloridensis", "PalpatophoraUtiliformis");
         int errorCount = 0;
         int totalCount = 0;
 
@@ -53,9 +54,10 @@ public class OcclupanidModelTester {
 
                 INDArray predictions = output[0];
                 int predictedIndex = predictions.argMax(1).getInt(0);
-                String predictedLabel = classLabels.get(predictedIndex);
+                String predictedLabel = CLASS_LABELS.get(predictedIndex);
                 double confidence = predictions.getDouble(predictedIndex) * 100.0;
-
+                int logThreshold = 80;
+                log.info("Logging any images that are incorrect or less than {}% confident...", logThreshold);
                 if (!actualLabel.equals(predictedLabel)) {
                     errorCount++;
                     log.info("Incorrect: File '{}' | Actual: '{}' | Predicted: '{}' (Confidence: {}%)",
@@ -64,11 +66,13 @@ public class OcclupanidModelTester {
                             predictedLabel,
                             String.format("%.2f", confidence));
                 } else {
-                    log.info("Correct: File '{}' | Actual: '{}' | Predicted: '{}' (Confidence: {}%)",
-                            imagePath.getFileName(),
-                            actualLabel,
-                            predictedLabel,
-                            String.format("%.2f", confidence));
+                    if (confidence < logThreshold) {
+                        log.info("Correct: File '{}' | Actual: '{}' | Predicted: '{}' (Confidence: {}%)",
+                                imagePath.getFileName(),
+                                actualLabel,
+                                predictedLabel,
+                                String.format("%.2f", confidence));
+                    }
                 }
             }
         }
